@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
         AnimateThePlayer();
     }
 
-    private  void CalculateMovementDirection() {
+    private void CalculateMovementDirection() {
         inputDirection = moveAction.ReadValue<Vector2>();
         movementDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
     }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour {
 
     private void PickDrop(InputAction.CallbackContext context) {
         if (itemInHand) DropItem();
-        else            PickItem();
+        else PickItem();
     }
     private void PickItem() {
         Item pickedItem = interactableController.ClosestInteractableFurniture?.GetItemOnTop();
@@ -114,13 +114,19 @@ public class PlayerController : MonoBehaviour {
         if (closestFurniture == null) return;
 
         if (itemInHand is Dish) {
-            if (closestFurniture.HasItemOnTop) {
-                (itemInHand as Dish).AcceptIngridients(closestFurniture.ItemOnTop);
+            Dish dishInHand = itemInHand as Dish;
+
+            if (closestFurniture.ItemOnTop is Ingridient) {
+                Ingridient ingridientOnClosestFurniture = (Ingridient)closestFurniture.ItemOnTop;
+
+                if (dishInHand.CanAddIngridient(ingridientOnClosestFurniture)) {
+                    dishInHand.AddIngridient(ingridientOnClosestFurniture);
+                }
             }
         }
         else {
-            if (closestFurniture.TrySetItemOnTop(itemInHand)) {
-                itemInHand.transform.localRotation = Quaternion.identity;
+            if (closestFurniture.CanSetItemOnTop(itemInHand)) {
+                closestFurniture.SetItemOnTop(itemInHand);
                 itemInHand = null;
                 playerAnimator.SetBool("PickedUp", false);
             }

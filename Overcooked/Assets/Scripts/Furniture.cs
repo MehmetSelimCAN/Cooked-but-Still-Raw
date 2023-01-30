@@ -9,6 +9,12 @@ public abstract class Furniture : Interactable {
     public bool HasItemOnTop { get { return itemOnTop == null ? false : true; } }
     public Item ItemOnTop { get { return itemOnTop; } }
 
-    public virtual Item GetItemOnTop() { return null; }
-    public virtual bool TrySetItemOnTop(Item droppedItem) { return false; }
+    public virtual Item GetItemOnTop() {
+        Item tempItem = itemOnTop;
+        itemOnTop = null;
+        return tempItem;
+    }
+
+    public virtual void SetItemOnTop(Item droppedItem) { }
+    public virtual bool CanSetItemOnTop(Item droppedItem) { return false; }
 }

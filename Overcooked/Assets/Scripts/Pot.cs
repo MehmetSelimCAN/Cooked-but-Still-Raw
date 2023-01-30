@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pot : Dish {
 
-    private List<IngridientType> soupIngridients = new List<IngridientType> {   
+    private List<IngridientType> soupIngridients = new List<IngridientType> {
                                                                 IngridientType.Tomato,
                                                                 IngridientType.Onion};
 
@@ -14,23 +14,49 @@ public class Pot : Dish {
         ingridientCapacity = 3;
     }
 
-    public override bool AcceptIngridients(Item droppedItem) {
+    public override bool CanAddIngridient(Item droppedItem) {
         if (currentIngridientQuantity >= ingridientCapacity) return false;
         if (!(droppedItem is Ingridient)) return false;
 
         Ingridient droppedIngridient = droppedItem as Ingridient;
 
-        if (soupIngridients.Contains(droppedIngridient.IngridientType)) {
-            if (droppedIngridient.IngridientStatus == IngridientStatus.Processed) {
-                //Çorbaya malzeme ekle
-                //TODO: Her ingridient ekleniþinde Mesh renderer deðiþecek.
-                currentIngridients.Add(droppedIngridient);
-                currentIngridientQuantity++;
-                droppedIngridient.gameObject.SetActive(false);
-                return true;
-            }
-        }
+        if (!soupIngridients.Contains(droppedIngridient.IngridientType)) return false;
+        if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
 
-        return false;
+        return true;
+
+        //if (soupIngridients.Contains(droppedIngridient.IngridientType)) {
+        //    if (droppedIngridient.IngridientStatus == IngridientStatus.Processed) {
+        //        return true;
+        //    }
+        //}
+
+        //return false;
     }
+
+    public override void AddIngridient(Ingridient droppedIngridient) {
+        currentIngridients.Add(droppedIngridient);
+        currentIngridientQuantity++;
+        droppedIngridient.gameObject.SetActive(false);
+    }
+
+    //public override bool AcceptIngridients(Item droppedItem) {
+    //    if (currentIngridientQuantity >= ingridientCapacity) return false;
+    //    if (!(droppedItem is Ingridient)) return false;
+
+    //    Ingridient droppedIngridient = droppedItem as Ingridient;
+
+    //    if (soupIngridients.Contains(droppedIngridient.IngridientType)) {
+    //        if (droppedIngridient.IngridientStatus == IngridientStatus.Processed) {
+    //            //Çorbaya malzeme ekle
+    //            //TODO: Her ingridient ekleniþinde Mesh renderer deðiþecek.
+    //            currentIngridients.Add(droppedIngridient);
+    //            currentIngridientQuantity++;
+    //            droppedIngridient.gameObject.SetActive(false);
+    //            return true;
+    //        }
+    //    }
+
+    //    return false;
+    //}
 }

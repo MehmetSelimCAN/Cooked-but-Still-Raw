@@ -4,28 +4,26 @@ using UnityEngine;
 
 public class BurgerStove : Furniture {
 
-    public override Item GetItemOnTop() {
-        Item tempItem = itemOnTop;
-        itemOnTop = null;
-        return tempItem;
-    }
-
-    public override bool TrySetItemOnTop(Item droppedItem) {
+    public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-                //Üstü boþ ve Pan býrakmaya çalýþýyorsak
+            //Üstü boþ ve Pan býrakmaya çalýþýyorsak
             if (droppedItem is Pan) {
-                droppedItem.transform.SetParent(itemSlot);
-                droppedItem.transform.localPosition = Vector3.zero;
-                itemOnTop = droppedItem;
                 return true;
             }
 
-            //Üstü boþ ve Pan dýþýnda bir Dish býrakmaya çalýþýyorsak
+            //Üstü boþ ve Pan dýþýnda bir þey býrakmaya çalýþýyorsak
             return false;
         }
         else {
-            //Üstünde Pan var ve Piþecek malzeme býrakmaya çalýþýyorsak
-            return (itemOnTop as Pan).AcceptIngridients(droppedItem);
+            //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak
+            return (ItemOnTop as Pan).CanAddIngridient(droppedItem);
+            //return (itemOnTop as Pan).AcceptIngridients(droppedItem);
         }
+    }
+
+    public override void SetItemOnTop(Item droppedItem) {
+        droppedItem.transform.SetParent(itemSlot);
+        droppedItem.transform.localPosition = Vector3.zero;
+        itemOnTop = droppedItem;
     }
 }
