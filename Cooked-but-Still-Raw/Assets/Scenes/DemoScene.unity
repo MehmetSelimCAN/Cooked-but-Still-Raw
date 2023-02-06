@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 1604128055}
   - component: {fileID: 1604128056}
   - component: {fileID: 33240389}
+  - component: {fileID: 33240393}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -683,6 +684,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &33240393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33240388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d6302424c1f5d40910c663a6199724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33240394
 GameObject:
   m_ObjectHideFlags: 0
@@ -4683,53 +4696,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34096259385361777, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
   m_PrefabInstance: {fileID: 830395594}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1404567274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1404567276}
-  - component: {fileID: 1404567275}
-  m_Layer: 0
-  m_Name: pfOnionSoupOrder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1404567275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404567274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a50e2bebb248440ab06038965443dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingridients:
-  - {fileID: -5971695314428830329, guid: 9da2a49ed09bc434b9cf0b23242c078d, type: 3}
-  - {fileID: -5971695314428830329, guid: 9da2a49ed09bc434b9cf0b23242c078d, type: 3}
-  - {fileID: -5971695314428830329, guid: 9da2a49ed09bc434b9cf0b23242c078d, type: 3}
---- !u!4 &1404567276
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404567274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1420451823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 34096259385361777, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
@@ -4984,6 +4950,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b9522608-3efe-4379-b7db-e9b8a106ef76
     m_ActionName: Player/Dash[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a408fda0-6317-4acf-a5aa-ace33dfe8d64
+    m_ActionName: Player/Interact[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -6673,6 +6643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 38143104}
+  cuttableIngridientTypes: 0000000001000000020000000300000005000000
 --- !u!1 &1657581378456803692
 GameObject:
   m_ObjectHideFlags: 0
@@ -6705,6 +6676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 83395765}
+  cuttableIngridientTypes: 0000000001000000020000000300000005000000
 --- !u!4 &3468933871583662558
 Transform:
   m_ObjectHideFlags: 0

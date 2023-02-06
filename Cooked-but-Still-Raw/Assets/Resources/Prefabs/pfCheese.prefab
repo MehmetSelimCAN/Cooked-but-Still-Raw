@@ -709,6 +709,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingridientType: 2
+  ingridientStatus: 0
+  processCountMax: 3
 --- !u!1 &7237958349794743018
 GameObject:
   m_ObjectHideFlags: 0

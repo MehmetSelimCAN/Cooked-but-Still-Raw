@@ -16,14 +16,21 @@ public class PotStove : Furniture {
         }
         else {
             //Üstünde Pot var ve bir þey býrakmaya çalýþýyorsak
-            return (itemOnTop as Pot).CanAddIngridient(droppedItem);
-            //return (itemOnTop as Pot).AcceptIngridients(droppedItem);
+            Pot potOnTop = itemOnTop as Pot;
+            return potOnTop.CanAddIngridient(droppedItem);
         }
     }
 
     public override void SetItemOnTop(Item droppedItem) {
-        droppedItem.transform.SetParent(itemSlot);
-        droppedItem.transform.localPosition = Vector3.zero;
-        itemOnTop = droppedItem;
+        if (ItemOnTop == null) {
+            droppedItem.transform.SetParent(itemSlot);
+            droppedItem.transform.localPosition = Vector3.zero;
+            itemOnTop = droppedItem;
+        }
+        else {
+            Pot potOnTop = ItemOnTop as Pot;
+            Ingridient droppedIngridient = droppedItem as Ingridient;
+            potOnTop.AddIngridient(droppedIngridient);
+        }
     }
 }

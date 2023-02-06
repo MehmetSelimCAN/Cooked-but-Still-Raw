@@ -16,14 +16,21 @@ public class BurgerStove : Furniture {
         }
         else {
             //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak
-            return (ItemOnTop as Pan).CanAddIngridient(droppedItem);
-            //return (itemOnTop as Pan).AcceptIngridients(droppedItem);
+            Pan panOnTop = itemOnTop as Pan;
+            return panOnTop.CanAddIngridient(droppedItem);
         }
     }
 
     public override void SetItemOnTop(Item droppedItem) {
-        droppedItem.transform.SetParent(itemSlot);
-        droppedItem.transform.localPosition = Vector3.zero;
-        itemOnTop = droppedItem;
+        if (ItemOnTop == null) {
+            droppedItem.transform.SetParent(itemSlot);
+            droppedItem.transform.localPosition = Vector3.zero;
+            itemOnTop = droppedItem;
+        }
+        else {
+            Pan panOnTop = ItemOnTop as Pan;
+            Ingridient droppedIngridient = droppedItem as Ingridient;
+            panOnTop.AddIngridient(droppedIngridient);
+        }
     }
 }

@@ -17,4 +17,6 @@ public abstract class Furniture : Interactable {
 
     public virtual void SetItemOnTop(Item droppedItem) { }
     public virtual bool CanSetItemOnTop(Item droppedItem) { return false; }
+
+    public virtual void Interact() { }
 }

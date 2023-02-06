@@ -126,4 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingridientType: 5
-  ingridientStatus: 1
+  ingridientStatus: 0
+  processCountMax: 2

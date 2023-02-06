@@ -12,22 +12,21 @@ public class Pan : Dish {
         ingridientCapacity = 1;
     }
 
-    public override bool AcceptIngridients(Item droppedItem) {
+    public override bool CanAddIngridient(Item droppedItem) {
         if (currentIngridientQuantity >= ingridientCapacity) return false;
         if (!(droppedItem is Ingridient)) return false;
 
         Ingridient droppedIngridient = droppedItem as Ingridient;
 
-        if (cookableIngridients.Contains(droppedIngridient.IngridientType)) {
-            if (droppedIngridient.IngridientStatus == IngridientStatus.Raw) {
-                //Tavaya et ekle
-                droppedIngridient.transform.SetParent(ingridientSlot);
-                droppedIngridient.transform.localPosition = Vector3.zero;
-                currentIngridientQuantity++;
-                return true;
-            }
-        }
+        if (!cookableIngridients.Contains(droppedIngridient.IngridientType)) return false;
+        if (droppedIngridient.IngridientStatus != IngridientStatus.Raw) return false;
 
-        return false;
+        return true;
+    }
+
+    public override void AddIngridient(Ingridient droppedIngridient) {
+        droppedIngridient.transform.SetParent(ingridientSlot);
+        droppedIngridient.transform.localPosition = Vector3.zero;
+        currentIngridientQuantity++;
     }
 }

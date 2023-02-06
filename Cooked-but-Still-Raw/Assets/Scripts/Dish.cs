@@ -8,7 +8,6 @@ public class Dish : Item {
     protected int currentIngridientQuantity = 0;
 
     public virtual bool CanAddIngridient(Item droppedItem) { return false; }
-    //public virtual bool AcceptIngridients(Item droppedItem) { return false; }
     public virtual void AddIngridient(Ingridient droppedIngridient) { }
 
 }
