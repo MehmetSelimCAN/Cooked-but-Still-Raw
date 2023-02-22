@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     //Movement Properties
     private float movementSpeed = 15f;
+    private float rotationSpeed = 15f;
     private Vector3 movementDirection;
     private Vector3 inputDirection;
     private Rigidbody playerRigidbody;
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-        private void GameInputController_OnInteractAction(object sender, System.EventArgs e) {
+    private void GameInputController_OnInteractAction(object sender, System.EventArgs e) {
         var closestFurniture = interactableController.ClosestInteractableFurniture;
         if (closestFurniture == null) return;
 
@@ -82,7 +83,7 @@ public class PlayerController : MonoBehaviour {
         if (!(playerRigidbody.velocity.magnitude > 0.1f) || inputDirection == Vector3.zero) return;
 
         Quaternion newRotation = Quaternion.LookRotation(new Vector3(inputDirection.x, 0, inputDirection.y));
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 15f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
     }
 
     private void AnimateThePlayer() {

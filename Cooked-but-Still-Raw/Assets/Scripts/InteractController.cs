@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,20 @@ using UnityEngine.InputSystem;
 
 public class InteractController : MonoBehaviour {
 
+    public static InteractController Instance { get; private set; }
+
     private HashSet<Furniture> interactableFurnitures = new HashSet<Furniture>();
     private Furniture closestReachableInteractableFurniture;
     public Furniture ClosestInteractableFurniture { get { return closestReachableInteractableFurniture; } }
+
+    public event EventHandler<OnClosestFurnitureChangedEventArgs> OnClosestFurnitureChanged;
+    public class OnClosestFurnitureChangedEventArgs : EventArgs {
+        public Furniture closestFurniture;
+    }
+
+    private void Awake() {
+        Instance = this;
+    }
 
     private void FixedUpdate() {
         GetClosestInteractable();
@@ -15,7 +27,8 @@ public class InteractController : MonoBehaviour {
 
     private void GetClosestInteractable() {
         if (interactableFurnitures.Count == 0) {
-            closestReachableInteractableFurniture = null;
+            //closestReachableInteractableFurniture = null;
+            SetClosestFurniture(null);
             return;
         }
 
@@ -26,9 +39,20 @@ public class InteractController : MonoBehaviour {
 
             if (distanceBetweenFurniture < minimumDistance) {
                 minimumDistance = distanceBetweenFurniture;
-                closestReachableInteractableFurniture = interactableFurniture;
+                if (closestReachableInteractableFurniture != interactableFurniture) {
+                    SetClosestFurniture(interactableFurniture);
+                    //closestReachableInteractableFurniture = interactableFurniture;
+                }
             }
         }
+    }
+
+    private void SetClosestFurniture(Furniture closestFurniture) {
+        closestReachableInteractableFurniture = closestFurniture;
+
+        OnClosestFurnitureChanged?.Invoke(this, new OnClosestFurnitureChangedEventArgs { 
+            closestFurniture = closestReachableInteractableFurniture
+        });
     }
 
     private void OnTriggerEnter(Collider other) {
