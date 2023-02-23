@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Ingridient : Item {
 
-    [SerializeField] private IngridientType ingridientType;
-    [SerializeField] private IngridientStatus ingridientStatus;
-    [SerializeField] private int processCountMax;
-    public IngridientType IngridientType { get { return ingridientType; } }
-    public IngridientStatus IngridientStatus { get { return ingridientStatus; } }
-    public int ProcessCountMax { get { return processCountMax; } }
+    protected MeshFilter ingridientMeshFilter;
+    [SerializeField] private Mesh rawMesh;
 
-    public void ChangeStatus(IngridientStatus newStatus) {
+    [SerializeField] protected IngridientStatus ingridientStatus;
+
+    public IngridientStatus IngridientStatus { get { return ingridientStatus; } }
+
+    private void Awake() {
+        ingridientMeshFilter = GetComponentInChildren<MeshFilter>();
+    }
+
+    private void ResetAttributes() {
+        ingridientStatus = IngridientStatus.Raw;
+        ingridientMeshFilter.mesh = rawMesh;
+    }
+
+    protected void ChangeStatus(IngridientStatus newStatus) {
         ingridientStatus = newStatus;
     }
+
+    public virtual void ChangeMesh(IngridientStatus newStatus) { }
 }

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1337593852917239188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 1854391174260502687}
   m_RootOrder: 0
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1854391174260502687}
-  - component: {fileID: -3841305282854668502}
+  - component: {fileID: 1121200384537932790}
   m_Layer: 0
   m_Name: pfCabbage
   m_TagString: Untagged
@@ -107,13 +107,13 @@ Transform:
   m_GameObject: {fileID: 4560940225938729385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3115607477568996022}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3841305282854668502
+--- !u!114 &1121200384537932790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +122,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4560940225938729385}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96daba371eecc0b49a73757f6d6b2e12, type: 3}
+  m_Script: {fileID: 11500000, guid: effb9ed29908bc24885b7793bea2921c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingridientType: 5
+  rawMesh: {fileID: -8273424620059847725, guid: 8cb4b924c536bde4782b4ff3fba286b6, type: 3}
   ingridientStatus: 0
-  processCountMax: 2
+  processedMesh: {fileID: 7113742550581899826, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
+  processCountMax: 3

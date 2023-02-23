@@ -673,7 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927138424329645527}
-  - component: {fileID: -6858957392793425610}
+  - component: {fileID: -4314164875838784557}
   m_Layer: 0
   m_Name: pfCheese
   m_TagString: Untagged
@@ -696,7 +696,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6858957392793425610
+--- !u!114 &-4314164875838784557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -705,11 +705,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7030859236057266362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96daba371eecc0b49a73757f6d6b2e12, type: 3}
+  m_Script: {fileID: 11500000, guid: daa8963c31ac50f44961da6c72db8356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingridientType: 2
+  rawMesh: {fileID: 0}
   ingridientStatus: 0
+  processedMesh: {fileID: -2719439086681959747, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
   processCountMax: 3
 --- !u!1 &7237958349794743018
 GameObject:

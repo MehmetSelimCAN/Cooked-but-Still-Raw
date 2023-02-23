@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 13826442213957450}
-  - component: {fileID: -7931308752065550372}
+  - component: {fileID: 3691997062422874778}
   m_Layer: 0
   m_Name: pfBread
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7931308752065550372
+--- !u!114 &3691997062422874778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 765400912257380723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96daba371eecc0b49a73757f6d6b2e12, type: 3}
+  m_Script: {fileID: 11500000, guid: ce12a2d05717c234ca30c58215279ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingridientType: 4
+  rawMesh: {fileID: 0}
+  ingridientStatus: 1
 --- !u!1 &1765831051703938876
 GameObject:
   m_ObjectHideFlags: 0

@@ -3890,10 +3890,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2240469187016575373, guid: 935b0fe625f633e4c989c8f71546d183, type: 3}
-      propertyPath: itemOnTop
-      value: 
-      objectReference: {fileID: -3841305282854668502, guid: 52cf1ce7daa5fc14686fe9e7091742ef, type: 3}
     - target: {fileID: 2921584169876156943, guid: 935b0fe625f633e4c989c8f71546d183, type: 3}
       propertyPath: m_Name
       value: CabbageBox
@@ -3942,8 +3938,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 935b0fe625f633e4c989c8f71546d183, type: 3}
 --- !u!1001 &1055233260
 PrefabInstance:
@@ -6643,7 +6638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 38143104}
-  cuttableIngridientTypes: 0000000001000000020000000300000005000000
 --- !u!1 &1657581378456803692
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,7 +6670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 83395765}
-  cuttableIngridientTypes: 0000000001000000020000000300000005000000
 --- !u!4 &3468933871583662558
 Transform:
   m_ObjectHideFlags: 0

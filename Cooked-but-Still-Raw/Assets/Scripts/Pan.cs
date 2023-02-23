@@ -6,8 +6,6 @@ public class Pan : Dish {
 
     [SerializeField] private Transform ingridientSlot;
 
-    private List<IngridientType> cookableIngridients = new List<IngridientType> { IngridientType.Meat };
-
     private void Awake() {
         ingridientCapacity = 1;
     }
@@ -18,8 +16,8 @@ public class Pan : Dish {
 
         Ingridient droppedIngridient = droppedItem as Ingridient;
 
-        if (!cookableIngridients.Contains(droppedIngridient.IngridientType)) return false;
-        if (droppedIngridient.IngridientStatus != IngridientStatus.Raw) return false;
+        if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
+        if (!(droppedIngridient is IFryable)) return false;
 
         return true;
     }

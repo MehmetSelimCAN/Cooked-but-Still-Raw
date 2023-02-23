@@ -2,29 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoppingBoard : Furniture {
+public class ChoppingBoard : CounterTop {
 
-    [SerializeField] private List<IngridientType> cuttableIngridientTypes;
     private int cuttingProcess = 0;
 
-    public override bool CanSetItemOnTop(Item droppedItem) {
-        if (itemOnTop != null) return false;
-        if (droppedItem is Dish) return false;
-
-        if (droppedItem is Ingridient) {
-            Ingridient droppedIngridient = droppedItem as Ingridient;
-            if (droppedIngridient.IngridientType == IngridientType.Bread) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public override void SetItemOnTop(Item droppedItem) {
-        droppedItem.transform.SetParent(itemSlot);
-        droppedItem.transform.localPosition = Vector3.zero;
-        itemOnTop = droppedItem;
+        if (ItemOnTop == null) {
+            droppedItem.transform.SetParent(itemSlot);
+            droppedItem.transform.localPosition = Vector3.zero;
+            droppedItem.transform.localRotation = Quaternion.identity;
+            itemOnTop = droppedItem;
+        }
+        else {
+            Dish dishOnTop = ItemOnTop as Dish;
+            Ingridient droppedIngridient = droppedItem as Ingridient;
+            dishOnTop.AddIngridient(droppedIngridient);
+        }
 
         cuttingProcess = 0;
     }
@@ -36,13 +29,14 @@ public class ChoppingBoard : Furniture {
         Ingridient ingridientOnTop = itemOnTop as Ingridient;
 
         if (ingridientOnTop.IngridientStatus != IngridientStatus.Raw) return;
-        if (!(cuttableIngridientTypes.Contains(ingridientOnTop.IngridientType))) return;
+        if (!(ingridientOnTop is ICuttable)) return;
+
+        ICuttable cuttableOnTop = ingridientOnTop as ICuttable;
 
         cuttingProcess++;
-        if (cuttingProcess >= ingridientOnTop.ProcessCountMax) {
-            //Change mesh to sliced one.
-            ingridientOnTop.ChangeStatus(IngridientStatus.Processed);
+        if (cuttingProcess >= cuttableOnTop.ProcessCountMax) {
             Debug.Log("Sliced");
+            cuttableOnTop.SlicedUp();
         }
     }
 }

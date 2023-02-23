@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Pot : Dish {
 
-    private List<IngridientType> soupIngridients = new List<IngridientType> {   
-                                                                IngridientType.Tomato,
-                                                                IngridientType.Onion};
-
     [SerializeField] private List<Ingridient> currentIngridients = new List<Ingridient>();
 
     private void Awake() {
@@ -20,8 +16,8 @@ public class Pot : Dish {
 
         Ingridient droppedIngridient = droppedItem as Ingridient;
 
-        if (!soupIngridients.Contains(droppedIngridient.IngridientType)) return false;
         if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
+        if (!(droppedIngridient is ICookable)) return false;
 
         return true;
     }
