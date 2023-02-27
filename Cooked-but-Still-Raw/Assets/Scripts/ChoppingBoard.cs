@@ -15,8 +15,8 @@ public class ChoppingBoard : CounterTop {
         }
         else {
             Dish dishOnTop = ItemOnTop as Dish;
-            Ingridient droppedIngridient = droppedItem as Ingridient;
-            dishOnTop.AddIngridient(droppedIngridient);
+            Ingredient droppedIngredient = droppedItem as Ingredient;
+            dishOnTop.AddIngredient(droppedIngredient);
         }
 
         cuttingProcess = 0;
@@ -24,14 +24,14 @@ public class ChoppingBoard : CounterTop {
 
     public override void Interact() {
         if (itemOnTop == null) return;
-        if (!(itemOnTop is Ingridient)) return;
+        if (!(itemOnTop is Ingredient)) return;
 
-        Ingridient ingridientOnTop = itemOnTop as Ingridient;
+        Ingredient ingredientOnTop = itemOnTop as Ingredient;
 
-        if (ingridientOnTop.IngridientStatus != IngridientStatus.Raw) return;
-        if (!(ingridientOnTop is ICuttable)) return;
+        if (ingredientOnTop.IngredientStatus != IngredientStatus.Raw) return;
+        if (!(ingredientOnTop is ICuttable)) return;
 
-        ICuttable cuttableOnTop = ingridientOnTop as ICuttable;
+        ICuttable cuttableOnTop = ingredientOnTop as ICuttable;
 
         cuttingProcess++;
         if (cuttingProcess >= cuttableOnTop.ProcessCountMax) {

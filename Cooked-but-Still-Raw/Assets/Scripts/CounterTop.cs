@@ -10,7 +10,7 @@ public class CounterTop : Furniture {
         if (itemOnTop != null) {
             if (itemOnTop is Dish) {
                 Dish dishOnTop = itemOnTop as Dish;
-                return dishOnTop.CanAddIngridient(droppedItem);
+                return dishOnTop.CanAddIngredient(droppedItem);
             }
         }
 
@@ -26,8 +26,8 @@ public class CounterTop : Furniture {
         }
         else {
             Dish dishOnTop = ItemOnTop as Dish;
-            Ingridient droppedIngridient = droppedItem as Ingridient;
-            dishOnTop.AddIngridient(droppedIngridient);
+            Ingredient droppedIngredient = droppedItem as Ingredient;
+            dishOnTop.AddIngredient(droppedIngredient);
         }
     }
 }

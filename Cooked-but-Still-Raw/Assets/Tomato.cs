@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomato : Ingridient, ICuttable {
+public class Tomato : Ingredient, ICuttable {
 
     [SerializeField] private Mesh processedMesh;
 
@@ -10,14 +10,14 @@ public class Tomato : Ingridient, ICuttable {
     public float ProcessCountMax { get { return processCountMax; } }
 
     public void SlicedUp() {
-        ChangeStatus(IngridientStatus.Processed);
-        ChangeMesh(IngridientStatus.Processed);
+        ChangeStatus(IngredientStatus.Processed);
+        ChangeMesh(IngredientStatus.Processed);
     }
 
-    public override void ChangeMesh(IngridientStatus newStatus) {
+    public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
-            case IngridientStatus.Processed:
-                ingridientMeshFilter.mesh = processedMesh;
+            case IngredientStatus.Processed:
+                ingredientMeshFilter.mesh = processedMesh;
                 break;
         }
     }

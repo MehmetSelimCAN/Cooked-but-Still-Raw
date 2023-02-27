@@ -17,7 +17,7 @@ public class PotStove : Furniture {
         else {
             //Üstünde Pot var ve bir þey býrakmaya çalýþýyorsak
             Pot potOnTop = itemOnTop as Pot;
-            return potOnTop.CanAddIngridient(droppedItem);
+            return potOnTop.CanAddIngredient(droppedItem);
         }
     }
 
@@ -29,8 +29,8 @@ public class PotStove : Furniture {
         }
         else {
             Pot potOnTop = ItemOnTop as Pot;
-            Ingridient droppedIngridient = droppedItem as Ingridient;
-            potOnTop.AddIngridient(droppedIngridient);
+            Ingredient droppedIngredient = droppedItem as Ingredient;
+            potOnTop.AddIngredient(droppedIngredient);
         }
     }
 }

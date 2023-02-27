@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Order : MonoBehaviour {
 
-    [SerializeField] private List<Ingridient> ingridients;
+    [SerializeField] private List<Ingredient> ingredients;
 
 
 }

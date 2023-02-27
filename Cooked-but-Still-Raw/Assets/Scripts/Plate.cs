@@ -4,32 +4,73 @@ using UnityEngine;
 
 public class Plate : Dish {
 
-    [SerializeField] private Transform ingridientSlot;
-    [SerializeField] private List<Ingridient> currentIngridients = new List<Ingridient>();
+    [SerializeField] private Transform ingredientSlot;
+    [SerializeField] private List<IngredientType> currentIngredientTypes = new List<IngredientType>();
+    [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
 
-    public override bool CanAddIngridient(Item droppedItem) {
-        if (!(droppedItem is Ingridient)) return false;
-
-        Ingridient droppedIngridient = droppedItem as Ingridient;
-
-        if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
-
-        return true;
+    private void Awake() {
+        allPossibleRecipes = RecipeManager.Instance.Recipes;
     }
 
-    public override void AddIngridient(Ingridient droppedIngridient) {
-        currentIngridients.Add(droppedIngridient);
-        currentIngridientQuantity++;
-        droppedIngridient.gameObject.SetActive(false);
-    }
+    public override bool CanAddIngredient(Item droppedItem) {
+        if (!(droppedItem is Ingredient)) return false;
 
-    public override void ClearCurrentIngridients() {
-        foreach (Transform ingridient in ingridientSlot) {
-            Destroy(ingridient.gameObject);
+        Ingredient droppedIngredient = droppedItem as Ingredient;
+
+        if (currentIngredientTypes.Contains(droppedIngredient.IngredientType)) return false;
+
+        bool isThereRecipeWithCurrentIngredients = false;
+        foreach (Recipe recipe in allPossibleRecipes) {
+            foreach (IngredientInformation ingredientInformation in recipe.ingredientInformations) {
+                if (ingredientInformation.ingredientType == droppedIngredient.IngredientType) {
+                    if (ingredientInformation.ingredientStatus == droppedIngredient.IngredientStatus) {
+                        UpdatePossibleRecipes(droppedIngredient.IngredientType);
+                        isThereRecipeWithCurrentIngredients = true;
+
+                        return isThereRecipeWithCurrentIngredients;
+                    }
+                }
+            }
         }
 
-        currentIngridientQuantity = 0;
+        return isThereRecipeWithCurrentIngredients;
+    }
+
+    public override void AddIngredient(Ingredient droppedIngredient) {
+        currentIngredientTypes.Add(droppedIngredient.IngredientType);
+
+        droppedIngredient.transform.SetParent(ingredientSlot);
+        droppedIngredient.transform.localPosition = Vector3.zero;
+    }
+
+    public override void ClearCurrentIngredients() {
+        foreach (Transform ingredient in ingredientSlot) {
+            Destroy(ingredient.gameObject);
+        }
+
+        allPossibleRecipes = RecipeManager.Instance.Recipes;
+        currentIngredientTypes.Clear();
         Debug.Log("Clear Plate");
     }
 
+    private void UpdatePossibleRecipes(IngredientType addedIngredientType) {
+        List<Recipe> recipesToBeDeleted = new List<Recipe>();
+
+        foreach (Recipe recipe in allPossibleRecipes) {
+            bool isRecipeContainsAddedIngredientType = false;
+            foreach (IngredientInformation ingredientInformation in recipe.ingredientInformations) {
+                if (ingredientInformation.ingredientType == addedIngredientType) {
+                    isRecipeContainsAddedIngredientType = true;
+                }
+            }
+
+            if (!isRecipeContainsAddedIngredientType) {
+                recipesToBeDeleted.Add(recipe);
+            }
+        }
+
+        foreach (Recipe recipeToBeDeleted in recipesToBeDeleted) {
+            allPossibleRecipes.Remove(recipeToBeDeleted);
+        }
+    }
 }

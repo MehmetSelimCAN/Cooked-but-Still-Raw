@@ -4,45 +4,45 @@ using UnityEngine;
 
 public class Pot : Dish {
 
-    [SerializeField] private float soupSnappingOffSet;
-    [SerializeField] private Transform ingridientSlot;
-    [SerializeField] private List<Ingridient> currentIngridients = new List<Ingridient>();
+    private float soupSnappingOffSet;
+    [SerializeField] private Transform ingredientSlot;
+    [SerializeField] private List<Ingredient> currentIngredients = new List<Ingredient>();
 
     private void Awake() {
         soupSnappingOffSet = 20;
-        ingridientCapacity = 3;
+        ingredientCapacity = 3;
     }
 
-    public override bool CanAddIngridient(Item droppedItem) {
-        if (currentIngridientQuantity >= ingridientCapacity) return false;
-        if (!(droppedItem is Ingridient)) return false;
+    public override bool CanAddIngredient(Item droppedItem) {
+        if (currentIngredientQuantity >= ingredientCapacity) return false;
+        if (!(droppedItem is Ingredient)) return false;
 
-        Ingridient droppedIngridient = droppedItem as Ingridient;
+        Ingredient droppedIngredient = droppedItem as Ingredient;
 
-        if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
-        if (!(droppedIngridient is ICookable)) return false;
+        if (droppedIngredient.IngredientStatus != IngredientStatus.Processed) return false;
+        if (!(droppedIngredient is ICookable)) return false;
 
         return true;
     }
 
-    public override void AddIngridient(Ingridient droppedIngridient) {
-        currentIngridients.Add(droppedIngridient);
-        currentIngridientQuantity++;
+    public override void AddIngredient(Ingredient droppedIngredient) {
+        currentIngredients.Add(droppedIngredient);
+        currentIngredientQuantity++;
 
-        ICookable cookableIngridient = droppedIngridient as ICookable;
-        cookableIngridient.Liquize();
-        droppedIngridient.transform.SetParent(ingridientSlot);
-        droppedIngridient.transform.localPosition = Vector3.up * soupSnappingOffSet * (currentIngridientQuantity - 1);
-        droppedIngridient.transform.localScale = Vector3.one;
+        ICookable cookableIngredient = droppedIngredient as ICookable;
+        cookableIngredient.Liquize();
+        droppedIngredient.transform.SetParent(ingredientSlot);
+        droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (currentIngredientQuantity - 1);
+        droppedIngredient.transform.localScale = Vector3.one;
     }
 
 
-    public override void ClearCurrentIngridients() {
-        foreach (Transform ingridient in ingridientSlot) {
-            Destroy(ingridient.gameObject);
+    public override void ClearCurrentIngredients() {
+        foreach (Transform ingredient in ingredientSlot) {
+            Destroy(ingredient.gameObject);
         }
 
-        currentIngridientQuantity = 0;
+        currentIngredientQuantity = 0;
         Debug.Log("Clear Pot");
     }
 }

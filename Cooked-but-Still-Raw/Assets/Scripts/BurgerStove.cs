@@ -17,7 +17,7 @@ public class BurgerStove : Furniture {
         else {
             //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak
             Pan panOnTop = itemOnTop as Pan;
-            return panOnTop.CanAddIngridient(droppedItem);
+            return panOnTop.CanAddIngredient(droppedItem);
         }
     }
 
@@ -29,8 +29,8 @@ public class BurgerStove : Furniture {
         }
         else {
             Pan panOnTop = ItemOnTop as Pan;
-            Ingridient droppedIngridient = droppedItem as Ingridient;
-            panOnTop.AddIngridient(droppedIngridient);
+            Ingredient droppedIngredient = droppedItem as Ingredient;
+            panOnTop.AddIngredient(droppedIngredient);
         }
     }
 }

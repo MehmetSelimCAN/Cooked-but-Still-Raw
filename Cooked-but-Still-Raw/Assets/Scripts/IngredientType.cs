@@ -1,4 +1,4 @@
-public enum IngridientType {
+public enum IngredientType {
     Tomato,
     Onion,
     Cheese,

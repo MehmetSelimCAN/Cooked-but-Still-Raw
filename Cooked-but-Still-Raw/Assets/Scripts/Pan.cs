@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class Pan : Dish {
 
-    [SerializeField] private Transform ingridientSlot;
+    [SerializeField] private Transform ingredientSlot;
 
     private void Awake() {
-        ingridientCapacity = 1;
+        ingredientCapacity = 1;
     }
 
-    public override bool CanAddIngridient(Item droppedItem) {
-        if (currentIngridientQuantity >= ingridientCapacity) return false;
-        if (!(droppedItem is Ingridient)) return false;
+    public override bool CanAddIngredient(Item droppedItem) {
+        if (currentIngredientQuantity >= ingredientCapacity) return false;
+        if (!(droppedItem is Ingredient)) return false;
 
-        Ingridient droppedIngridient = droppedItem as Ingridient;
+        Ingredient droppedIngredient = droppedItem as Ingredient;
 
-        if (droppedIngridient.IngridientStatus != IngridientStatus.Processed) return false;
-        if (!(droppedIngridient is IFryable)) return false;
+        if (droppedIngredient.IngredientStatus != IngredientStatus.Processed) return false;
+        if (!(droppedIngredient is IFryable)) return false;
 
         return true;
     }
 
-    public override void AddIngridient(Ingridient droppedIngridient) {
-        droppedIngridient.transform.SetParent(ingridientSlot);
-        droppedIngridient.transform.localPosition = Vector3.zero;
-        currentIngridientQuantity++;
+    public override void AddIngredient(Ingredient droppedIngredient) {
+        droppedIngredient.transform.SetParent(ingredientSlot);
+        droppedIngredient.transform.localPosition = Vector3.zero;
+        currentIngredientQuantity++;
     }
 
-    public override void ClearCurrentIngridients() {
-        foreach (Transform ingridient in ingridientSlot) {
-            Destroy(ingridient.gameObject);
+    public override void ClearCurrentIngredients() {
+        foreach (Transform ingredient in ingredientSlot) {
+            Destroy(ingredient.gameObject);
         }
 
-        currentIngridientQuantity = 0;
+        currentIngredientQuantity = 0;
         Debug.Log("Clear Pan");
     }
 }

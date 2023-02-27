@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Onion : Ingridient, ICuttable, ICookable {
+public class Onion : Ingredient, ICuttable, ICookable {
 
     [SerializeField] private Mesh processedMesh;
     [SerializeField] private Mesh liquidMesh;
@@ -15,39 +15,44 @@ public class Onion : Ingridient, ICuttable, ICookable {
     [SerializeField] private float cookingTimerMax;
     public float CookingTimerMax { get { return cookingTimerMax; } }
 
+    public override void Awake() {
+        base.Awake();
+        ingredientType = IngredientType.Onion;
+    }
+
     public void SlicedUp() {
-        ChangeStatus(IngridientStatus.Processed);
-        ChangeMesh(IngridientStatus.Processed);
+        ChangeStatus(IngredientStatus.Processed);
+        ChangeMesh(IngredientStatus.Processed);
     }
 
     public void Liquize() {
-        ChangeStatus(IngridientStatus.Liquid);
-        ChangeMesh(IngridientStatus.Liquid);
+        ChangeStatus(IngredientStatus.Liquid);
+        ChangeMesh(IngredientStatus.Liquid);
     }
 
     public void CookedUp() {
-        ChangeStatus(IngridientStatus.Cooked);
-        ChangeMesh(IngridientStatus.Cooked);
+        ChangeStatus(IngredientStatus.Cooked);
+        ChangeMesh(IngredientStatus.Cooked);
     }
 
     public void BurnedUp() {
-        ChangeStatus(IngridientStatus.Burned);
-        ChangeMesh(IngridientStatus.Burned);
+        ChangeStatus(IngredientStatus.Burned);
+        ChangeMesh(IngredientStatus.Burned);
     }
 
-    public override void ChangeMesh(IngridientStatus newStatus) {
+    public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
-            case IngridientStatus.Processed:
-                ingridientMeshFilter.mesh = processedMesh;
+            case IngredientStatus.Processed:
+                ingredientMeshFilter.mesh = processedMesh;
                 break;
-            case IngridientStatus.Liquid:
-                ingridientMeshFilter.mesh = liquidMesh;
+            case IngredientStatus.Liquid:
+                ingredientMeshFilter.mesh = liquidMesh;
                 break;
-            case IngridientStatus.Cooked:
-                ingridientMeshFilter.mesh = cookedMesh;
+            case IngredientStatus.Cooked:
+                ingredientMeshFilter.mesh = cookedMesh;
                 break;
-            case IngridientStatus.Burned:
-                ingridientMeshFilter.mesh = burnedMesh;
+            case IngredientStatus.Burned:
+                ingredientMeshFilter.mesh = burnedMesh;
                 break;
         }
     }

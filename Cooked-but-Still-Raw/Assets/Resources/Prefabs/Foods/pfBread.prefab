@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawMesh: {fileID: 0}
-  ingridientStatus: 1
+  ingredientStatus: 1
 --- !u!1 &1765831051703938876
 GameObject:
   m_ObjectHideFlags: 0

@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rawMesh: {fileID: 0}
+  ingridientType: 1
   ingridientStatus: 1
   processedMesh: {fileID: 0}
   liquidMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Meat : Ingridient, ICuttable, IFryable {
+public class Meat : Ingredient, ICuttable, IFryable {
 
     [SerializeField] private Mesh processedMesh;
     [SerializeField] private Mesh cookedMesh;
@@ -14,31 +14,36 @@ public class Meat : Ingridient, ICuttable, IFryable {
     [SerializeField] private float fryingTimerMax;
     public float FryingTimerMax { get { return fryingTimerMax; } }
 
+    public override void Awake() {
+        base.Awake();
+        ingredientType = IngredientType.Meat;
+    }
+
     public void SlicedUp() {
-        ChangeStatus(IngridientStatus.Processed);
-        ChangeMesh(IngridientStatus.Processed);
+        ChangeStatus(IngredientStatus.Processed);
+        ChangeMesh(IngredientStatus.Processed);
     }
 
     public void FriedUp() {
-        ChangeStatus(IngridientStatus.Cooked);
-        ChangeMesh(IngridientStatus.Cooked);
+        ChangeStatus(IngredientStatus.Cooked);
+        ChangeMesh(IngredientStatus.Cooked);
     }
 
     public void BurnedUp() {
-        ChangeStatus(IngridientStatus.Burned);
-        ChangeMesh(IngridientStatus.Burned);
+        ChangeStatus(IngredientStatus.Burned);
+        ChangeMesh(IngredientStatus.Burned);
     }
 
-    public override void ChangeMesh(IngridientStatus newStatus) {
+    public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
-            case IngridientStatus.Processed:
-                ingridientMeshFilter.mesh = processedMesh;
+            case IngredientStatus.Processed:
+                ingredientMeshFilter.mesh = processedMesh;
                 break;
-            case IngridientStatus.Cooked:
-                ingridientMeshFilter.mesh = cookedMesh;
+            case IngredientStatus.Cooked:
+                ingredientMeshFilter.mesh = cookedMesh;
                 break;
-            case IngridientStatus.Burned:
-                ingridientMeshFilter.mesh = burnedMesh;
+            case IngredientStatus.Burned:
+                ingredientMeshFilter.mesh = burnedMesh;
                 break;
         }
     }

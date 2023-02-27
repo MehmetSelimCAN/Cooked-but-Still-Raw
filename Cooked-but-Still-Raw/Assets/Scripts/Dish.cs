@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Dish : Item {
 
-    protected int ingridientCapacity;
-    protected int currentIngridientQuantity = 0;
+    protected int ingredientCapacity;
+    protected int currentIngredientQuantity = 0;
 
-    public virtual bool CanAddIngridient(Item droppedItem) { return false; }
-    public virtual void AddIngridient(Ingridient droppedIngridient) { }
-    public virtual void ClearCurrentIngridients() { }
+    public virtual bool CanAddIngredient(Item droppedItem) { return false; }
+    public virtual void AddIngredient(Ingredient droppedIngredient) { }
+    public virtual void ClearCurrentIngredients() { }
 }

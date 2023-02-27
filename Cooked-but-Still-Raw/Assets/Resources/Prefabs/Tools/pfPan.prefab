@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 188719449125901936}
   m_Layer: 0
-  m_Name: ingridientSlot
+  m_Name: ingredientSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851ae70ee19886b458f3857768c808aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingridientSlot: {fileID: 188719449125901936}
+  ingredientSlot: {fileID: 188719449125901936}

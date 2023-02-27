@@ -1,4 +1,4 @@
-public enum IngridientStatus {
+public enum IngredientStatus {
     Raw,
     Processed,
     Cooked,

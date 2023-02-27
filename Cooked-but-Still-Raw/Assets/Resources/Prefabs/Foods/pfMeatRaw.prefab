@@ -126,9 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166e619627497f478de891c6b717375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawMesh: {fileID: 0}
+  rawMesh: {fileID: -5755851932433107301, guid: 7d774ec98e76b424ba11e975d3e06a3c, type: 3}
   ingridientStatus: 0
-  processedMesh: {fileID: 0}
+  processedMesh: {fileID: -2719439086681959747, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
   cookedMesh: {fileID: 0}
   burnedMesh: {fileID: 0}
   processCountMax: 3
