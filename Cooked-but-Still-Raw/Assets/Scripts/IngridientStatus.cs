@@ -3,5 +3,6 @@ public enum IngridientStatus {
     Processed,
     Cooked,
     Burned,
+    Liquid
 }
 

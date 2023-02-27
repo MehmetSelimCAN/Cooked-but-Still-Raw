@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Pot : Dish {
 
+    [SerializeField] private float soupSnappingOffSet;
+    [SerializeField] private Transform ingridientSlot;
     [SerializeField] private List<Ingridient> currentIngridients = new List<Ingridient>();
 
     private void Awake() {
+        soupSnappingOffSet = 20;
         ingridientCapacity = 3;
     }
 
@@ -25,6 +28,21 @@ public class Pot : Dish {
     public override void AddIngridient(Ingridient droppedIngridient) {
         currentIngridients.Add(droppedIngridient);
         currentIngridientQuantity++;
-        droppedIngridient.gameObject.SetActive(false);
+
+        ICookable cookableIngridient = droppedIngridient as ICookable;
+        cookableIngridient.Liquize();
+        droppedIngridient.transform.SetParent(ingridientSlot);
+        droppedIngridient.transform.localPosition = Vector3.up * soupSnappingOffSet * (currentIngridientQuantity - 1);
+        droppedIngridient.transform.localScale = Vector3.one;
+    }
+
+
+    public override void ClearCurrentIngridients() {
+        foreach (Transform ingridient in ingridientSlot) {
+            Destroy(ingridient.gameObject);
+        }
+
+        currentIngridientQuantity = 0;
+        Debug.Log("Clear Pot");
     }
 }

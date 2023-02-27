@@ -259,8 +259,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 760535934762414294}
-  - component: {fileID: 6583478741751255576}
   - component: {fileID: 2832621016867606051}
+  - component: {fileID: 6583478741751255576}
   m_Layer: 0
   m_Name: pfSoupStove
   m_TagString: Furniture
@@ -284,6 +284,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2832621016867606051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836906397191720852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.3, y: 4.5, z: 4.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6583478741751255576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,19 +311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 22004258859892267}
---- !u!65 &2832621016867606051
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8836906397191720852}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.3, y: 4.5, z: 4.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8846904623350145587
 GameObject:
   m_ObjectHideFlags: 0

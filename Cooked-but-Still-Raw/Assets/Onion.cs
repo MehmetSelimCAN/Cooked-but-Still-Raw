@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Onion : Ingridient, ICuttable, IFryable {
+public class Onion : Ingridient, ICuttable, ICookable {
 
     [SerializeField] private Mesh processedMesh;
+    [SerializeField] private Mesh liquidMesh;
     [SerializeField] private Mesh cookedMesh;
     [SerializeField] private Mesh burnedMesh;
 
     [SerializeField] private float processCountMax;
     public float ProcessCountMax { get { return processCountMax; } }
 
-    [SerializeField] private float fryingTimerMax;
-    public float FryingTimerMax { get { return fryingTimerMax; } }
+    [SerializeField] private float cookingTimerMax;
+    public float CookingTimerMax { get { return cookingTimerMax; } }
 
     public void SlicedUp() {
         ChangeStatus(IngridientStatus.Processed);
         ChangeMesh(IngridientStatus.Processed);
     }
 
-    public void FriedUp() {
+    public void Liquize() {
+        ChangeStatus(IngridientStatus.Liquid);
+        ChangeMesh(IngridientStatus.Liquid);
+    }
+
+    public void CookedUp() {
         ChangeStatus(IngridientStatus.Cooked);
         ChangeMesh(IngridientStatus.Cooked);
     }
@@ -33,6 +39,9 @@ public class Onion : Ingridient, ICuttable, IFryable {
         switch (newStatus) {
             case IngridientStatus.Processed:
                 ingridientMeshFilter.mesh = processedMesh;
+                break;
+            case IngridientStatus.Liquid:
+                ingridientMeshFilter.mesh = liquidMesh;
                 break;
             case IngridientStatus.Cooked:
                 ingridientMeshFilter.mesh = cookedMesh;

@@ -27,7 +27,6 @@ public class InteractController : MonoBehaviour {
 
     private void GetClosestInteractable() {
         if (interactableFurnitures.Count == 0) {
-            //closestReachableInteractableFurniture = null;
             SetClosestFurniture(null);
             return;
         }
@@ -41,7 +40,6 @@ public class InteractController : MonoBehaviour {
                 minimumDistance = distanceBetweenFurniture;
                 if (closestReachableInteractableFurniture != interactableFurniture) {
                     SetClosestFurniture(interactableFurniture);
-                    //closestReachableInteractableFurniture = interactableFurniture;
                 }
             }
         }

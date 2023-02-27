@@ -9,5 +9,5 @@ public class Dish : Item {
 
     public virtual bool CanAddIngridient(Item droppedItem) { return false; }
     public virtual void AddIngridient(Ingridient droppedIngridient) { }
-
+    public virtual void ClearCurrentIngridients() { }
 }

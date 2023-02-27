@@ -111,6 +111,12 @@ public class PlayerController : MonoBehaviour {
 
         if (closestFurniture.CanSetItemOnTop(itemInHand)) {
             closestFurniture.SetItemOnTop(itemInHand);
+
+            //Eðer drop edeceðimiz furniture trash can ise Dish'i clearlayýp player'ýn elinde tutmaya devam edecek.
+            if (closestFurniture is TrashCan) {
+                if (itemInHand is Dish) { return; }
+            }
+
             itemInHand = null;
             playerAnimator.SetBool("PickedUp", false);
         }

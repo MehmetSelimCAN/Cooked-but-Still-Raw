@@ -27,4 +27,13 @@ public class Pan : Dish {
         droppedIngridient.transform.localPosition = Vector3.zero;
         currentIngridientQuantity++;
     }
+
+    public override void ClearCurrentIngridients() {
+        foreach (Transform ingridient in ingridientSlot) {
+            Destroy(ingridient.gameObject);
+        }
+
+        currentIngridientQuantity = 0;
+        Debug.Log("Clear Pan");
+    }
 }
