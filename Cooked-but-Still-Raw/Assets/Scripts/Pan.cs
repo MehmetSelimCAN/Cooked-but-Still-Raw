@@ -28,16 +28,53 @@ public class Pan : Dish {
         droppedIngredient.transform.localPosition = Vector3.zero;
         currentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
+
+        BurgerStove burgerStoveUnder = transform.GetComponentInParent<BurgerStove>();
+        //Eðer ingredient eklendiðinde pan; burger stove'un üstündeyse frying timer baþlat.
+        if (burgerStoveUnder != null) {
+            IFryable droppedFryableIngredient = droppedIngredient as IFryable;
+            StartCoroutine(FryingTimer(droppedFryableIngredient.FryingTimerMax));
+        }
     }
 
     public override void ClearCurrentIngredients() {
-        foreach (Transform ingredient in ingredientSlot) {
-            Destroy(ingredient.gameObject);
-        }
-
         currentIngredientQuantity = 0;
         currentIngredients.Clear();
         Debug.Log("Clear Pan");
+    }
+
+    public override void TransferIngredients(Dish dishToBeTransferred) {
+        if (dishToBeTransferred.HasAnyIngredientOnTop) {
+            if (!isFull) {
+                bool ingredientsMatched = true;
+                foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
+                    ingredientsMatched = CanAddIngredient(ingredientInDishToBeTransferred);
+                    if (!ingredientsMatched) {
+                        break;
+                    }
+                }
+
+                if (ingredientsMatched) {
+                    foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
+                        AddIngredient(ingredientInDishToBeTransferred);
+                    }
+
+                    dishToBeTransferred.ClearCurrentIngredients();
+                }
+                else {
+                    Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
+                    return;
+                }
+            }
+        }
+
+        else {
+            foreach (Ingredient ingredientInDish in currentIngredients) {
+                dishToBeTransferred.AddIngredient(ingredientInDish);
+            }
+
+            ClearCurrentIngredients();
+        }
     }
 
     public Ingredient GetIngredientOnTop() {
@@ -46,7 +83,7 @@ public class Pan : Dish {
     }
 
     public IFryable GetFryableOnTop() {
-        Ingredient ingredientOnTop = currentIngredients[0];
+        Ingredient ingredientOnTop = GetIngredientOnTop();
         IFryable fryableOnTop = ingredientOnTop as IFryable;
         return fryableOnTop;
     }
@@ -63,7 +100,6 @@ public class Pan : Dish {
         fryableOnTop.FriedUp();
         Debug.Log("Fried");
         
-
         StartCoroutine(BurningTimer(fryableOnTop.BurningTimerMax));
     }
 

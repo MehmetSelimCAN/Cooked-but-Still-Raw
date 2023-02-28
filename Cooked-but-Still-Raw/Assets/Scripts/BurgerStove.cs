@@ -9,9 +9,7 @@ public class BurgerStove : Furniture {
         Pan panOnTop = itemOnTop as Pan;
         panOnTop.StopAllCoroutines();
 
-        Item tempItem = itemOnTop;
-        itemOnTop = null;
-        return tempItem;
+        return itemOnTop;
     }
 
     public override bool CanSetItemOnTop(Item droppedItem) {
@@ -32,7 +30,7 @@ public class BurgerStove : Furniture {
     }
 
     public override void SetItemOnTop(Item droppedItem) {
-        if (ItemOnTop == null) {
+        if (itemOnTop == null) {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             itemOnTop = droppedItem;
@@ -51,13 +49,9 @@ public class BurgerStove : Furniture {
             }
         }
         else {
-            Pan panOnTop = ItemOnTop as Pan;
+            Pan panOnTop = itemOnTop as Pan;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             panOnTop.AddIngredient(droppedIngredient);
-
-            //Timer baþlat
-            IFryable droppedFryableIngredient = droppedIngredient as IFryable;
-            panOnTop.StartCoroutine(panOnTop.FryingTimer(droppedFryableIngredient.FryingTimerMax));
         }
     }
 }

@@ -11,7 +11,7 @@ public class TrashCan : Furniture {
     public override void SetItemOnTop(Item droppedItem) {
         if (droppedItem is Dish) {
             Dish droppedDish = droppedItem as Dish;
-            droppedDish.ClearCurrentIngredients();
+            droppedDish.ThrowInTheGarbage();
             droppedDish.ClearTimers();
         }
         else {

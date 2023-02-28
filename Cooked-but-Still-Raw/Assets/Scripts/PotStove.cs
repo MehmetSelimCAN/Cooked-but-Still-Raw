@@ -22,13 +22,13 @@ public class PotStove : Furniture {
     }
 
     public override void SetItemOnTop(Item droppedItem) {
-        if (ItemOnTop == null) {
+        if (itemOnTop == null) {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             itemOnTop = droppedItem;
         }
         else {
-            Pot potOnTop = ItemOnTop as Pot;
+            Pot potOnTop = itemOnTop as Pot;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             potOnTop.AddIngredient(droppedIngredient);
         }

@@ -7,14 +7,14 @@ public class ChoppingBoard : CounterTop {
     private int cuttingProcess = 0;
 
     public override void SetItemOnTop(Item droppedItem) {
-        if (ItemOnTop == null) {
+        if (itemOnTop == null) {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             droppedItem.transform.localRotation = Quaternion.identity;
             itemOnTop = droppedItem;
         }
         else {
-            Dish dishOnTop = ItemOnTop as Dish;
+            Dish dishOnTop = itemOnTop as Dish;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             dishOnTop.AddIngredient(droppedIngredient);
         }

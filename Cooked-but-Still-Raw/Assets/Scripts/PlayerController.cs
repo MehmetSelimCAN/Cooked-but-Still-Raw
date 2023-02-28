@@ -40,11 +40,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void GameInputController_OnPickDropAction(object sender, System.EventArgs e) {
+        var closestFurniture = interactableController.ClosestInteractableFurniture;
+        if (closestFurniture == null) return;
+
         if (itemInHand) {
-            DropItem();
+            HandlePickDrop(closestFurniture);
         }
         else {
-            PickItem();
+            PickItem(closestFurniture);
         }
     }
 
@@ -90,10 +93,48 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetBool("Running", movementDirection != Vector3.zero ? true : false);
     }
 
-    private void PickItem() {
-        Item pickedItem = interactableController.ClosestInteractableFurniture?.GetItemOnTop();
+    private void HandlePickDrop(Furniture closestFurniture) {
+        //Elimdeki ingredient ise dropla.
+        if (itemInHand is Ingredient) {
+            DropItem();
+            return;
+        }
+
+        if (itemInHand is Dish) {
+            //Elimdeki dish ve furniture'un üstünde item yok ise dropla.
+            if (!closestFurniture.HasItemOnTop) {
+                DropItem();
+                return;
+            }
+
+            Item pickableItem = closestFurniture.GetItemOnTop();
+            if (pickableItem == null) return;
+
+            Dish dishInHand = itemInHand as Dish;
+
+            //Furniture'un üstünde ingredient var.
+            if (pickableItem is Ingredient) {
+                Ingredient pickableIngredient = pickableItem as Ingredient;
+                //Furniture'un üstündeki ingredient'ý Dish'e ekleyebiliyorsa ekle.
+                if (dishInHand.CanAddIngredient(pickableIngredient)) {
+                    dishInHand.AddIngredient(pickableIngredient);
+                    closestFurniture.ClearItemOnTop();
+                }
+            }
+
+            //Furniture'un üstünde dish var.
+            else if (pickableItem is Dish) {
+                Dish pickableDish = pickableItem as Dish;
+                dishInHand.TransferIngredients(pickableDish);
+            }
+        }
+    }
+
+    private void PickItem(Furniture closestFurniture) {
+        Item pickedItem = closestFurniture.GetItemOnTop();
         if (pickedItem == null) return;
 
+        closestFurniture.ClearItemOnTop();
         HandlePickedItemPosition(pickedItem);
         playerAnimator.SetBool("PickedUp", true);
     }

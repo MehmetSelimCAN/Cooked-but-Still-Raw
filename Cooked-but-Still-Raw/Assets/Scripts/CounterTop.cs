@@ -5,7 +5,7 @@ using UnityEngine;
 public class CounterTop : Furniture {
 
     public override bool CanSetItemOnTop(Item droppedItem) {
-        if (ItemOnTop == null) return true;
+        if (itemOnTop == null) return true;
 
         if (itemOnTop != null) {
             if (itemOnTop is Dish) {
@@ -18,14 +18,14 @@ public class CounterTop : Furniture {
     }
 
     public override void SetItemOnTop(Item droppedItem) {
-        if (ItemOnTop == null) {
+        if (itemOnTop == null) {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             droppedItem.transform.localRotation = Quaternion.identity;
             itemOnTop = droppedItem;
         }
         else {
-            Dish dishOnTop = ItemOnTop as Dish;
+            Dish dishOnTop = itemOnTop as Dish;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             dishOnTop.AddIngredient(droppedIngredient);
         }

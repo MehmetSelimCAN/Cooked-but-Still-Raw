@@ -34,14 +34,43 @@ public class Pot : Dish {
         droppedIngredient.transform.localScale = Vector3.one;
     }
 
-
     public override void ClearCurrentIngredients() {
-        foreach (Transform ingredient in ingredientSlot) {
-            Destroy(ingredient.gameObject);
-        }
-
         currentIngredientQuantity = 0;
         currentIngredients.Clear();
         Debug.Log("Clear Pot");
+    }
+
+    public override void TransferIngredients(Dish dishToBeTransferred) {
+        if (dishToBeTransferred.HasAnyIngredientOnTop) {
+            if (!isFull) {
+                bool ingredientsMatched = true;
+                foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
+                    ingredientsMatched = CanAddIngredient(ingredientInDishToBeTransferred);
+                    if (!ingredientsMatched) {
+                        break;
+                    }
+                }
+
+                if (ingredientsMatched) {
+                    foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
+                        AddIngredient(ingredientInDishToBeTransferred);
+                    }
+
+                    dishToBeTransferred.ClearCurrentIngredients();
+                }
+                else {
+                    Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
+                    return;
+                }
+            }
+        }
+
+        else {
+            foreach (Ingredient ingredientInDish in currentIngredients) {
+                dishToBeTransferred.AddIngredient(ingredientInDish);
+            }
+
+            ClearCurrentIngredients();
+        }
     }
 }
