@@ -34,7 +34,7 @@ public class ChoppingBoard : CounterTop {
         ICuttable cuttableOnTop = ingredientOnTop as ICuttable;
 
         cuttingProcess++;
-        if (cuttingProcess >= cuttableOnTop.ProcessCountMax) {
+        if (cuttingProcess >= cuttableOnTop.CuttingProcessCountMax) {
             Debug.Log("Sliced");
             cuttableOnTop.SlicedUp();
         }

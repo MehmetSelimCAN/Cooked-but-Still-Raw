@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effb9ed29908bc24885b7793bea2921c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientStatus: 0
   rawMesh: {fileID: -8273424620059847725, guid: 8cb4b924c536bde4782b4ff3fba286b6, type: 3}
-  ingridientStatus: 0
   processedMesh: {fileID: 7113742550581899826, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
-  processCountMax: 3
+  cuttingProcessCountMax: 3

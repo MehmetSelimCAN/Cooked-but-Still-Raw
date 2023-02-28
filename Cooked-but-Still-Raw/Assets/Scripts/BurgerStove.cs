@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class BurgerStove : Furniture {
 
+    public override Item GetItemOnTop() {
+        //Timer durdur
+        Pan panOnTop = itemOnTop as Pan;
+        panOnTop.StopAllCoroutines();
+
+        Item tempItem = itemOnTop;
+        itemOnTop = null;
+        return tempItem;
+    }
+
     public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
             //Üstü boþ ve Pan býrakmaya çalýþýyorsak
@@ -26,11 +36,28 @@ public class BurgerStove : Furniture {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             itemOnTop = droppedItem;
+
+            Pan panOnTop = itemOnTop as Pan;
+            if (panOnTop.HasAnyIngredientOnTop) {
+                Ingredient ingredientOnPan = panOnTop.GetIngredientOnTop();
+                IFryable fryableOnPan = panOnTop.GetFryableOnTop();
+
+                if (ingredientOnPan.IngredientStatus == IngredientStatus.Cooked) {
+                    panOnTop.StartCoroutine(panOnTop.BurningTimer(fryableOnPan.BurningTimerMax));
+                }
+                else if (ingredientOnPan.IngredientStatus != IngredientStatus.Burned) {
+                    panOnTop.StartCoroutine(panOnTop.FryingTimer(fryableOnPan.FryingTimerMax));
+                }
+            }
         }
         else {
             Pan panOnTop = ItemOnTop as Pan;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             panOnTop.AddIngredient(droppedIngredient);
+
+            //Timer baþlat
+            IFryable droppedFryableIngredient = droppedIngredient as IFryable;
+            panOnTop.StartCoroutine(panOnTop.FryingTimer(droppedFryableIngredient.FryingTimerMax));
         }
     }
 }

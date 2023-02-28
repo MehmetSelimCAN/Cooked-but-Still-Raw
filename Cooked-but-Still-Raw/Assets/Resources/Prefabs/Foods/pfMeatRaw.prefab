@@ -126,10 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166e619627497f478de891c6b717375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientStatus: 0
   rawMesh: {fileID: -5755851932433107301, guid: 7d774ec98e76b424ba11e975d3e06a3c, type: 3}
-  ingridientStatus: 0
   processedMesh: {fileID: -2719439086681959747, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
-  cookedMesh: {fileID: 0}
-  burnedMesh: {fileID: 0}
-  processCountMax: 3
-  fryingTimerMax: 8
+  cookedMesh: {fileID: -5289443202812361236, guid: 36c6800341ff1a046b0f54cb9c3943b6, type: 3}
+  burnedMesh: {fileID: -8700225137327136677, guid: 8cdadf2a0e20483419b765ccf18dc8b6, type: 3}
+  cuttingProcessCountMax: 3
+  fryingTimerMax: 5
+  burningTimerMax: 3

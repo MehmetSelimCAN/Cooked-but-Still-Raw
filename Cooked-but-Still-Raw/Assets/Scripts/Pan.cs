@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Pan : Dish {
 
-    [SerializeField] private Transform ingredientSlot;
+    private float currentFryingTime = 0;
+    private float currentBurningTime = 0;
 
     private void Awake() {
         ingredientCapacity = 1;
@@ -26,6 +27,7 @@ public class Pan : Dish {
         droppedIngredient.transform.SetParent(ingredientSlot);
         droppedIngredient.transform.localPosition = Vector3.zero;
         currentIngredientQuantity++;
+        currentIngredients.Add(droppedIngredient);
     }
 
     public override void ClearCurrentIngredients() {
@@ -34,6 +36,52 @@ public class Pan : Dish {
         }
 
         currentIngredientQuantity = 0;
+        currentIngredients.Clear();
         Debug.Log("Clear Pan");
+    }
+
+    public Ingredient GetIngredientOnTop() {
+        Ingredient ingredientOnTop = currentIngredients[0];
+        return ingredientOnTop;
+    }
+
+    public IFryable GetFryableOnTop() {
+        Ingredient ingredientOnTop = currentIngredients[0];
+        IFryable fryableOnTop = ingredientOnTop as IFryable;
+        return fryableOnTop;
+    }
+
+    public IEnumerator FryingTimer(float ingredientFryingTimer) {
+        Debug.Log("Frying start");
+
+        while (currentFryingTime < ingredientFryingTimer) {
+            currentFryingTime += Time.deltaTime;
+            yield return null;
+        }
+
+        IFryable fryableOnTop = GetFryableOnTop();
+        fryableOnTop.FriedUp();
+        Debug.Log("Fried");
+        
+
+        StartCoroutine(BurningTimer(fryableOnTop.BurningTimerMax));
+    }
+
+    public IEnumerator BurningTimer(float ingredientBurningTimer) {
+        Debug.Log("Burning start");
+
+        while (currentBurningTime < ingredientBurningTimer) {
+            currentBurningTime += Time.deltaTime;
+            yield return null;
+        }
+
+        IFryable fryableOnTop = GetFryableOnTop();
+        fryableOnTop.BurnedUp();
+        Debug.Log("Burned");
+    }
+
+    public override void ClearTimers() {
+        currentFryingTime = 0;
+        currentBurningTime = 0;
     }
 }

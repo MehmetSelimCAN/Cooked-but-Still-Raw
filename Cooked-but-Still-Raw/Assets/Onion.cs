@@ -9,8 +9,8 @@ public class Onion : Ingredient, ICuttable, ICookable {
     [SerializeField] private Mesh cookedMesh;
     [SerializeField] private Mesh burnedMesh;
 
-    [SerializeField] private float processCountMax;
-    public float ProcessCountMax { get { return processCountMax; } }
+    [SerializeField] private float cuttingProcessCountMax;
+    public float CuttingProcessCountMax { get { return cuttingProcessCountMax; } }
 
     [SerializeField] private float cookingTimerMax;
     public float CookingTimerMax { get { return cookingTimerMax; } }

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Plate : Dish {
 
-    [SerializeField] private Transform ingredientSlot;
     [SerializeField] private List<IngredientType> currentIngredientTypes = new List<IngredientType>();
     [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
 
-    private void Awake() {
+    private void Start() {
         allPossibleRecipes = RecipeManager.Instance.Recipes;
     }
 

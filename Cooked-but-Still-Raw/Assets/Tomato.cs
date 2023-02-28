@@ -6,8 +6,8 @@ public class Tomato : Ingredient, ICuttable {
 
     [SerializeField] private Mesh processedMesh;
 
-    [SerializeField] private float processCountMax;
-    public float ProcessCountMax { get { return processCountMax; } }
+    [SerializeField] private float cuttingProcessCountMax;
+    public float CuttingProcessCountMax { get { return cuttingProcessCountMax; } }
 
     public void SlicedUp() {
         ChangeStatus(IngredientStatus.Processed);

@@ -8,11 +8,14 @@ public class Meat : Ingredient, ICuttable, IFryable {
     [SerializeField] private Mesh cookedMesh;
     [SerializeField] private Mesh burnedMesh;
 
-    [SerializeField] private float processCountMax;
-    public float ProcessCountMax { get { return processCountMax; } }
+    [SerializeField] private float cuttingProcessCountMax;
+    public float CuttingProcessCountMax { get { return cuttingProcessCountMax; } }
 
     [SerializeField] private float fryingTimerMax;
     public float FryingTimerMax { get { return fryingTimerMax; } }
+
+    [SerializeField] private float burningTimerMax;
+    public float BurningTimerMax { get { return burningTimerMax; } }
 
     public override void Awake() {
         base.Awake();

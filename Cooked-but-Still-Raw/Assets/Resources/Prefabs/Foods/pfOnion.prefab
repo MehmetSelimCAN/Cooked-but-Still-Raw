@@ -125,12 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6c1cc10cf6b7642a4d5754ce2700a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientStatus: 0
   rawMesh: {fileID: 0}
-  ingridientType: 1
-  ingridientStatus: 1
   processedMesh: {fileID: 0}
   liquidMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   cookedMesh: {fileID: 0}
   burnedMesh: {fileID: 0}
-  processCountMax: 3
-  cookingTimerMax: 0
+  cuttingProcessCountMax: 3
+  cookingTimerMax: 8

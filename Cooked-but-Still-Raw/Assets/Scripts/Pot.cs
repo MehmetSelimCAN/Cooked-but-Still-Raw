@@ -5,8 +5,6 @@ using UnityEngine;
 public class Pot : Dish {
 
     private float soupSnappingOffSet;
-    [SerializeField] private Transform ingredientSlot;
-    [SerializeField] private List<Ingredient> currentIngredients = new List<Ingredient>();
 
     private void Awake() {
         soupSnappingOffSet = 20;
@@ -43,6 +41,7 @@ public class Pot : Dish {
         }
 
         currentIngredientQuantity = 0;
+        currentIngredients.Clear();
         Debug.Log("Clear Pot");
     }
 }
