@@ -15,6 +15,9 @@ public class Onion : Ingredient, ICuttable, ICookable {
     [SerializeField] private float cookingTimerMax;
     public float CookingTimerMax { get { return cookingTimerMax; } }
 
+    [SerializeField] private float burningTimerMax;
+    public float BurningTimerMax { get { return burningTimerMax; } }
+
     public override void Awake() {
         base.Awake();
         ingredientType = IngredientType.Onion;

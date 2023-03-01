@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ using UnityEngine.UI;
 public class Pot : Dish {
 
     private float soupSnappingOffSet;
+
+    private float currentCookingTime = 0;
+    private float currentBurningTime = 0;
+    private float currentIngredientsTimer = 0;
 
     private void Awake() {
         soupSnappingOffSet = 20;
@@ -35,6 +40,14 @@ public class Pot : Dish {
         droppedIngredient.transform.localScale = Vector3.one;
 
         AddIngredientUI(droppedIngredient);
+
+        PotStove potStoveUnder = transform.GetComponentInParent<PotStove>();
+        //Eðer ingredient eklendiðinde pot; pot stove'un üstündeyse cooking timer baþlat.
+        if (potStoveUnder != null) {
+            StopAllCoroutines();
+            ICookable droppedCookableIngredient = droppedIngredient as ICookable;
+            StartCoroutine(CookingTimer(droppedCookableIngredient.CookingTimerMax));
+        }
     }
 
     public override void AddIngredientUI(Ingredient droppedIngredient) {
@@ -103,5 +116,50 @@ public class Pot : Dish {
 
             ClearCurrentIngredients();
         }
+    }
+
+    public Ingredient GetIngredientOnTop() {
+        Ingredient ingredientOnTop = currentIngredients.Last();
+        return ingredientOnTop;
+    }
+
+    public ICookable GetCookableOnTop() {
+        Ingredient ingredientOnTop = GetIngredientOnTop();
+        ICookable cookableOnTop = ingredientOnTop as ICookable;
+        return cookableOnTop;
+    }
+
+    public IEnumerator CookingTimer(float ingredientCookingTimer) {
+        currentIngredientsTimer += ingredientCookingTimer;
+        Debug.Log("Cooking start");
+
+        while (currentCookingTime < currentIngredientsTimer) {
+            currentCookingTime += Time.deltaTime;
+            yield return null;
+        }
+
+        ICookable cookableOnTop = GetCookableOnTop();
+        cookableOnTop.CookedUp();
+        Debug.Log("Cooked");
+
+        StartCoroutine(BurningTimer(cookableOnTop.BurningTimerMax));
+    }
+
+    public IEnumerator BurningTimer(float ingredientBurningTimer) {
+        Debug.Log("Burning start");
+
+        while (currentBurningTime < ingredientBurningTimer) {
+            currentBurningTime += Time.deltaTime;
+            yield return null;
+        }
+
+        ICookable cookableOnTop = GetCookableOnTop();
+        cookableOnTop.BurnedUp();
+        Debug.Log("Burned");
+    }
+
+    public override void ClearTimers() {
+        currentCookingTime = 0;
+        currentBurningTime = 0;
     }
 }

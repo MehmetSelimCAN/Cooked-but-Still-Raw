@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PotStove : Furniture {
 
+    public override Item GetItemOnTop() {
+        //Timer durdur
+        Pot potOnTop = itemOnTop as Pot;
+        potOnTop.StopAllCoroutines();
+
+        return itemOnTop;
+    }
+
     public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
             //Üstü boþ ve Pot býrakmaya çalýþýyorsak
@@ -26,6 +34,19 @@ public class PotStove : Furniture {
             droppedItem.transform.SetParent(itemSlot);
             droppedItem.transform.localPosition = Vector3.zero;
             itemOnTop = droppedItem;
+
+            Pot potOnTop = itemOnTop as Pot;
+            if (potOnTop.HasAnyIngredientOnTop) {
+                Ingredient ingredientOnPot = potOnTop.GetIngredientOnTop();
+                ICookable cookableOnPot = potOnTop.GetCookableOnTop();
+
+                if (ingredientOnPot.IngredientStatus == IngredientStatus.Cooked) {
+                    potOnTop.StartCoroutine(potOnTop.BurningTimer(cookableOnPot.BurningTimerMax));
+                }
+                else if (ingredientOnPot.IngredientStatus != IngredientStatus.Burned) {
+                    potOnTop.StartCoroutine(potOnTop.CookingTimer(cookableOnPot.CookingTimerMax));
+                }
+            }
         }
         else {
             Pot potOnTop = itemOnTop as Pot;

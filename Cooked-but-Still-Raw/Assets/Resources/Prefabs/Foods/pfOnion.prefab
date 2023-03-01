@@ -135,7 +135,8 @@ MonoBehaviour:
   cookedMesh: {fileID: 0}
   burnedMesh: {fileID: 0}
   cuttingProcessCountMax: 3
-  cookingTimerMax: 8
+  cookingTimerMax: 5
+  burningTimerMax: 15
 --- !u!1001 &6275171527891085478
 PrefabInstance:
   m_ObjectHideFlags: 0
