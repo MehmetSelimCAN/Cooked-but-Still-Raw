@@ -12,6 +12,9 @@ public class Pot : Dish {
     private float currentBurningTime = 0;
     private float currentIngredientsTimer = 0;
 
+    [SerializeField] protected Transform timerUI;
+    [SerializeField] protected Image timerFillImage;
+
     private void Awake() {
         soupSnappingOffSet = 20;
         ingredientCapacity = 3;
@@ -41,12 +44,16 @@ public class Pot : Dish {
 
         AddIngredientUI(droppedIngredient);
 
+        ICookable droppedCookableIngredient = droppedIngredient as ICookable;
+        currentIngredientsTimer += droppedCookableIngredient.CookingTimerMax;
+        currentBurningTime = 0;
+        timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
+
         PotStove potStoveUnder = transform.GetComponentInParent<PotStove>();
         //Eðer ingredient eklendiðinde pot; pot stove'un üstündeyse cooking timer baþlat.
         if (potStoveUnder != null) {
             StopAllCoroutines();
-            ICookable droppedCookableIngredient = droppedIngredient as ICookable;
-            StartCoroutine(CookingTimer(droppedCookableIngredient.CookingTimerMax));
+            StartCoroutine(CookingTimer());
         }
     }
 
@@ -65,7 +72,7 @@ public class Pot : Dish {
         CurrentIngredientQuantity = 0;
         currentIngredients.Clear();
         Debug.Log("Clear Pot");
-
+        ClearTimers();
         ClearIngredientUI();
     }
 
@@ -75,6 +82,7 @@ public class Pot : Dish {
         }
 
         ingredientUICanvasArea.gameObject.SetActive(false);
+        timerUI.gameObject.SetActive(false);
     }
 
     public override void TransferIngredients(Dish dishToBeTransferred) {
@@ -101,20 +109,40 @@ public class Pot : Dish {
                 }
             }
             else {
+                bool ingredientsMatched = true;
+                foreach (Ingredient ingredientInDish in CurrentIngredients) {
+                    ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
+                    if (!ingredientsMatched) {
+                        break;
+                    }
+                }
+
+                if (ingredientsMatched) {
+                    foreach (Ingredient ingredientInDish in currentIngredients) {
+                        dishToBeTransferred.AddIngredient(ingredientInDish);
+                    }
+
+                    ClearCurrentIngredients();
+                }
+            }
+        }
+
+        else {
+            bool ingredientsMatched = true;
+            foreach (Ingredient ingredientInDish in CurrentIngredients) {
+                ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
+                if (!ingredientsMatched) {
+                    break;
+                }
+            }
+
+            if (ingredientsMatched) {
                 foreach (Ingredient ingredientInDish in currentIngredients) {
                     dishToBeTransferred.AddIngredient(ingredientInDish);
                 }
 
                 ClearCurrentIngredients();
             }
-        }
-
-        else {
-            foreach (Ingredient ingredientInDish in currentIngredients) {
-                dishToBeTransferred.AddIngredient(ingredientInDish);
-            }
-
-            ClearCurrentIngredients();
         }
     }
 
@@ -129,12 +157,14 @@ public class Pot : Dish {
         return cookableOnTop;
     }
 
-    public IEnumerator CookingTimer(float ingredientCookingTimer) {
-        currentIngredientsTimer += ingredientCookingTimer;
+    public IEnumerator CookingTimer() {
+        timerUI.gameObject.SetActive(true);
+
         Debug.Log("Cooking start");
 
         while (currentCookingTime < currentIngredientsTimer) {
             currentCookingTime += Time.deltaTime;
+            timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
             yield return null;
         }
 
@@ -142,20 +172,24 @@ public class Pot : Dish {
         cookableOnTop.CookedUp();
         Debug.Log("Cooked");
 
-        StartCoroutine(BurningTimer(cookableOnTop.BurningTimerMax));
+        StartCoroutine(BurningTimer());
     }
 
-    public IEnumerator BurningTimer(float ingredientBurningTimer) {
+    public IEnumerator BurningTimer() {
+        ICookable cookableOnTop = GetCookableOnTop();
+        float ingredientBurningTimer = cookableOnTop.BurningTimerMax;
         Debug.Log("Burning start");
 
         while (currentBurningTime < ingredientBurningTimer) {
             currentBurningTime += Time.deltaTime;
+            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTimer;
             yield return null;
         }
 
-        ICookable cookableOnTop = GetCookableOnTop();
         cookableOnTop.BurnedUp();
         Debug.Log("Burned");
+
+        timerUI.gameObject.SetActive(false);
     }
 
     public override void ClearTimers() {

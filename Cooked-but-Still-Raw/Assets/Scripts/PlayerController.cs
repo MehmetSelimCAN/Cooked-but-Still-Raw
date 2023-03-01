@@ -107,11 +107,8 @@ public class PlayerController : MonoBehaviour {
                 return;
             }
 
-            Item pickableItem = closestFurniture.GetItemOnTop();
-            if (pickableItem == null) return;
-
             Dish dishInHand = itemInHand as Dish;
-
+            Item pickableItem = closestFurniture.GetItemOnTop();
             //Furniture'un üstünde ingredient var.
             if (pickableItem is Ingredient) {
                 Ingredient pickableIngredient = pickableItem as Ingredient;
@@ -119,6 +116,11 @@ public class PlayerController : MonoBehaviour {
                 if (dishInHand.CanAddIngredient(pickableIngredient)) {
                     dishInHand.AddIngredient(pickableIngredient);
                     closestFurniture.ClearItemOnTop();
+                }
+                else {
+                    if (closestFurniture is IngredientBox) {
+                        Destroy(pickableItem.gameObject);
+                    }
                 }
             }
 

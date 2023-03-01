@@ -38,13 +38,12 @@ public class PotStove : Furniture {
             Pot potOnTop = itemOnTop as Pot;
             if (potOnTop.HasAnyIngredientOnTop) {
                 Ingredient ingredientOnPot = potOnTop.GetIngredientOnTop();
-                ICookable cookableOnPot = potOnTop.GetCookableOnTop();
 
                 if (ingredientOnPot.IngredientStatus == IngredientStatus.Cooked) {
-                    potOnTop.StartCoroutine(potOnTop.BurningTimer(cookableOnPot.BurningTimerMax));
+                    potOnTop.StartCoroutine(potOnTop.BurningTimer());
                 }
                 else if (ingredientOnPot.IngredientStatus != IngredientStatus.Burned) {
-                    potOnTop.StartCoroutine(potOnTop.CookingTimer(cookableOnPot.CookingTimerMax));
+                    potOnTop.StartCoroutine(potOnTop.CookingTimer());
                 }
             }
         }

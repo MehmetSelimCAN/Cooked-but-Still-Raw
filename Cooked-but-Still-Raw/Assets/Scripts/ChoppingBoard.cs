@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChoppingBoard : CounterTop {
 
     private int cuttingProcess = 0;
+    [SerializeField] private Transform progressBarUI;
+    [SerializeField] private Image progressBarFill;
 
     public override void SetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
@@ -20,6 +23,7 @@ public class ChoppingBoard : CounterTop {
         }
 
         cuttingProcess = 0;
+        progressBarUI.gameObject.SetActive(false);
     }
 
     public override void Interact() {
@@ -33,10 +37,16 @@ public class ChoppingBoard : CounterTop {
 
         ICuttable cuttableOnTop = ingredientOnTop as ICuttable;
 
+        if (cuttingProcess == 0) {
+            progressBarUI.gameObject.SetActive(true);
+        }
+
         cuttingProcess++;
+        progressBarFill.fillAmount = cuttingProcess / cuttableOnTop.CuttingProcessCountMax;
         if (cuttingProcess >= cuttableOnTop.CuttingProcessCountMax) {
             Debug.Log("Sliced");
             cuttableOnTop.SlicedUp();
+            progressBarUI.gameObject.SetActive(false);
         }
     }
 }

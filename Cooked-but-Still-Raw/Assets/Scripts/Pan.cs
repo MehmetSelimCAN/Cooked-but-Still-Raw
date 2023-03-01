@@ -8,6 +8,9 @@ public class Pan : Dish {
     private float currentFryingTime = 0;
     private float currentBurningTime = 0;
 
+    [SerializeField] protected Transform timerUI;
+    [SerializeField] protected Image timerFillImage;
+
     private void Awake() {
         ingredientCapacity = 1;
     }
@@ -56,6 +59,7 @@ public class Pan : Dish {
         currentIngredients.Clear();
         Debug.Log("Clear Pan");
 
+        ClearTimers();
         ClearIngredientUI();
     }
 
@@ -65,6 +69,7 @@ public class Pan : Dish {
         }
 
         ingredientUICanvasArea.gameObject.SetActive(false);
+        timerUI.gameObject.SetActive(false);
     }
 
     public override void TransferIngredients(Dish dishToBeTransferred) {
@@ -92,7 +97,7 @@ public class Pan : Dish {
             else {
                 bool ingredientsMatched = true;
                 foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                    ingredientsMatched = CanAddIngredient(ingredientInDish);
+                    ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
                     if (!ingredientsMatched) {
                         break;
                     }
@@ -109,7 +114,7 @@ public class Pan : Dish {
         else {
             bool ingredientsMatched = true;
             foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                ingredientsMatched = CanAddIngredient(ingredientInDish);
+                ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
                 if (!ingredientsMatched) {
                     break;
                 }
@@ -136,10 +141,12 @@ public class Pan : Dish {
     }
 
     public IEnumerator FryingTimer(float ingredientFryingTimer) {
-        Debug.Log("Frying start");
+        timerUI.gameObject.SetActive(true);
 
+        Debug.Log("Frying start");
         while (currentFryingTime < ingredientFryingTimer) {
             currentFryingTime += Time.deltaTime;
+            timerFillImage.fillAmount = currentFryingTime / ingredientFryingTimer;
             yield return null;
         }
 
@@ -155,12 +162,15 @@ public class Pan : Dish {
 
         while (currentBurningTime < ingredientBurningTimer) {
             currentBurningTime += Time.deltaTime;
+            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTimer;
             yield return null;
         }
 
         IFryable fryableOnTop = GetFryableOnTop();
         fryableOnTop.BurnedUp();
         Debug.Log("Burned");
+
+        timerUI.gameObject.SetActive(false);
     }
 
     public override void ClearTimers() {
