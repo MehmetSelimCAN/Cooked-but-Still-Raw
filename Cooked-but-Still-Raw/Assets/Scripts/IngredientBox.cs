@@ -8,4 +8,8 @@ public class IngredientBox : Furniture {
         var ingredient = Instantiate(itemOnTop, itemSlot);
         return ingredient;
     }
+
+    public override void ClearItemOnTop() {
+        return;
+    }
 }

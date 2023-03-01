@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Plate : Dish {
 
@@ -42,18 +43,41 @@ public class Plate : Dish {
     public override void AddIngredient(Ingredient droppedIngredient) {
         droppedIngredient.transform.SetParent(ingredientSlot);
         droppedIngredient.transform.localPosition = Vector3.zero;
-        currentIngredientQuantity++;
+
+        CurrentIngredientQuantity++;
         currentIngredientTypes.Add(droppedIngredient.IngredientType);
         currentIngredients.Add(droppedIngredient);
 
+        AddIngredientUI(droppedIngredient);
+    }
+
+    public override void AddIngredientUI(Ingredient droppedIngredient) {
+        droppedIngredient.HideUI();
+
+        if (CurrentIngredientQuantity == 1) {
+            ingredientUICanvasArea.gameObject.SetActive(true);
+        }
+
+        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
+        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
     }
 
     public override void ClearCurrentIngredients() {
         allPossibleRecipes = new List<Recipe>(RecipeManager.Instance.Recipes);
-        Debug.Log("MSC " + allPossibleRecipes.Count);
-        currentIngredientQuantity = 0;
+        CurrentIngredientQuantity = 0;
         currentIngredientTypes.Clear();
+        currentIngredients.Clear();
         Debug.Log("Clear Plate");
+
+        ClearIngredientUI();
+    }
+
+    public override void ClearIngredientUI() {
+        foreach (Transform ingredientUI in ingredientUICanvasArea) {
+            ingredientUI.gameObject.SetActive(false);
+        }
+
+        ingredientUICanvasArea.gameObject.SetActive(false);
     }
 
     public override void TransferIngredients(Dish dishToBeTransferred) {
@@ -72,13 +96,19 @@ public class Plate : Dish {
                         AddIngredient(ingredientInDishToBeTransferred);
                     }
 
-                    Debug.Log("MSC clear ");
                     dishToBeTransferred.ClearCurrentIngredients();
                 }
                 else {
                     Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
                     return;
                 }
+            }
+            else {
+                foreach (Ingredient ingredientInDish in currentIngredients) {
+                    dishToBeTransferred.AddIngredient(ingredientInDish);
+                }
+
+                ClearCurrentIngredients();
             }
         }
 
@@ -98,7 +128,6 @@ public class Plate : Dish {
 
                 ClearCurrentIngredients();
             }
-
         }
     }
 

@@ -43,6 +43,7 @@ public class Onion : Ingredient, ICuttable, ICookable {
     public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
             case IngredientStatus.Processed:
+                ShowUI();
                 ingredientMeshFilter.mesh = processedMesh;
                 break;
             case IngredientStatus.Liquid:

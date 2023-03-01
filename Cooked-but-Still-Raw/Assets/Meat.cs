@@ -40,6 +40,7 @@ public class Meat : Ingredient, ICuttable, IFryable {
     public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
             case IngredientStatus.Processed:
+                ShowUI();
                 ingredientMeshFilter.mesh = processedMesh;
                 break;
             case IngredientStatus.Cooked:

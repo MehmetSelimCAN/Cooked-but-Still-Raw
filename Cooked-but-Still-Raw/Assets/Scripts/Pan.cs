@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pan : Dish {
 
@@ -12,7 +13,7 @@ public class Pan : Dish {
     }
 
     public override bool CanAddIngredient(Item droppedItem) {
-        if (currentIngredientQuantity >= ingredientCapacity) return false;
+        if (CurrentIngredientQuantity >= ingredientCapacity) return false;
         if (!(droppedItem is Ingredient)) return false;
 
         Ingredient droppedIngredient = droppedItem as Ingredient;
@@ -26,8 +27,10 @@ public class Pan : Dish {
     public override void AddIngredient(Ingredient droppedIngredient) {
         droppedIngredient.transform.SetParent(ingredientSlot);
         droppedIngredient.transform.localPosition = Vector3.zero;
-        currentIngredientQuantity++;
+        CurrentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
+
+        AddIngredientUI(droppedIngredient);
 
         BurgerStove burgerStoveUnder = transform.GetComponentInParent<BurgerStove>();
         //Eðer ingredient eklendiðinde pan; burger stove'un üstündeyse frying timer baþlat.
@@ -37,10 +40,31 @@ public class Pan : Dish {
         }
     }
 
+    public override void AddIngredientUI(Ingredient droppedIngredient) {
+        droppedIngredient.HideUI();
+
+        if (CurrentIngredientQuantity == 1) {
+            ingredientUICanvasArea.gameObject.SetActive(true);
+        }
+
+        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
+        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
+    }
+
     public override void ClearCurrentIngredients() {
-        currentIngredientQuantity = 0;
+        CurrentIngredientQuantity = 0;
         currentIngredients.Clear();
         Debug.Log("Clear Pan");
+
+        ClearIngredientUI();
+    }
+
+    public override void ClearIngredientUI() {
+        foreach (Transform ingredientUI in ingredientUICanvasArea) {
+            ingredientUI.gameObject.SetActive(false);
+        }
+
+        ingredientUICanvasArea.gameObject.SetActive(false);
     }
 
     public override void TransferIngredients(Dish dishToBeTransferred) {
@@ -53,7 +77,6 @@ public class Pan : Dish {
                         break;
                     }
                 }
-
                 if (ingredientsMatched) {
                     foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
                         AddIngredient(ingredientInDishToBeTransferred);
@@ -66,14 +89,38 @@ public class Pan : Dish {
                     return;
                 }
             }
-        }
+            else {
+                bool ingredientsMatched = true;
+                foreach (Ingredient ingredientInDish in CurrentIngredients) {
+                    ingredientsMatched = CanAddIngredient(ingredientInDish);
+                    if (!ingredientsMatched) {
+                        break;
+                    }
+                }
+                if (ingredientsMatched) {
+                    foreach (Ingredient ingredientInDish in currentIngredients) {
+                        dishToBeTransferred.AddIngredient(ingredientInDish);
+                    }
 
-        else {
-            foreach (Ingredient ingredientInDish in currentIngredients) {
-                dishToBeTransferred.AddIngredient(ingredientInDish);
+                    ClearCurrentIngredients();
+                }
             }
+        }
+        else {
+            bool ingredientsMatched = true;
+            foreach (Ingredient ingredientInDish in CurrentIngredients) {
+                ingredientsMatched = CanAddIngredient(ingredientInDish);
+                if (!ingredientsMatched) {
+                    break;
+                }
+            }
+            if (ingredientsMatched) {
+                foreach (Ingredient ingredientInDish in currentIngredients) {
+                    dishToBeTransferred.AddIngredient(ingredientInDish);
+                }
 
-            ClearCurrentIngredients();
+                ClearCurrentIngredients();
+            }
         }
     }
 

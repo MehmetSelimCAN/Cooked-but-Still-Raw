@@ -12,7 +12,6 @@ public class TrashCan : Furniture {
         if (droppedItem is Dish) {
             Dish droppedDish = droppedItem as Dish;
             droppedDish.ThrowInTheGarbage();
-            droppedDish.ClearTimers();
         }
         else {
             Destroy(droppedItem.gameObject);

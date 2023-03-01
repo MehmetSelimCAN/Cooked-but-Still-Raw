@@ -22,6 +22,7 @@ public class Cabbage : Ingredient, ICuttable {
     public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
             case IngredientStatus.Processed:
+                ShowUI();
                 ingredientMeshFilter.mesh = processedMesh;
                 break;
         }
