@@ -19,9 +19,7 @@ public class CounterTop : Furniture {
 
     public override void SetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-            droppedItem.transform.SetParent(itemSlot);
-            droppedItem.transform.localPosition = Vector3.zero;
-            droppedItem.transform.localRotation = Quaternion.identity;
+            HandleDroppedItemPosition(droppedItem);
             itemOnTop = droppedItem;
         }
         else {

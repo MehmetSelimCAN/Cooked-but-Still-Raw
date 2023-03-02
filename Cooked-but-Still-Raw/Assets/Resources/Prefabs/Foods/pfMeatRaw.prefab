@@ -127,16 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166e619627497f478de891c6b717375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientUICanvasArea: {fileID: 1517212839806611656}
+  ingredientUI_Icons: {fileID: 1517212839806611656}
   ingredientStatus: 0
   ingredientSprite: {fileID: 21300000, guid: a00cafd8389a99c4486860047bc5ff5f, type: 3}
   rawMesh: {fileID: -5755851932433107301, guid: 7d774ec98e76b424ba11e975d3e06a3c, type: 3}
   processedMesh: {fileID: -2719439086681959747, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
   cookedMesh: {fileID: -5289443202812361236, guid: 36c6800341ff1a046b0f54cb9c3943b6, type: 3}
   burnedMesh: {fileID: -8700225137327136677, guid: 8cdadf2a0e20483419b765ccf18dc8b6, type: 3}
-  cuttingProcessCountMax: 3
-  fryingTimerMax: 5
-  burningTimerMax: 3
+  cuttingProcessCount: 4
+  fryingTime: 5
+  burningTime: 5
 --- !u!1001 &4270919561959548801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,6 +227,10 @@ PrefabInstance:
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252278132814573917, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_Name
+      value: Icons
       objectReference: {fileID: 0}
     - target: {fileID: 5864270568084136662, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_Name

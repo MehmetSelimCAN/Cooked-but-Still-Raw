@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Furniture : Interactable {
+public abstract class Furniture : MonoBehaviour {
 
     [SerializeField] protected Item itemOnTop;
     [SerializeField] protected Transform itemSlot;
@@ -18,6 +18,12 @@ public abstract class Furniture : Interactable {
 
     public virtual void SetItemOnTop(Item droppedItem) { }
     public virtual bool CanSetItemOnTop(Item droppedItem) { return false; }
+
+    public virtual void HandleDroppedItemPosition(Item droppedItem) {
+        droppedItem.transform.SetParent(itemSlot);
+        droppedItem.transform.localPosition = Vector3.zero;
+        droppedItem.transform.localRotation = Quaternion.identity;
+    }
 
     public virtual void Interact() { }
 }

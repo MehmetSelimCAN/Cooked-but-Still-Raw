@@ -1382,6 +1382,7 @@ Transform:
   m_Children:
   - {fileID: 882051079}
   - {fileID: 1797987545}
+  - {fileID: 305000892}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1841,6 +1842,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
+--- !u!4 &305000892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+  m_PrefabInstance: {fileID: 506970740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &344294546 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6205858051444304254, guid: 93e1c3a04da2f284792bd81aaba87cc7, type: 3}
@@ -2149,6 +2155,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34096259385361777, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
   m_PrefabInstance: {fileID: 1262243577}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &506970740
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 97982792}
+    m_Modifications:
+    - target: {fileID: 1658068419979579868, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_Name
+      value: pfCuttingBoardDrawer_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658068419979579868, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.649984
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -35.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.000000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398646345111620758, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe713f29e0abcd746820da431ccbe216, type: 3}
 --- !u!4 &508199680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 34096259385361777, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
@@ -4891,18 +4958,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipes:
   - recipeName: OnionBurger
+    recipePrepareTime: 0
     ingredientInformations:
     - ingredientType: 1
       ingredientStatus: 1
     - ingredientType: 3
       ingredientStatus: 2
   - recipeName: CheeseBurger
+    recipePrepareTime: 0
     ingredientInformations:
     - ingredientType: 2
       ingredientStatus: 1
     - ingredientType: 3
       ingredientStatus: 2
   - recipeName: CheeseOnionBurger
+    recipePrepareTime: 0
     ingredientInformations:
     - ingredientType: 2
       ingredientStatus: 1
@@ -4913,6 +4983,7 @@ MonoBehaviour:
     - ingredientType: 4
       ingredientStatus: 1
   - recipeName: OnionSoup
+    recipePrepareTime: 0
     ingredientInformations:
     - ingredientType: 1
       ingredientStatus: 2
@@ -6156,6 +6227,10 @@ PrefabInstance:
     - target: {fileID: 1657581377967549986, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
       propertyPath: m_Name
       value: CounterTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657581377967549986, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1657581377967549986, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
       propertyPath: m_TagString

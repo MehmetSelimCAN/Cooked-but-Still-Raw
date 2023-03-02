@@ -158,8 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851ae70ee19886b458f3857768c808aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientUI_Icons: {fileID: 7689472049262700052}
   ingredientSlot: {fileID: 188719449125901936}
-  ingredientUICanvasArea: {fileID: 7689472049262700052}
+  currentIngredientQuantity: 0
   timerUI: {fileID: 8237067926413432437}
   timerFillImage: {fileID: 5917946566957839564}
 --- !u!1001 &2135399169072208794

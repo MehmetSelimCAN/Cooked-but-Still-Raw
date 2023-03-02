@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 
             Dish dishInHand = itemInHand as Dish;
             Item pickableItem = closestFurniture.GetItemOnTop();
-            //Furniture'un üstünde ingredient var.
+            //Elimde dish, furniture'un üstünde ingredient var.
             if (pickableItem is Ingredient) {
                 Ingredient pickableIngredient = pickableItem as Ingredient;
                 //Furniture'un üstündeki ingredient'ý Dish'e ekleyebiliyorsa ekle.
@@ -127,7 +127,12 @@ public class PlayerController : MonoBehaviour {
             //Furniture'un üstünde dish var.
             else if (pickableItem is Dish) {
                 Dish pickableDish = pickableItem as Dish;
-                dishInHand.TransferIngredients(pickableDish);
+                if (pickableDish.HasAnyIngredientOnTop) {
+                    pickableDish.TryToTransferIngredients(dishInHand);
+                }
+                else {
+                    dishInHand.TryToTransferIngredients(pickableDish);
+                }
             }
         }
     }

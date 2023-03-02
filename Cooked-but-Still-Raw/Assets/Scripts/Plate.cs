@@ -41,8 +41,7 @@ public class Plate : Dish {
     }
 
     public override void AddIngredient(Ingredient droppedIngredient) {
-        droppedIngredient.transform.SetParent(ingredientSlot);
-        droppedIngredient.transform.localPosition = Vector3.zero;
+        HandleDroppedIngredientPosition(droppedIngredient);
 
         CurrentIngredientQuantity++;
         currentIngredientTypes.Add(droppedIngredient.IngredientType);
@@ -54,12 +53,12 @@ public class Plate : Dish {
     public override void AddIngredientUI(Ingredient droppedIngredient) {
         droppedIngredient.HideUI();
 
-        if (CurrentIngredientQuantity == 1) {
-            ingredientUICanvasArea.gameObject.SetActive(true);
+        if (!ingredientUI_Icons.gameObject.activeInHierarchy) {
+            ingredientUI_Icons.gameObject.SetActive(true);
         }
 
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
     }
 
     public override void ClearCurrentIngredients() {
@@ -67,68 +66,8 @@ public class Plate : Dish {
         CurrentIngredientQuantity = 0;
         currentIngredientTypes.Clear();
         currentIngredients.Clear();
-        Debug.Log("Clear Plate");
 
         ClearIngredientUI();
-    }
-
-    public override void ClearIngredientUI() {
-        foreach (Transform ingredientUI in ingredientUICanvasArea) {
-            ingredientUI.gameObject.SetActive(false);
-        }
-
-        ingredientUICanvasArea.gameObject.SetActive(false);
-    }
-
-    public override void TransferIngredients(Dish dishToBeTransferred) {
-        if (dishToBeTransferred.HasAnyIngredientOnTop) {
-            if (!isFull) {
-                bool ingredientsMatched = true;
-                foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                    ingredientsMatched = CanAddIngredient(ingredientInDishToBeTransferred);
-                    if (!ingredientsMatched) {
-                        break;
-                    }
-                }
-
-                if (ingredientsMatched) {
-                    foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                        AddIngredient(ingredientInDishToBeTransferred);
-                    }
-
-                    dishToBeTransferred.ClearCurrentIngredients();
-                }
-                else {
-                    Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
-                    return;
-                }
-            }
-            else {
-                foreach (Ingredient ingredientInDish in currentIngredients) {
-                    dishToBeTransferred.AddIngredient(ingredientInDish);
-                }
-
-                ClearCurrentIngredients();
-            }
-        }
-
-        else {
-            bool ingredientsMatched = true;
-            foreach (Ingredient ingredientInDish in currentIngredients) {
-                ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
-                if (!ingredientsMatched) {
-                    break;
-                }
-            }
-
-            if (ingredientsMatched) {
-                foreach (Ingredient ingredientInDish in currentIngredients) {
-                    dishToBeTransferred.AddIngredient(ingredientInDish);
-                }
-
-                ClearCurrentIngredients();
-            }
-        }
     }
 
     private void UpdatePossibleRecipes(Ingredient addedIngredient) {
@@ -140,6 +79,7 @@ public class Plate : Dish {
                 if (ingredientInformation.ingredientType == addedIngredient.IngredientType &&
                     ingredientInformation.ingredientStatus == addedIngredient.IngredientStatus) {
                         isRecipeContainsAddedIngredient = true;
+                        break;
                 }
             }
 

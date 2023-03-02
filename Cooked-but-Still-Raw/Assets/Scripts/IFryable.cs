@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface IFryable {
 
-    float FryingTimerMax { get; }
-    float BurningTimerMax { get; }
+    float FryingTime { get; }
+    float BurningTime { get; }
     void FriedUp();
     void BurnedUp();
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICuttable {
 
-    float CuttingProcessCountMax { get; }
+    float CuttingProcessCount { get; }
     void SlicedUp();
 
 }

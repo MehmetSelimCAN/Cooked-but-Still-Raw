@@ -128,12 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa8963c31ac50f44961da6c72db8356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientUICanvasArea: {fileID: 284904230225869229}
+  ingredientUI_Icons: {fileID: 284904230225869229}
   ingredientStatus: 0
   ingredientSprite: {fileID: 21300000, guid: df05ff8e5dbb4ab41a4d021a992c3c68, type: 3}
   rawMesh: {fileID: -5755851932433107301, guid: 7d774ec98e76b424ba11e975d3e06a3c, type: 3}
   processedMesh: {fileID: -2719439086681959747, guid: e0ce2a02da180884d8be4e105390f4af, type: 3}
-  cuttingProcessCountMax: 4
+  cuttingProcessCount: 3
 --- !u!1001 &3296438526334627556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,6 +229,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: df05ff8e5dbb4ab41a4d021a992c3c68, type: 3}
+    - target: {fileID: 4252278132814573917, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_Name
+      value: Icons
+      objectReference: {fileID: 0}
     - target: {fileID: 4252278132814573917, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_IsActive
       value: 0

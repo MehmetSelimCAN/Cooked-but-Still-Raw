@@ -33,26 +33,21 @@ public class Pot : Dish {
     }
 
     public override void AddIngredient(Ingredient droppedIngredient) {
-        currentIngredients.Add(droppedIngredient);
         CurrentIngredientQuantity++;
+        currentIngredients.Add(droppedIngredient);
+        AddIngredientUI(droppedIngredient);
+        HandleDroppedIngredientPosition(droppedIngredient);
 
         ICookable cookableIngredient = droppedIngredient as ICookable;
         cookableIngredient.Liquize();
-        droppedIngredient.transform.SetParent(ingredientSlot);
-        droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (CurrentIngredientQuantity - 1);
-        droppedIngredient.transform.localScale = Vector3.one;
 
-        AddIngredientUI(droppedIngredient);
-
-        ICookable droppedCookableIngredient = droppedIngredient as ICookable;
-        currentIngredientsTimer += droppedCookableIngredient.CookingTimerMax;
-        currentBurningTime = 0;
+        currentIngredientsTimer += cookableIngredient.CookingTime;
         timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
+        currentBurningTime = 0;
 
         PotStove potStoveUnder = transform.GetComponentInParent<PotStove>();
         //Eðer ingredient eklendiðinde pot; pot stove'un üstündeyse cooking timer baþlat.
         if (potStoveUnder != null) {
-            StopAllCoroutines();
             StartCoroutine(CookingTimer());
         }
     }
@@ -60,90 +55,37 @@ public class Pot : Dish {
     public override void AddIngredientUI(Ingredient droppedIngredient) {
         droppedIngredient.HideUI();
 
-        if (CurrentIngredientQuantity == 1) {
-            ingredientUICanvasArea.gameObject.SetActive(true);
+        if (!ingredientUI_Icons.gameObject.activeInHierarchy) {
+            ingredientUI_Icons.gameObject.SetActive(true);
         }
 
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
+    }
+
+    public override void HandleDroppedIngredientPosition(Ingredient droppedIngredient) {
+        droppedIngredient.transform.SetParent(ingredientSlot);
+        droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (CurrentIngredientQuantity - 1);
+        droppedIngredient.transform.localScale = Vector3.one;
     }
 
     public override void ClearCurrentIngredients() {
         CurrentIngredientQuantity = 0;
         currentIngredients.Clear();
-        Debug.Log("Clear Pot");
-        ClearTimers();
+
         ClearIngredientUI();
+        ClearTimers();
+    }
+
+    public override void ClearTimers() {
+        currentCookingTime = 0;
+        currentBurningTime = 0;
+        StopAllCoroutines();
     }
 
     public override void ClearIngredientUI() {
-        foreach (Transform ingredientUI in ingredientUICanvasArea) {
-            ingredientUI.gameObject.SetActive(false);
-        }
-
-        ingredientUICanvasArea.gameObject.SetActive(false);
+        base.ClearIngredientUI();
         timerUI.gameObject.SetActive(false);
-    }
-
-    public override void TransferIngredients(Dish dishToBeTransferred) {
-        if (dishToBeTransferred.HasAnyIngredientOnTop) {
-            if (!isFull) {
-                bool ingredientsMatched = true;
-                foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                    ingredientsMatched = CanAddIngredient(ingredientInDishToBeTransferred);
-                    if (!ingredientsMatched) {
-                        break;
-                    }
-                }
-
-                if (ingredientsMatched) {
-                    foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                        AddIngredient(ingredientInDishToBeTransferred);
-                    }
-
-                    dishToBeTransferred.ClearCurrentIngredients();
-                }
-                else {
-                    Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
-                    return;
-                }
-            }
-            else {
-                bool ingredientsMatched = true;
-                foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                    ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
-                    if (!ingredientsMatched) {
-                        break;
-                    }
-                }
-
-                if (ingredientsMatched) {
-                    foreach (Ingredient ingredientInDish in currentIngredients) {
-                        dishToBeTransferred.AddIngredient(ingredientInDish);
-                    }
-
-                    ClearCurrentIngredients();
-                }
-            }
-        }
-
-        else {
-            bool ingredientsMatched = true;
-            foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
-                if (!ingredientsMatched) {
-                    break;
-                }
-            }
-
-            if (ingredientsMatched) {
-                foreach (Ingredient ingredientInDish in currentIngredients) {
-                    dishToBeTransferred.AddIngredient(ingredientInDish);
-                }
-
-                ClearCurrentIngredients();
-            }
-        }
     }
 
     public Ingredient GetIngredientOnTop() {
@@ -160,8 +102,6 @@ public class Pot : Dish {
     public IEnumerator CookingTimer() {
         timerUI.gameObject.SetActive(true);
 
-        Debug.Log("Cooking start");
-
         while (currentCookingTime < currentIngredientsTimer) {
             currentCookingTime += Time.deltaTime;
             timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
@@ -170,15 +110,12 @@ public class Pot : Dish {
 
         ICookable cookableOnTop = GetCookableOnTop();
         cookableOnTop.CookedUp();
-        Debug.Log("Cooked");
-
         StartCoroutine(BurningTimer());
     }
 
     public IEnumerator BurningTimer() {
         ICookable cookableOnTop = GetCookableOnTop();
-        float ingredientBurningTimer = cookableOnTop.BurningTimerMax;
-        Debug.Log("Burning start");
+        float ingredientBurningTimer = cookableOnTop.BurningTime;
 
         while (currentBurningTime < ingredientBurningTimer) {
             currentBurningTime += Time.deltaTime;
@@ -187,13 +124,7 @@ public class Pot : Dish {
         }
 
         cookableOnTop.BurnedUp();
-        Debug.Log("Burned");
 
         timerUI.gameObject.SetActive(false);
-    }
-
-    public override void ClearTimers() {
-        currentCookingTime = 0;
-        currentBurningTime = 0;
     }
 }

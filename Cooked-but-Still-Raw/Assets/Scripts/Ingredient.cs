@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Ingredient : Item {
 
-    [SerializeField] protected Transform ingredientUICanvasArea;
-
     protected IngredientType ingredientType;
     [SerializeField] protected IngredientStatus ingredientStatus;
     public IngredientType IngredientType { get { return ingredientType; } }
@@ -32,11 +30,15 @@ public class Ingredient : Item {
 
     public virtual void ChangeMesh(IngredientStatus newStatus) { }
 
-    public virtual void ShowUI() {
-        ingredientUICanvasArea.gameObject.SetActive(true);
+    public void ShowUI() {
+        ingredientUI_Icons.gameObject.SetActive(true);
     }
 
-    public virtual void HideUI() { 
-        ingredientUICanvasArea.gameObject.SetActive(false);
+    public void HideUI() { 
+        ingredientUI_Icons.gameObject.SetActive(false);
+    }
+
+    public override void ThrowInTheGarbage() {
+        Destroy(gameObject);
     }
 }

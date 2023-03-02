@@ -5,7 +5,6 @@ using UnityEngine;
 public class Dish : Item {
 
     [SerializeField] protected Transform ingredientSlot;
-    [SerializeField] protected Transform ingredientUICanvasArea;
 
     protected int ingredientCapacity;
     private int currentIngredientQuantity = 0;
@@ -19,12 +18,54 @@ public class Dish : Item {
     public virtual bool CanAddIngredient(Item droppedItem) { return false; }
     public virtual void AddIngredient(Ingredient droppedIngredient) { }
     public virtual void AddIngredientUI(Ingredient droppedIngredient) { }
-    public virtual void TransferIngredients(Dish dishToBeTransferred) { }
+
+    public virtual void TryToTransferIngredients(Dish dishToBeTransferred) {
+        bool ingredientsMatched = CheckIngredientMatches(dishToBeTransferred);
+        if (ingredientsMatched) {
+            TransferIngredients(dishToBeTransferred);
+        }
+        else {
+            Debug.Log("Recipeler uyuþmuyor");
+        }
+    }
+
+    public virtual bool CheckIngredientMatches(Dish dishToBeTransferred) {
+        bool ingredientsMatched = true;
+        foreach (Ingredient ingredientInDish in CurrentIngredients) {
+            ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
+            if (!ingredientsMatched) {
+                break;
+            }
+        }
+
+        return ingredientsMatched;
+    }
+
+    public virtual void TransferIngredients(Dish dishToBeTransferred) {
+        foreach (Ingredient ingredientInDish in CurrentIngredients) {
+            dishToBeTransferred.AddIngredient(ingredientInDish);
+        }
+
+        ClearCurrentIngredients();
+    }
+
     public virtual void ClearCurrentIngredients() { }
-    public virtual void ClearIngredientUI() { }
     public virtual void ClearTimers() { }
 
-    public virtual void ThrowInTheGarbage() {
+    public virtual void ClearIngredientUI() {
+        foreach (Transform ingredientUI in ingredientUI_Icons) {
+            ingredientUI.gameObject.SetActive(false);
+        }
+
+        ingredientUI_Icons.gameObject.SetActive(false);
+    }
+
+    public virtual void HandleDroppedIngredientPosition(Ingredient droppedIngredient) {
+        droppedIngredient.transform.SetParent(ingredientSlot);
+        droppedIngredient.transform.localPosition = Vector3.zero;
+    }
+
+    public override void ThrowInTheGarbage() {
         foreach (Transform ingredient in ingredientSlot) {
             Destroy(ingredient.gameObject);
         }

@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 8783931430532469401}
   - component: {fileID: 2529411142043111193}
   m_Layer: 5
-  m_Name: Area
+  m_Name: Icons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3417777298107091182
 MonoBehaviour:
   m_ObjectHideFlags: 0

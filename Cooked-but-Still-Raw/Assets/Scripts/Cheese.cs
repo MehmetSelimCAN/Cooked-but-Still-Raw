@@ -6,8 +6,8 @@ public class Cheese : Ingredient, ICuttable {
 
     [SerializeField] private Mesh processedMesh;
 
-    [SerializeField] private float cuttingProcessCountMax;
-    public float CuttingProcessCountMax { get { return cuttingProcessCountMax; } }
+    [SerializeField] private float cuttingProcessCount;
+    public float CuttingProcessCount { get { return cuttingProcessCount; } }
 
     public override void Awake() {
         base.Awake();

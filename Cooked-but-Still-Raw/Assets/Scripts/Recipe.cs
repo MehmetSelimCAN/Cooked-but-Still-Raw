@@ -10,7 +10,7 @@ public struct IngredientInformation {
 [System.Serializable]
 public class Recipe {
 
-    public string recipeName;
+    public float recipePrepareTime;
     public List<IngredientInformation> ingredientInformations;
 
 }

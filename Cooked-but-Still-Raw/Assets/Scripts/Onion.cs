@@ -9,14 +9,14 @@ public class Onion : Ingredient, ICuttable, ICookable {
     [SerializeField] private Mesh cookedMesh;
     [SerializeField] private Mesh burnedMesh;
 
-    [SerializeField] private float cuttingProcessCountMax;
-    public float CuttingProcessCountMax { get { return cuttingProcessCountMax; } }
+    [SerializeField] private float cuttingProcessCount;
+    public float CuttingProcessCount { get { return cuttingProcessCount; } }
 
-    [SerializeField] private float cookingTimerMax;
-    public float CookingTimerMax { get { return cookingTimerMax; } }
+    [SerializeField] private float cookingTime;
+    public float CookingTime { get { return cookingTime; } }
 
-    [SerializeField] private float burningTimerMax;
-    public float BurningTimerMax { get { return burningTimerMax; } }
+    [SerializeField] private float burningTime;
+    public float BurningTime { get { return burningTime; } }
 
     public override void Awake() {
         base.Awake();

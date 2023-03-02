@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb073f81471285468c5f99a3567c9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientUI_Icons: {fileID: 2487438316741010786}
   ingredientSlot: {fileID: 6487558267353466315}
-  ingredientUICanvasArea: {fileID: 2487438316741010786}
+  currentIngredientQuantity: 0
   currentIngredientTypes: 
   allPossibleRecipes: []
 --- !u!1 &7904359477668395327

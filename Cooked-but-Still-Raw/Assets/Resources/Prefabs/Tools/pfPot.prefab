@@ -158,8 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f333aadd30c54864b80407a55ec747ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientUI_Icons: {fileID: 4799100906739924927}
   ingredientSlot: {fileID: 1216556950}
-  ingredientUICanvasArea: {fileID: 4799100906739924927}
+  currentIngredientQuantity: 0
   timerUI: {fileID: 5069249250921886261}
   timerFillImage: {fileID: 6360391485829262576}
 --- !u!1001 &9159749223409372821
@@ -256,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 4804587654343804085, guid: 29a5acf5a11c735459cd5996b7467555, type: 3}
       propertyPath: m_Name
       value: PotUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574902303073245022, guid: 29a5acf5a11c735459cd5996b7467555, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29a5acf5a11c735459cd5996b7467555, type: 3}

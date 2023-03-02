@@ -28,8 +28,7 @@ public class Pan : Dish {
     }
 
     public override void AddIngredient(Ingredient droppedIngredient) {
-        droppedIngredient.transform.SetParent(ingredientSlot);
-        droppedIngredient.transform.localPosition = Vector3.zero;
+        HandleDroppedIngredientPosition(droppedIngredient);
         CurrentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
 
@@ -38,8 +37,7 @@ public class Pan : Dish {
         BurgerStove burgerStoveUnder = transform.GetComponentInParent<BurgerStove>();
         //Eðer ingredient eklendiðinde pan; burger stove'un üstündeyse frying timer baþlat.
         if (burgerStoveUnder != null) {
-            IFryable droppedFryableIngredient = droppedIngredient as IFryable;
-            StartCoroutine(FryingTimer(droppedFryableIngredient.FryingTimerMax));
+            StartCoroutine(FryingTimer());
         }
     }
 
@@ -47,86 +45,30 @@ public class Pan : Dish {
         droppedIngredient.HideUI();
 
         if (CurrentIngredientQuantity == 1) {
-            ingredientUICanvasArea.gameObject.SetActive(true);
+            ingredientUI_Icons.gameObject.SetActive(true);
         }
 
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
-        ingredientUICanvasArea.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
+        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
     }
 
     public override void ClearCurrentIngredients() {
         CurrentIngredientQuantity = 0;
         currentIngredients.Clear();
-        Debug.Log("Clear Pan");
 
-        ClearTimers();
         ClearIngredientUI();
+        ClearTimers();
+    }
+
+    public override void ClearTimers() {
+        currentFryingTime = 0;
+        currentBurningTime = 0;
+        StopAllCoroutines();
     }
 
     public override void ClearIngredientUI() {
-        foreach (Transform ingredientUI in ingredientUICanvasArea) {
-            ingredientUI.gameObject.SetActive(false);
-        }
-
-        ingredientUICanvasArea.gameObject.SetActive(false);
+        base.ClearIngredientUI();
         timerUI.gameObject.SetActive(false);
-    }
-
-    public override void TransferIngredients(Dish dishToBeTransferred) {
-        if (dishToBeTransferred.HasAnyIngredientOnTop) {
-            if (!isFull) {
-                bool ingredientsMatched = true;
-                foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                    ingredientsMatched = CanAddIngredient(ingredientInDishToBeTransferred);
-                    if (!ingredientsMatched) {
-                        break;
-                    }
-                }
-                if (ingredientsMatched) {
-                    foreach (Ingredient ingredientInDishToBeTransferred in dishToBeTransferred.CurrentIngredients) {
-                        AddIngredient(ingredientInDishToBeTransferred);
-                    }
-
-                    dishToBeTransferred.ClearCurrentIngredients();
-                }
-                else {
-                    Debug.Log("Recipe uyuþmuyor, transfer gerçekleþtirelemedi");
-                    return;
-                }
-            }
-            else {
-                bool ingredientsMatched = true;
-                foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                    ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
-                    if (!ingredientsMatched) {
-                        break;
-                    }
-                }
-                if (ingredientsMatched) {
-                    foreach (Ingredient ingredientInDish in currentIngredients) {
-                        dishToBeTransferred.AddIngredient(ingredientInDish);
-                    }
-
-                    ClearCurrentIngredients();
-                }
-            }
-        }
-        else {
-            bool ingredientsMatched = true;
-            foreach (Ingredient ingredientInDish in CurrentIngredients) {
-                ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
-                if (!ingredientsMatched) {
-                    break;
-                }
-            }
-            if (ingredientsMatched) {
-                foreach (Ingredient ingredientInDish in currentIngredients) {
-                    dishToBeTransferred.AddIngredient(ingredientInDish);
-                }
-
-                ClearCurrentIngredients();
-            }
-        }
     }
 
     public Ingredient GetIngredientOnTop() {
@@ -140,25 +82,25 @@ public class Pan : Dish {
         return fryableOnTop;
     }
 
-    public IEnumerator FryingTimer(float ingredientFryingTimer) {
+    public IEnumerator FryingTimer() {
         timerUI.gameObject.SetActive(true);
 
-        Debug.Log("Frying start");
+        IFryable fryableOnTop = GetFryableOnTop();
+        float ingredientFryingTimer = fryableOnTop.FryingTime;
+
         while (currentFryingTime < ingredientFryingTimer) {
             currentFryingTime += Time.deltaTime;
             timerFillImage.fillAmount = currentFryingTime / ingredientFryingTimer;
             yield return null;
         }
 
-        IFryable fryableOnTop = GetFryableOnTop();
         fryableOnTop.FriedUp();
-        Debug.Log("Fried");
-        
-        StartCoroutine(BurningTimer(fryableOnTop.BurningTimerMax));
+        StartCoroutine(BurningTimer());
     }
 
-    public IEnumerator BurningTimer(float ingredientBurningTimer) {
-        Debug.Log("Burning start");
+    public IEnumerator BurningTimer() {
+        IFryable fryableOnTop = GetFryableOnTop();
+        float ingredientBurningTimer = fryableOnTop.BurningTime;
 
         while (currentBurningTime < ingredientBurningTimer) {
             currentBurningTime += Time.deltaTime;
@@ -166,15 +108,8 @@ public class Pan : Dish {
             yield return null;
         }
 
-        IFryable fryableOnTop = GetFryableOnTop();
         fryableOnTop.BurnedUp();
-        Debug.Log("Burned");
 
         timerUI.gameObject.SetActive(false);
-    }
-
-    public override void ClearTimers() {
-        currentFryingTime = 0;
-        currentBurningTime = 0;
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public interface ICookable {
 
-    float CookingTimerMax { get; }
-    float BurningTimerMax { get; }
+    float CookingTime { get; }
+    float BurningTime { get; }
     void Liquize();
     void CookedUp();
     void BurnedUp();

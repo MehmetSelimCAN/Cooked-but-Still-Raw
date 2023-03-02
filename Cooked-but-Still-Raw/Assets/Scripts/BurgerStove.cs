@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class BurgerStove : Furniture {
 
-    public override Item GetItemOnTop() {
-        //Timer durdur
+    public override void ClearItemOnTop() {
+        //Üstündeki pan'ý aldýðýmýzda timer'ý durdur.
         Pan panOnTop = itemOnTop as Pan;
         panOnTop.StopAllCoroutines();
 
-        return itemOnTop;
+        base.ClearItemOnTop();
     }
 
     public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-            //Üstü boþ ve Pan býrakmaya çalýþýyorsak
+            //Üstü boþ ve Pan býrakmaya çalýþýyorsak...
             if (droppedItem is Pan) {
                 return true;
             }
 
-            //Üstü boþ ve Pan dýþýnda bir þey býrakmaya çalýþýyorsak
+            //Üstü boþ ve Pan dýþýnda bir þey býrakmaya çalýþýyorsak...
             return false;
         }
         else {
-            //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak
+            //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak...
             Pan panOnTop = itemOnTop as Pan;
             return panOnTop.CanAddIngredient(droppedItem);
         }
@@ -31,20 +31,19 @@ public class BurgerStove : Furniture {
 
     public override void SetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-            droppedItem.transform.SetParent(itemSlot);
-            droppedItem.transform.localPosition = Vector3.zero;
+            HandleDroppedItemPosition(droppedItem);
             itemOnTop = droppedItem;
 
             Pan panOnTop = itemOnTop as Pan;
+            //Paný býraktýðýmýzda üstünde ingredient var ise timer'larý baþlat.
             if (panOnTop.HasAnyIngredientOnTop) {
                 Ingredient ingredientOnPan = panOnTop.GetIngredientOnTop();
-                IFryable fryableOnPan = panOnTop.GetFryableOnTop();
 
                 if (ingredientOnPan.IngredientStatus == IngredientStatus.Cooked) {
-                    panOnTop.StartCoroutine(panOnTop.BurningTimer(fryableOnPan.BurningTimerMax));
+                    panOnTop.StartCoroutine(panOnTop.BurningTimer());
                 }
                 else if (ingredientOnPan.IngredientStatus != IngredientStatus.Burned) {
-                    panOnTop.StartCoroutine(panOnTop.FryingTimer(fryableOnPan.FryingTimerMax));
+                    panOnTop.StartCoroutine(panOnTop.FryingTimer());
                 }
             }
         }
