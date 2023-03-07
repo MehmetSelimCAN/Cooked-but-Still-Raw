@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3100054929641038017}
   - component: {fileID: 2240469187016575373}
   m_Layer: 0
-  m_Name: pfCabbageBox
+  m_Name: pfLettuceBox
   m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2457d9196afb28d4083dce6102a6b9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemOnTop: {fileID: 1121200384537932790, guid: 52cf1ce7daa5fc14686fe9e7091742ef, type: 3}
+  itemOnTop: {fileID: 7908639901288539344, guid: f17b7c469880a8941a1c1317c923b82f, type: 3}
   itemSlot: {fileID: 1590032822512393242}
 --- !u!1 &5336280276108171839
 GameObject:

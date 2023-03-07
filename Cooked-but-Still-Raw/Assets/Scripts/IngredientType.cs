@@ -4,5 +4,5 @@ public enum IngredientType {
     Onion,
     Cheese,
     Meat,
-    Cabbage,
+    Lettuce,
 }

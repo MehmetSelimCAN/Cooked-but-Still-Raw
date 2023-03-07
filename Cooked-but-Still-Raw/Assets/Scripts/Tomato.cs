@@ -17,7 +17,7 @@ public class Tomato : Ingredient, ICuttable {
     public override void ChangeMesh(IngredientStatus newStatus) {
         switch (newStatus) {
             case IngredientStatus.Processed:
-                ingredientMeshFilter.mesh = processedMesh;
+                //ingredientMeshFilter.mesh = processedMesh;
                 break;
         }
     }

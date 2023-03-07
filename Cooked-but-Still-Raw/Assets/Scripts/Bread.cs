@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Bread : Ingredient {
 
-    public override void Awake() {
-        base.Awake();
+    public void Awake() {
         ingredientType = IngredientType.Bread;
     }
 }

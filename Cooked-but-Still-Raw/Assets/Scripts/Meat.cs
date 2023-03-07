@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Meat : Ingredient, ICuttable, IFryable {
 
-    [SerializeField] private Mesh processedMesh;
-    [SerializeField] private Mesh friedMesh;
-    [SerializeField] private Mesh burnedMesh;
+    [SerializeField] private GameObject processedModel;
+    [SerializeField] private GameObject friedModel;
+    [SerializeField] private GameObject burnedModel;
 
     [SerializeField] private float cuttingProcessCount;
     public float CuttingProcessCount { get { return cuttingProcessCount; } }
@@ -17,8 +17,7 @@ public class Meat : Ingredient, ICuttable, IFryable {
     [SerializeField] private float burningTime;
     public float BurningTime { get { return burningTime; } }
 
-    public override void Awake() {
-        base.Awake();
+    public void Awake() {
         ingredientType = IngredientType.Meat;
     }
 
@@ -38,16 +37,21 @@ public class Meat : Ingredient, ICuttable, IFryable {
     }
 
     public override void ChangeMesh(IngredientStatus newStatus) {
+        currentModel.SetActive(false);
+
         switch (newStatus) {
             case IngredientStatus.Processed:
                 ShowUI();
-                ingredientMeshFilter.mesh = processedMesh;
+                processedModel.SetActive(true);
+                currentModel = processedModel;
                 break;
             case IngredientStatus.Fried:
-                ingredientMeshFilter.mesh = friedMesh;
+                friedModel.SetActive(true);
+                currentModel = friedModel;
                 break;
             case IngredientStatus.Burned:
-                ingredientMeshFilter.mesh = burnedMesh;
+                burnedModel.SetActive(true);
+                currentModel = burnedModel;
                 break;
         }
     }

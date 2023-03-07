@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Cheese : Ingredient, ICuttable {
 
-    [SerializeField] private Mesh processedMesh;
+    [SerializeField] private GameObject processedModel;
 
     [SerializeField] private float cuttingProcessCount;
     public float CuttingProcessCount { get { return cuttingProcessCount; } }
 
-    public override void Awake() {
-        base.Awake();
+    public void Awake() {
         ingredientType = IngredientType.Cheese;
     }
 
@@ -20,10 +19,13 @@ public class Cheese : Ingredient, ICuttable {
     }
 
     public override void ChangeMesh(IngredientStatus newStatus) {
+        currentModel.SetActive(false);
+
         switch (newStatus) {
             case IngredientStatus.Processed:
                 ShowUI();
-                ingredientMeshFilter.mesh = processedMesh;
+                processedModel.SetActive(true);
+                currentModel = processedModel;
                 break;
         }
     }

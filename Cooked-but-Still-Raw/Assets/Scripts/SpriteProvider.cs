@@ -25,7 +25,7 @@ public class SpriteProvider : MonoBehaviour {
             case IngredientType.Cheese:
                 returnSprite = cheeseSprite;
                 break;
-            case IngredientType.Cabbage:
+            case IngredientType.Lettuce:
                 returnSprite = cabbageSprite;
                 break;
             case IngredientType.Onion:

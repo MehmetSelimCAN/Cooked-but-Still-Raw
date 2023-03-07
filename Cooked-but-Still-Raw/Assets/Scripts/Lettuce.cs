@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cabbage : Ingredient, ICuttable {
+public class Lettuce : Ingredient, ICuttable {
 
-    [SerializeField] private Mesh processedMesh;
+    [SerializeField] private GameObject processedModel;
 
     [SerializeField] private float cuttingProcessCount;
     public float CuttingProcessCount { get { return cuttingProcessCount; } }
 
-    public override void Awake() {
-        base.Awake();
-        ingredientType = IngredientType.Cabbage;
+    public void Awake() {
+        ingredientType = IngredientType.Lettuce;
     }
 
     public void SlicedUp() {
@@ -20,10 +19,13 @@ public class Cabbage : Ingredient, ICuttable {
     }
 
     public override void ChangeMesh(IngredientStatus newStatus) {
+        currentModel.SetActive(false);
+
         switch (newStatus) {
             case IngredientStatus.Processed:
+                processedModel.SetActive(true);
+                currentModel = processedModel;
                 ShowUI();
-                ingredientMeshFilter.mesh = processedMesh;
                 break;
         }
     }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Onion : Ingredient, ICuttable, ICookable {
 
-    [SerializeField] private Mesh processedMesh;
-    [SerializeField] private Mesh liquidMesh;
-    [SerializeField] private Mesh cookedMesh;
-    [SerializeField] private Mesh burnedMesh;
+    [SerializeField] private GameObject processedModel;
+    [SerializeField] private GameObject liquidModel;
+    [SerializeField] private GameObject cookedModel;
+    [SerializeField] private GameObject burnedModel;
 
     [SerializeField] private float cuttingProcessCount;
     public float CuttingProcessCount { get { return cuttingProcessCount; } }
@@ -18,8 +18,7 @@ public class Onion : Ingredient, ICuttable, ICookable {
     [SerializeField] private float burningTime;
     public float BurningTime { get { return burningTime; } }
 
-    public override void Awake() {
-        base.Awake();
+    public void Awake() {
         ingredientType = IngredientType.Onion;
     }
 
@@ -44,19 +43,25 @@ public class Onion : Ingredient, ICuttable, ICookable {
     }
 
     public override void ChangeMesh(IngredientStatus newStatus) {
+        currentModel.SetActive(false);
+
         switch (newStatus) {
             case IngredientStatus.Processed:
+                processedModel.SetActive(true);
+                currentModel = processedModel;
                 ShowUI();
-                ingredientMeshFilter.mesh = processedMesh;
                 break;
             case IngredientStatus.Liquid:
-                ingredientMeshFilter.mesh = liquidMesh;
+                liquidModel.SetActive(true);
+                currentModel = liquidModel;
                 break;
             case IngredientStatus.Cooked:
-                ingredientMeshFilter.mesh = cookedMesh;
+                cookedModel.SetActive(true);
+                currentModel = cookedModel;
                 break;
             case IngredientStatus.Burned:
-                ingredientMeshFilter.mesh = burnedMesh;
+                burnedModel.SetActive(true);
+                currentModel = burnedModel;
                 break;
         }
     }
