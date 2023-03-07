@@ -6,6 +6,7 @@ public class Item : MonoBehaviour {
 
     [SerializeField] protected Transform ingredientUI_Icons;
 
+
     public virtual void ThrowInTheGarbage() { }
 
 }

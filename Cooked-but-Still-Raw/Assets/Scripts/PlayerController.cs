@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour {
 
     private void HandlePickDrop(Furniture closestFurniture) {
         //Elimdeki ingredient ise dropla.
-        if (itemInHand is Ingredient) {
+        if (itemInHand is Ingredient || itemInHand is StackedDirtyPlate) {
             DropItem();
             return;
         }
@@ -117,7 +117,9 @@ public class PlayerController : MonoBehaviour {
                     dishInHand.AddIngredient(pickableIngredient);
                     closestFurniture.ClearItemOnTop();
                 }
+                //Furniture'un üstündeki ingredient'ý Dish'e ekleyemediyse...
                 else {
+                    //...ve Furniture Ingredient Box ise çoktan ingredient'ý oluþturduðu için onu silmemiz gerekiyor.
                     if (closestFurniture is IngredientBox) {
                         Destroy(pickableItem.gameObject);
                     }
@@ -127,9 +129,15 @@ public class PlayerController : MonoBehaviour {
             //Furniture'un üstünde dish var.
             else if (pickableItem is Dish) {
                 Dish pickableDish = pickableItem as Dish;
+                //Eðer karþý dish doluysa ingredient'larý elimizdeki dish'e almaya çalýþ.
                 if (pickableDish.HasAnyIngredientOnTop) {
-                    pickableDish.TryToTransferIngredients(dishInHand);
+                    bool isTransferDone = pickableDish.TryToTransferIngredients(dishInHand);
+                    //Eðer transfer gerçekleþtirilemediyse karþýt transfer'i dene.
+                    if (!isTransferDone) {
+                        dishInHand.TryToTransferIngredients(pickableDish);
+                    }
                 }
+                //Eðer karþý dish boþsa ingredient'larý karþý dish'e vermeye çalýþ.
                 else {
                     dishInHand.TryToTransferIngredients(pickableDish);
                 }
@@ -162,7 +170,7 @@ public class PlayerController : MonoBehaviour {
 
             //Eðer drop edeceðimiz furniture trash can ise Dish'i clearlayýp player'ýn elinde tutmaya devam edecek.
             if (closestFurniture is TrashCan) {
-                if (itemInHand is Dish) { return; }
+                if (itemInHand is Dish) return;
             }
 
             itemInHand = null;

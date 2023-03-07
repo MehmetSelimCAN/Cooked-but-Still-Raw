@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientUI_Icons: {fileID: 390063828702026053}
   ingredientStatus: 1
-  ingredientSprite: {fileID: 21300000, guid: 89102654d1fc28b4cbf4daa3ddc64ae9, type: 3}
   rawMesh: {fileID: 0}
 --- !u!1 &1765831051703938876
 GameObject:
@@ -344,6 +343,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252278132814573917, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5256262382842884413, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5864270568084136662, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}

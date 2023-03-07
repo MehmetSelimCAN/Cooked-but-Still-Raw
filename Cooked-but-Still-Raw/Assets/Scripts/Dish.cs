@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dish : Item {
 
@@ -17,24 +18,37 @@ public class Dish : Item {
 
     public virtual bool CanAddIngredient(Item droppedItem) { return false; }
     public virtual void AddIngredient(Ingredient droppedIngredient) { }
-    public virtual void AddIngredientUI(Ingredient droppedIngredient) { }
+    public virtual void AddIngredientUI(Ingredient droppedIngredient) {
+        droppedIngredient.HideUI();
 
-    public virtual void TryToTransferIngredients(Dish dishToBeTransferred) {
+        if (!ingredientUI_Icons.gameObject.activeInHierarchy) {
+            ingredientUI_Icons.gameObject.SetActive(true);
+        }
+
+        Sprite ingredientSprite = SpriteProvider.Instance.GetIngredientSprite(droppedIngredient.IngredientType);
+        Transform ingredientUI_Icon = ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1);
+        ingredientUI_Icon.gameObject.SetActive(true);
+        ingredientUI_Icon.GetComponent<Image>().sprite = ingredientSprite;
+    }
+
+    public virtual bool TryToTransferIngredients(Dish dishToBeTransferred) {
         bool ingredientsMatched = CheckIngredientMatches(dishToBeTransferred);
         if (ingredientsMatched) {
             TransferIngredients(dishToBeTransferred);
+            return true;
         }
         else {
-            Debug.Log("Recipeler uyuþmuyor");
+            return false;
         }
     }
 
     public virtual bool CheckIngredientMatches(Dish dishToBeTransferred) {
-        bool ingredientsMatched = true;
+        bool ingredientsMatched = false;
+
         foreach (Ingredient ingredientInDish in CurrentIngredients) {
             ingredientsMatched = dishToBeTransferred.CanAddIngredient(ingredientInDish);
             if (!ingredientsMatched) {
-                break;
+                return ingredientsMatched;
             }
         }
 

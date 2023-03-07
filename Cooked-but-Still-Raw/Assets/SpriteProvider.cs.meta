@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9c615b7815d34fc419711b5df1effb4e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - meatSprite: {fileID: 21300000, guid: a00cafd8389a99c4486860047bc5ff5f, type: 3}
+  - cabbageSprite: {fileID: 21300000, guid: 471ce350675327944886d9bea37bd3d5, type: 3}
+  - breadSprite: {fileID: 21300000, guid: 89102654d1fc28b4cbf4daa3ddc64ae9, type: 3}
+  - onionSprite: {fileID: 21300000, guid: 193c0a1cd2eb7b34ea59d3ae2f743cb6, type: 3}
+  - tomatoSprite: {fileID: 21300000, guid: 40a975308c5f21d4487fe61414ac91be, type: 3}
+  - cheeseSprite: {fileID: 21300000, guid: df05ff8e5dbb4ab41a4d021a992c3c68, type: 3}
+  - panSprite: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+  - potSprite: {fileID: 21300000, guid: 3086d66a563317b40a20a20da2c64ac0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

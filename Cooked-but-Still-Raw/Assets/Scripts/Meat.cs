@@ -5,7 +5,7 @@ using UnityEngine;
 public class Meat : Ingredient, ICuttable, IFryable {
 
     [SerializeField] private Mesh processedMesh;
-    [SerializeField] private Mesh cookedMesh;
+    [SerializeField] private Mesh friedMesh;
     [SerializeField] private Mesh burnedMesh;
 
     [SerializeField] private float cuttingProcessCount;
@@ -28,8 +28,8 @@ public class Meat : Ingredient, ICuttable, IFryable {
     }
 
     public void FriedUp() {
-        ChangeStatus(IngredientStatus.Cooked);
-        ChangeMesh(IngredientStatus.Cooked);
+        ChangeStatus(IngredientStatus.Fried);
+        ChangeMesh(IngredientStatus.Fried);
     }
 
     public void BurnedUp() {
@@ -43,8 +43,8 @@ public class Meat : Ingredient, ICuttable, IFryable {
                 ShowUI();
                 ingredientMeshFilter.mesh = processedMesh;
                 break;
-            case IngredientStatus.Cooked:
-                ingredientMeshFilter.mesh = cookedMesh;
+            case IngredientStatus.Fried:
+                ingredientMeshFilter.mesh = friedMesh;
                 break;
             case IngredientStatus.Burned:
                 ingredientMeshFilter.mesh = burnedMesh;

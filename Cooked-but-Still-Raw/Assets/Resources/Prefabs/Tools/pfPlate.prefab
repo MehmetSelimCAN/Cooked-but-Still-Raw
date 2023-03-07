@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientUI_Icons: {fileID: 2487438316741010786}
   ingredientSlot: {fileID: 6487558267353466315}
-  currentIngredientQuantity: 0
   currentIngredientTypes: 
   allPossibleRecipes: []
+  isDirty: 0
+  plateStackSlot: {fileID: 0}
 --- !u!1 &7904359477668395327
 GameObject:
   m_ObjectHideFlags: 0

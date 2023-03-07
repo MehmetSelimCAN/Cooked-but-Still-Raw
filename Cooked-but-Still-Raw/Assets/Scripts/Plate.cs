@@ -7,6 +7,11 @@ public class Plate : Dish {
 
     [SerializeField] private List<IngredientType> currentIngredientTypes = new List<IngredientType>();
     [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
+    [SerializeField] private bool isDirty = false;
+    public bool IsDirty { get { return isDirty; } }
+
+    private int washingProcessCount = 5;
+    public int WashingProcessCount { get { return washingProcessCount; } }
 
     private void Awake() {
         ingredientCapacity = 10;
@@ -26,18 +31,40 @@ public class Plate : Dish {
         bool isThereRecipeWithCurrentIngredients = false;
         foreach (Recipe recipe in allPossibleRecipes) {
             foreach (IngredientInformation ingredientInformation in recipe.ingredientInformations) {
-                if (ingredientInformation.ingredientType == droppedIngredient.IngredientType) {
-                    if (ingredientInformation.ingredientStatus == droppedIngredient.IngredientStatus) {
-                        UpdatePossibleRecipes(droppedIngredient);
+                if (ingredientInformation.ingredientType == droppedIngredient.IngredientType &&
+                    ingredientInformation.ingredientStatus == droppedIngredient.IngredientStatus) {
                         isThereRecipeWithCurrentIngredients = true;
+                        UpdatePossibleRecipes(droppedIngredient);
 
                         return isThereRecipeWithCurrentIngredients;
-                    }
                 }
             }
         }
 
         return isThereRecipeWithCurrentIngredients;
+    }
+
+    private void UpdatePossibleRecipes(Ingredient addedIngredient) {
+        List<Recipe> recipesToBeDeleted = new List<Recipe>();
+
+        foreach (Recipe recipe in allPossibleRecipes) {
+            bool isRecipeContainsAddedIngredient = false;
+            foreach (IngredientInformation ingredientInformation in recipe.ingredientInformations) {
+                if (ingredientInformation.ingredientType == addedIngredient.IngredientType &&
+                    ingredientInformation.ingredientStatus == addedIngredient.IngredientStatus) {
+                    isRecipeContainsAddedIngredient = true;
+                    break;
+                }
+            }
+
+            if (!isRecipeContainsAddedIngredient) {
+                recipesToBeDeleted.Add(recipe);
+            }
+        }
+
+        foreach (Recipe recipeToBeDeleted in recipesToBeDeleted) {
+            allPossibleRecipes.Remove(recipeToBeDeleted);
+        }
     }
 
     public override void AddIngredient(Ingredient droppedIngredient) {
@@ -50,17 +77,6 @@ public class Plate : Dish {
         AddIngredientUI(droppedIngredient);
     }
 
-    public override void AddIngredientUI(Ingredient droppedIngredient) {
-        droppedIngredient.HideUI();
-
-        if (!ingredientUI_Icons.gameObject.activeInHierarchy) {
-            ingredientUI_Icons.gameObject.SetActive(true);
-        }
-
-        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
-        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
-    }
-
     public override void ClearCurrentIngredients() {
         allPossibleRecipes = new List<Recipe>(RecipeManager.Instance.Recipes);
         CurrentIngredientQuantity = 0;
@@ -70,26 +86,13 @@ public class Plate : Dish {
         ClearIngredientUI();
     }
 
-    private void UpdatePossibleRecipes(Ingredient addedIngredient) {
-        List<Recipe> recipesToBeDeleted = new List<Recipe>();
+    public void SetDirty() {
+        //Mesh deðiþtir.
+        isDirty = true;
+    }
 
-        foreach (Recipe recipe in allPossibleRecipes) {
-            bool isRecipeContainsAddedIngredient = false;
-            foreach (IngredientInformation ingredientInformation in recipe.ingredientInformations) {
-                if (ingredientInformation.ingredientType == addedIngredient.IngredientType &&
-                    ingredientInformation.ingredientStatus == addedIngredient.IngredientStatus) {
-                        isRecipeContainsAddedIngredient = true;
-                        break;
-                }
-            }
-
-            if (!isRecipeContainsAddedIngredient) {
-                recipesToBeDeleted.Add(recipe);
-            }
-        }
-
-        foreach (Recipe recipeToBeDeleted in recipesToBeDeleted) {
-            allPossibleRecipes.Remove(recipeToBeDeleted);
-        }
+    public void CleanedUp() {
+        //Mesh deðiþtir.
+        isDirty = false;
     }
 }

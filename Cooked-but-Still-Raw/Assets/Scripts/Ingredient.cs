@@ -9,9 +9,6 @@ public class Ingredient : Item {
     public IngredientType IngredientType { get { return ingredientType; } }
     public IngredientStatus IngredientStatus { get { return ingredientStatus; } }
 
-    [SerializeField] private Sprite ingredientSprite;
-    public Sprite IngredientSprite { get { return ingredientSprite; } }
-
     protected MeshFilter ingredientMeshFilter;
     [SerializeField] private Mesh rawMesh;
 

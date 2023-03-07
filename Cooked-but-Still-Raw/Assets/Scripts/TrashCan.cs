@@ -5,6 +5,8 @@ using UnityEngine;
 public class TrashCan : Furniture {
 
     public override bool CanSetItemOnTop(Item droppedItem) {
+        if (droppedItem is StackedDirtyPlate) return false;
+
         return true;
     }
 

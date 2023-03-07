@@ -52,17 +52,6 @@ public class Pot : Dish {
         }
     }
 
-    public override void AddIngredientUI(Ingredient droppedIngredient) {
-        droppedIngredient.HideUI();
-
-        if (!ingredientUI_Icons.gameObject.activeInHierarchy) {
-            ingredientUI_Icons.gameObject.SetActive(true);
-        }
-
-        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).gameObject.SetActive(true);
-        ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetComponent<Image>().sprite = droppedIngredient.IngredientSprite;
-    }
-
     public override void HandleDroppedIngredientPosition(Ingredient droppedIngredient) {
         droppedIngredient.transform.SetParent(ingredientSlot);
         droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (CurrentIngredientQuantity - 1);

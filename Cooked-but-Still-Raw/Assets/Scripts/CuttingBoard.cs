@@ -13,7 +13,7 @@ public class CuttingBoard : CounterTop {
         base.SetItemOnTop(droppedItem);
 
         currentCuttingProcess = 0;
-        progressBarUI.gameObject.SetActive(false);
+        HideProgressBarUI();
     }
 
     public override void Interact() {
