@@ -10,43 +10,40 @@ public class Sink : Furniture {
     [SerializeField] private Transform progressBarUI;
     [SerializeField] private Image progressBarFill;
 
+    //Access the item currently on the furniture.
     public override Item GetItemOnTop() {
+        //Return the plate on top of the clean plate stack.
         return cleanPlateSlot.GetComponentInChildren<Plate>();
     }
 
+    //Responsible for checking if the furniture can accept a new item.
     public override bool CanSetItemOnTop(Item droppedItem) {
-        if (droppedItem is StackedDirtyPlate) {
-            return true;
-        }
+        //Nothing can be placed on top except dirty plates.
+        if (droppedItem is DirtyPlateStack) return true;
 
         return false;
-
-
-        ////Sadece tabak býrakýlabilecek.
-        //if (droppedItem is Plate) {
-        //    Plate droppedPlate = droppedItem as Plate;
-        //    //Ayrýca tabak kirli olacak.
-        //    if (droppedPlate.IsDirty) {
-        //        return true;
-        //    }
-        //}
-
-        //return false;
     }
 
+    //Responsible for placing a new item on top of the furniture.
     public override void SetItemOnTop(Item droppedItem) {
-        //itemOnTop = droppedItem;
         HandleDroppedItemPosition(droppedItem);
 
+        //Prepare UI for dropped item.
         currentWashingProcess = 0;
         HideProgressBarUI();
     }
 
+    //Responsible for handling interactions with the furniture.
     public override void Interact() {
+        //If there are no dirty plates, don't interact.
         if (itemSlot.childCount == 0) return;
-        StackedDirtyPlate stackedDirtyPlates = itemSlot.GetComponentInChildren<StackedDirtyPlate>();
+        //If there is at least one dirty plate, the script gets a reference
+        //to the DirtyPlateStack component, which holds the stack of dirty plates.
+        //It then gets a reference to the first Plate object in the stack.
 
-        Plate dirtyPlate = stackedDirtyPlates.transform.GetChild(0).GetComponent<Plate>();
+        DirtyPlateStack stackedDirtyPlates = itemSlot.GetComponentInChildren<DirtyPlateStack>();
+
+        Plate dirtyPlate = stackedDirtyPlates.transform.GetComponentInChildren<Plate>();
 
         if (!progressBarUI.gameObject.activeInHierarchy) {
             ShowProgressBarUI();
@@ -55,14 +52,14 @@ public class Sink : Furniture {
         currentWashingProcess++;
         progressBarFill.fillAmount = (float)currentWashingProcess / dirtyPlate.WashingProcessCount;
 
-        if (currentWashingProcess >= 5) {
+        if (currentWashingProcess >= dirtyPlate.WashingProcessCount) {
             dirtyPlate.CleanedUp();
             dirtyPlate.transform.SetParent(cleanPlateSlot);
             dirtyPlate.transform.localPosition = Vector3.zero;
             currentWashingProcess = 0;
             HideProgressBarUI();
 
-            if (stackedDirtyPlates.transform.childCount == 0) {
+            if (stackedDirtyPlates.transform.childCount == 1) {
                 Destroy(stackedDirtyPlates.gameObject);
             }
         }

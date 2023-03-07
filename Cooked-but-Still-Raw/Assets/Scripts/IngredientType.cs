@@ -1,8 +1,8 @@
 public enum IngredientType {
+    Bread,
     Tomato,
     Onion,
     Cheese,
     Meat,
-    Bread,
     Cabbage,
 }

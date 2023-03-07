@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StackedDirtyPlate : Item {
+public class DirtyPlateStack : Item {
+
+    private void Awake() {
+        ShowUI();
+    }
 
     public override void ThrowInTheGarbage() {
         return;

@@ -6166,19 +6166,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6186,7 +6186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -9596,23 +9596,23 @@ MonoBehaviour:
     recipePrepareTime: 0
     isAvailableOnThisLevel: 0
     ingredientInformations:
-    - ingredientType: 1
+    - ingredientType: 2
       ingredientStatus: 2
-    - ingredientType: 1
+    - ingredientType: 2
       ingredientStatus: 2
-    - ingredientType: 1
+    - ingredientType: 2
       ingredientStatus: 2
   - recipeName: Burger
     recipePrepareTime: 0
     isAvailableOnThisLevel: 1
     ingredientInformations:
     - ingredientType: 4
-      ingredientStatus: 1
-    - ingredientType: 3
       ingredientStatus: 3
+    - ingredientType: 3
+      ingredientStatus: 1
     - ingredientType: 2
       ingredientStatus: 1
-    - ingredientType: 5
+    - ingredientType: 0
       ingredientStatus: 1
 --- !u!4 &1758340866
 Transform:
@@ -10464,19 +10464,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10484,7 +10484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5591029407175092509, guid: 2832d24f35dd89744b7d49296190d4f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

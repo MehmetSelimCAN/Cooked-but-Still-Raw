@@ -27,14 +27,6 @@ public class Ingredient : Item {
 
     public virtual void ChangeMesh(IngredientStatus newStatus) { }
 
-    public void ShowUI() {
-        ingredientUI_Icons.gameObject.SetActive(true);
-    }
-
-    public void HideUI() { 
-        ingredientUI_Icons.gameObject.SetActive(false);
-    }
-
     public override void ThrowInTheGarbage() {
         Destroy(gameObject);
     }
