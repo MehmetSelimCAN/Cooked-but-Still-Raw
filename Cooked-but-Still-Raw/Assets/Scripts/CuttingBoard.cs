@@ -31,6 +31,7 @@ public class CuttingBoard : CounterTop {
             ShowProgressBarUI();
         }
 
+        //Process each cut and show the progress on the UI.
         currentCuttingProcess++;
         progressBarFill.fillAmount = currentCuttingProcess / cuttableOnTop.CuttingProcessCount;
 

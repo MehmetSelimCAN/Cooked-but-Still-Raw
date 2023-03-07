@@ -37,38 +37,45 @@ public class Sink : Furniture {
     public override void Interact() {
         //If there are no dirty plates, don't interact.
         if (itemSlot.childCount == 0) return;
-        //If there is at least one dirty plate, the script gets a reference
-        //to the DirtyPlateStack component, which holds the stack of dirty plates.
-        //It then gets a reference to the first Plate object in the stack.
 
+        //If there is any dirty plates in the sink, get the reference of the plate.
         DirtyPlateStack stackedDirtyPlates = itemSlot.GetComponentInChildren<DirtyPlateStack>();
-
         Plate dirtyPlate = stackedDirtyPlates.transform.GetComponentInChildren<Plate>();
 
         if (!progressBarUI.gameObject.activeInHierarchy) {
             ShowProgressBarUI();
         }
 
+        //Update the cleaning process of the dirty plate and show it on UI.
         currentWashingProcess++;
         progressBarFill.fillAmount = (float)currentWashingProcess / dirtyPlate.WashingProcessCount;
 
+        //If dirty plate scrubbed enough to get cleaned.
         if (currentWashingProcess >= dirtyPlate.WashingProcessCount) {
+            //Restore the plate functionality.
             dirtyPlate.CleanedUp();
+
+            //Replace the plate on the counter.
             dirtyPlate.transform.SetParent(cleanPlateSlot);
             dirtyPlate.transform.localPosition = Vector3.zero;
+
+            //Prepare sink for next cleaning process.
             currentWashingProcess = 0;
             HideProgressBarUI();
 
+            //If there are no more dirty plates in the sink we don't need the stack object anymore.
             if (stackedDirtyPlates.transform.childCount == 1) {
                 Destroy(stackedDirtyPlates.gameObject);
             }
         }
     }
 
+    //Deactivate cleaning progress bar.
     private void ShowProgressBarUI() {
         progressBarUI.gameObject.SetActive(true);
     }
 
+    //Activate cleaning progress bar.
     private void HideProgressBarUI() {
         progressBarUI.gameObject.SetActive(false);
     }

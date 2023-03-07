@@ -11,6 +11,7 @@ public class Highlight : MonoBehaviour {
         Hide();
     }
 
+    //Highlights the closest furniture.
     private void Player_OnClosestFurnitureChanged(object sender, InteractController.OnClosestFurnitureChangedEventArgs e) {
         if (e.closestFurniture == furniture) {
             Show();

@@ -16,8 +16,11 @@ public class Dish : Item {
     protected List<Ingredient> currentIngredients = new List<Ingredient>();
     public List<Ingredient> CurrentIngredients { get { return currentIngredients; } }
 
+    //Returns a boolean showing whether an ingredient can be added into the specific dish or not.
     public virtual bool CanAddIngredient(Item droppedItem) { return false; }
+    //Adds the ingridient to the dish.
     public virtual void AddIngredient(Ingredient droppedIngredient) { }
+    //Adds the ingridient to the ui of the dish and displays it.
     public virtual void AddIngredientUI(Ingredient droppedIngredient) {
         droppedIngredient.HideUI();
 
@@ -31,6 +34,7 @@ public class Dish : Item {
         ingredientUI_Icon.GetComponent<Image>().sprite = ingredientSprite;
     }
 
+    //Returns a boolean showing whether the ingredients can be transfered between dishes.
     public virtual bool TryToTransferIngredients(Dish dishToBeTransferred) {
         bool ingredientsMatched = CheckIngredientMatches(dishToBeTransferred);
         if (ingredientsMatched) {
@@ -42,6 +46,7 @@ public class Dish : Item {
         }
     }
 
+    //Returns a boolean showing whether the ingredients are acceptable by the target dish.
     public virtual bool CheckIngredientMatches(Dish dishToBeTransferred) {
         bool ingredientsMatched = false;
 
@@ -55,6 +60,7 @@ public class Dish : Item {
         return ingredientsMatched;
     }
 
+    //Transfer the ingredients between dishes.
     public virtual void TransferIngredients(Dish dishToBeTransferred) {
         foreach (Ingredient ingredientInDish in CurrentIngredients) {
             dishToBeTransferred.AddIngredient(ingredientInDish);

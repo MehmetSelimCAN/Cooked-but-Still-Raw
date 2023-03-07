@@ -25,6 +25,7 @@ public class InteractController : MonoBehaviour {
         GetClosestInteractable();
     }
 
+    //Determines the closest furniture in our range.
     private void GetClosestInteractable() {
         if (interactableFurnitures.Count == 0) {
             SetClosestFurniture(null);
@@ -45,6 +46,7 @@ public class InteractController : MonoBehaviour {
         }
     }
 
+    //Updates the reference closest furniture.
     private void SetClosestFurniture(Furniture closestFurniture) {
         closestReachableInteractableFurniture = closestFurniture;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BurgerStove : Furniture {
 
     public override void ClearItemOnTop() {
-        //Üstündeki pan'ý aldýðýmýzda timer'ý durdur.
+        //Pause the timer when we lift up the pan on top of it.
         Pan panOnTop = itemOnTop as Pan;
         panOnTop.StopAllCoroutines();
 
@@ -14,16 +14,16 @@ public class BurgerStove : Furniture {
 
     public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-            //Üstü boþ ve Pan býrakmaya çalýþýyorsak...
+            //If we are trying to put a pan on top of the empty burger stove.
             if (droppedItem is Pan) {
                 return true;
             }
 
-            //Üstü boþ ve Pan dýþýnda bir þey býrakmaya çalýþýyorsak...
+            //If we are trying to put something other than a pan on top of the empty burger stove.
             return false;
         }
         else {
-            //Üstünde Pan var ve bir þey býrakmaya çalýþýyorsak...
+            //If we are trying to add an ingredient inside the pan on top of the burger stove.
             Pan panOnTop = itemOnTop as Pan;
             return panOnTop.CanAddIngredient(droppedItem);
         }
@@ -35,7 +35,7 @@ public class BurgerStove : Furniture {
             itemOnTop = droppedItem;
 
             Pan panOnTop = itemOnTop as Pan;
-            //Paný býraktýðýmýzda üstünde ingredient var ise timer'larý baþlat.
+            //If there is an ingredient inside the pan when we put it on top of the stove.
             if (panOnTop.HasAnyIngredientOnTop) {
                 Ingredient ingredientOnPan = panOnTop.GetIngredientOnTop();
 
@@ -47,7 +47,9 @@ public class BurgerStove : Furniture {
                 }
             }
         }
-        else {
+        //If we try to add an ingredient to the pan on top of the burger stove.
+        else
+        {
             Pan panOnTop = itemOnTop as Pan;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             panOnTop.AddIngredient(droppedIngredient);

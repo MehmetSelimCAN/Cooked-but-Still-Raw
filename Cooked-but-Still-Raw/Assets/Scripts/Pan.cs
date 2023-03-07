@@ -15,6 +15,7 @@ public class Pan : Dish {
         ingredientCapacity = 1;
     }
 
+    //Returns a boolean showing that whether an ingredient can be added into the pan or not.
     public override bool CanAddIngredient(Item droppedItem) {
         if (CurrentIngredientQuantity >= ingredientCapacity) return false;
         if (!(droppedItem is Ingredient)) return false;
@@ -27,6 +28,7 @@ public class Pan : Dish {
         return true;
     }
 
+    //Adds the ingridient to the pan and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
         HandleDroppedIngredientPosition(droppedIngredient);
         CurrentIngredientQuantity++;
@@ -35,12 +37,13 @@ public class Pan : Dish {
         AddIngredientUI(droppedIngredient);
 
         BurgerStove burgerStoveUnder = transform.GetComponentInParent<BurgerStove>();
-        //Eðer ingredient eklendiðinde pan; burger stove'un üstündeyse frying timer baþlat.
+        //If the pan is on top of the burger stove when we add an ingredient.
         if (burgerStoveUnder != null) {
             StartCoroutine(FryingTimer());
         }
     }
 
+    //Reset pan.
     public override void ClearCurrentIngredients() {
         CurrentIngredientQuantity = 0;
         currentIngredients.Clear();

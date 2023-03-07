@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Stores the type and statu information of each ingredient in a recipe.
 [System.Serializable]
 public struct IngredientInformation {
     public IngredientType ingredientType;
@@ -14,6 +15,7 @@ public struct IngredientInformation {
     }
 }
 
+//Stores everyt data related to Recipe object.
 [System.Serializable]
 public class Recipe {
 

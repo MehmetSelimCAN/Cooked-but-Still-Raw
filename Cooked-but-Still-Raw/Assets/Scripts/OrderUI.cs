@@ -12,6 +12,7 @@ public class OrderUI : MonoBehaviour {
         orderRecipe = recipe;
     }
 
+    //Display the ingridients of the ordered recipe.
     public void ShowIngredientsUI() {
         for (int i = 0; i < orderRecipe.ingredientInformations.Count; i++) {
             IngredientType ingredientType = orderRecipe.ingredientInformations[i].ingredientType;
@@ -23,8 +24,7 @@ public class OrderUI : MonoBehaviour {
 
             IngredientStatus ingredientStatus = orderRecipe.ingredientInformations[i].ingredientStatus;
             Sprite statusIndicatorSprite = SpriteProvider.Instance.GetDishSpriteForOrderUI(ingredientStatus);
-            //Eðer sipariþteki malzemenin istenilen status'una piþirme tarzý bir iþlemle ulaþabiliyorsak
-            //UI'da bunu gösteriyoruz.
+            //If the desired status of an ingredient is reachable via a cooking process
             if (statusIndicatorSprite != null) {
                 Transform statusIndicatorIcon = ingredientUI_Icon.GetChild(0);
                 statusIndicatorIcon.GetComponent<Image>().sprite = statusIndicatorSprite;

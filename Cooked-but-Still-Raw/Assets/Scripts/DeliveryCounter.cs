@@ -11,10 +11,10 @@ public class DeliveryCounter : Furniture {
     [SerializeField] private DirtyPlateCounter dirtyPlateCounter;
 
     public override bool CanSetItemOnTop(Item droppedItem) {
-        //Sadece tabak býrakýlabilecek.
+        //Only a plate can be placed on top.
         if (droppedItem is Plate) {
             Plate droppedPlate = droppedItem as Plate;
-            //Ayrýca boþ tabak býrakýlamayacak.
+            //And the plate has to be non-empty.
             if (droppedPlate.CurrentIngredientQuantity > 0) {
                 return true;
             }
@@ -25,7 +25,7 @@ public class DeliveryCounter : Furniture {
 
     public override void SetItemOnTop(Item droppedItem) {
         Plate droppedPlate = droppedItem as Plate;
-        //Býrakýlan tabak doðru bir sipariþ ile eþleþiyor mu diye kontrolu yapýlacak.
+        //Checks if the served dish matches any order.
         OrderManager.Instance.CheckOrder(droppedPlate);
 
         dirtyPlates.Add(droppedPlate);
@@ -37,7 +37,7 @@ public class DeliveryCounter : Furniture {
         StartCoroutine(BringBackDirtyPlate());
     }
 
-    //Plate'i bir süre sonra kirli bir þekilde geri getir.
+    //Bring the plate after the delivery as a dirty plate.
     private IEnumerator BringBackDirtyPlate() {
         while (plateComebackTimer > 0) {
             plateComebackTimer -= Time.deltaTime;        

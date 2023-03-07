@@ -5,7 +5,7 @@ using UnityEngine;
 public class PotStove : Furniture {
 
     public override void ClearItemOnTop() {
-        //Üstündeki pot'u aldýðýmýzda timer'ý durdur.
+        //Pause the timer when we lift up the pot from the stove.
         Pot potOnTop = itemOnTop as Pot;
         potOnTop.StopAllCoroutines();
 
@@ -14,16 +14,16 @@ public class PotStove : Furniture {
 
     public override bool CanSetItemOnTop(Item droppedItem) {
         if (itemOnTop == null) {
-            //Üstü boþ ve Pot býrakmaya çalýþýyorsak...
+            //If we are trying to put the pot on top of the empty stove.
             if (droppedItem is Pot) {
                 return true;
             }
 
-            //Üstü boþ ve Pot dýþýnda bir þey býrakmaya çalýþýyorsak...
+            //Stove has nothing on it but we are trying to put something else than a pot.
             return false;
         }
         else {
-            //Üstünde Pot var ve bir þey býrakmaya çalýþýyorsak...
+            //There is pot on top of the stove and we are trying to add something to pot.
             Pot potOnTop = itemOnTop as Pot;
             return potOnTop.CanAddIngredient(droppedItem);
         }
@@ -35,7 +35,7 @@ public class PotStove : Furniture {
             itemOnTop = droppedItem;
 
             Pot potOnTop = itemOnTop as Pot;
-            //Potu býraktýðýmýzda üstünde ingredient var ise timer'larý baþlat.
+            //Start the timers if we put a pot on the stove while there are some ingredients inside of it.
             if (potOnTop.HasAnyIngredientOnTop) {
                 Ingredient ingredientOnPot = potOnTop.GetIngredientOnTop();
 
@@ -47,7 +47,9 @@ public class PotStove : Furniture {
                 }
             }
         }
-        else {
+        //If we are trying to add an ingredient inside the pot on top of the stove.
+        else
+        {
             Pot potOnTop = itemOnTop as Pot;
             Ingredient droppedIngredient = droppedItem as Ingredient;
             potOnTop.AddIngredient(droppedIngredient);

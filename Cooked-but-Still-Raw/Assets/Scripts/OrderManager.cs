@@ -25,7 +25,9 @@ public class OrderManager : MonoBehaviour {
         }
     }
 
+    //Places an order and displays it on UI.
     private void SpawnOrder() {
+        //Pick a recipe along the available recipes at the current level.
         int randomNumber = Random.Range(0, availableRecipesInLevel.Count);
         Recipe randomRecipe = availableRecipesInLevel[randomNumber];
 
@@ -39,6 +41,7 @@ public class OrderManager : MonoBehaviour {
         orderUI.ShowIngredientsUI();
     }
 
+    //Decides on whether the delivered plate matches with any order or not.
     public void CheckOrder(Plate deliveredPlate) {
         List<IngredientInformation> ingredientInformationList = new List<IngredientInformation>();
         foreach (Ingredient ingredient in deliveredPlate.CurrentIngredients) {

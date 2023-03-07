@@ -21,6 +21,7 @@ public class Plate : Dish {
         allPossibleRecipes = new List<Recipe>(RecipeManager.Instance.Recipes);
     }
 
+    //Returns a boolean showing that whether an ingredient can be added into the plate or not.
     public override bool CanAddIngredient(Item droppedItem) {
         if (!(droppedItem is Ingredient)) return false;
 
@@ -44,6 +45,7 @@ public class Plate : Dish {
         return isThereRecipeWithCurrentIngredients;
     }
 
+    //Stores the possible recipe list that can be achieved from current ingredients.
     private void UpdatePossibleRecipes(Ingredient addedIngredient) {
         List<Recipe> recipesToBeDeleted = new List<Recipe>();
 
@@ -67,6 +69,7 @@ public class Plate : Dish {
         }
     }
 
+    //Adds the ingridient to the plate and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
         HandleDroppedIngredientPosition(droppedIngredient);
 
@@ -77,6 +80,7 @@ public class Plate : Dish {
         AddIngredientUI(droppedIngredient);
     }
 
+    //Reset Plate.
     public override void ClearCurrentIngredients() {
         allPossibleRecipes = new List<Recipe>(RecipeManager.Instance.Recipes);
         CurrentIngredientQuantity = 0;
