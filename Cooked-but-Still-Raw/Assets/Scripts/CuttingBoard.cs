@@ -9,6 +9,12 @@ public class CuttingBoard : CounterTop {
     [SerializeField] private Transform progressBarUI;
     [SerializeField] private Image progressBarFill;
 
+    public override Item GetItemOnTop() {
+        currentCuttingProcess = 0;
+        HideProgressBarUI();
+        return itemOnTop;
+    }
+
     public override void SetItemOnTop(Item droppedItem) {
         base.SetItemOnTop(droppedItem);
 

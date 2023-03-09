@@ -10,7 +10,7 @@ public class Pot : Dish {
 
     private float currentCookingTime = 0;
     private float currentBurningTime = 0;
-    private float currentIngredientsTimer = 0;
+    private float currentIngredientsTotalCookingTime = 0;
 
     [SerializeField] protected Transform timerUI;
     [SerializeField] protected Image timerFillImage;
@@ -46,10 +46,11 @@ public class Pot : Dish {
         ICookable cookableIngredient = droppedIngredient as ICookable;
         cookableIngredient.Liquize();
 
-        currentIngredientsTimer += cookableIngredient.CookingTime;
-        timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
+        currentIngredientsTotalCookingTime += cookableIngredient.CookingTime;
+        timerFillImage.fillAmount = currentCookingTime / currentIngredientsTotalCookingTime;
         currentBurningTime = 0;
 
+        StopAllCoroutines();
         PotStove potStoveUnder = transform.GetComponentInParent<PotStove>();
         //If the pot is on top of the stove when we add an ingredient.
         if (potStoveUnder != null) {
@@ -85,37 +86,34 @@ public class Pot : Dish {
     }
 
     public Ingredient GetIngredientOnTop() {
-        Ingredient ingredientOnTop = currentIngredients.Last();
-        return ingredientOnTop;
-    }
-
-    public ICookable GetCookableOnTop() {
-        Ingredient ingredientOnTop = GetIngredientOnTop();
-        ICookable cookableOnTop = ingredientOnTop as ICookable;
-        return cookableOnTop;
+        return currentIngredients.Last();
     }
 
     public IEnumerator CookingTimer() {
         timerUI.gameObject.SetActive(true);
 
-        while (currentCookingTime < currentIngredientsTimer) {
+        while (currentCookingTime < currentIngredientsTotalCookingTime) {
             currentCookingTime += Time.deltaTime;
-            timerFillImage.fillAmount = currentCookingTime / currentIngredientsTimer;
+            timerFillImage.fillAmount = currentCookingTime / currentIngredientsTotalCookingTime;
             yield return null;
         }
 
-        ICookable cookableOnTop = GetCookableOnTop();
-        cookableOnTop.CookedUp();
+        foreach (Ingredient ingredient in currentIngredients) {
+            ICookable cookableOnTop = ingredient as ICookable;
+            cookableOnTop.CookedUp();
+        }
+
         StartCoroutine(BurningTimer());
     }
 
     public IEnumerator BurningTimer() {
-        ICookable cookableOnTop = GetCookableOnTop();
-        float ingredientBurningTimer = cookableOnTop.BurningTime;
+        Ingredient ingredientOnTop = GetIngredientOnTop();
+        ICookable cookableOnTop = ingredientOnTop as ICookable;
+        float ingredientBurningTime = cookableOnTop.BurningTime;
 
-        while (currentBurningTime < ingredientBurningTimer) {
+        while (currentBurningTime < ingredientBurningTime) {
             currentBurningTime += Time.deltaTime;
-            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTimer;
+            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTime;
             yield return null;
         }
 

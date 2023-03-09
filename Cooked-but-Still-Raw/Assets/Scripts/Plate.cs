@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Plate : Dish {
 
-    [SerializeField] private List<IngredientType> currentIngredientTypes = new List<IngredientType>();
     [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
     [SerializeField] private bool isDirty = false;
     public bool IsDirty { get { return isDirty; } }
@@ -26,8 +25,6 @@ public class Plate : Dish {
         if (!(droppedItem is Ingredient)) return false;
 
         Ingredient droppedIngredient = droppedItem as Ingredient;
-
-        if (currentIngredientTypes.Contains(droppedIngredient.IngredientType)) return false;
 
         bool isThereRecipeWithCurrentIngredients = false;
         foreach (Recipe recipe in allPossibleRecipes) {
@@ -74,7 +71,6 @@ public class Plate : Dish {
         HandleDroppedIngredientPosition(droppedIngredient);
 
         CurrentIngredientQuantity++;
-        currentIngredientTypes.Add(droppedIngredient.IngredientType);
         currentIngredients.Add(droppedIngredient);
 
         AddIngredientUI(droppedIngredient);
@@ -84,7 +80,6 @@ public class Plate : Dish {
     public override void ClearCurrentIngredients() {
         allPossibleRecipes = new List<Recipe>(RecipeManager.Instance.Recipes);
         CurrentIngredientQuantity = 0;
-        currentIngredientTypes.Clear();
         currentIngredients.Clear();
 
         ClearIngredientUI();
@@ -95,7 +90,7 @@ public class Plate : Dish {
         isDirty = true;
     }
 
-    public void CleanedUp() {
+    public void SetClean() {
         //Mesh deðiþtir.
         isDirty = false;
     }

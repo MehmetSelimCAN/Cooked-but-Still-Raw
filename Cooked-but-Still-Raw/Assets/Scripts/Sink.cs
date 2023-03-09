@@ -53,7 +53,7 @@ public class Sink : Furniture {
         //If dirty plate scrubbed enough to get cleaned.
         if (currentWashingProcess >= dirtyPlate.WashingProcessCount) {
             //Restore the plate functionality.
-            dirtyPlate.CleanedUp();
+            dirtyPlate.SetClean();
 
             //Replace the plate on the counter.
             dirtyPlate.transform.SetParent(cleanPlateSlot);
