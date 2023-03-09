@@ -31,6 +31,9 @@ public class SpriteProvider : MonoBehaviour {
             case IngredientType.Onion:
                 returnSprite = onionSprite;
                 break;
+            case IngredientType.Tomato:
+                returnSprite = tomatoSprite;
+                break;
             case IngredientType.Meat:
                 returnSprite = meatSprite;
                 break;

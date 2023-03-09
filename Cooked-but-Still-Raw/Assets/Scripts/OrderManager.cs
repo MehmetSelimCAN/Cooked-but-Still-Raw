@@ -38,7 +38,6 @@ public class OrderManager : MonoBehaviour {
 
         OrderUI orderUI = orderUI_Transform.GetComponent<OrderUI>();
         orderUI.SetRecipe(randomRecipe);
-        orderUI.ShowIngredientsUI();
     }
 
     //Decides on whether the delivered plate matches with any order or not.
@@ -68,5 +67,9 @@ public class OrderManager : MonoBehaviour {
         else {
             Debug.Log("wrong plate");
         }
+    }
+
+    public void MissOrder() {
+        Debug.Log("Order kaçtý");
     }
 }

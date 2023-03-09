@@ -7,9 +7,18 @@ public class OrderUI : MonoBehaviour {
 
     private Recipe orderRecipe;
     [SerializeField] private Transform ingredientUI_Icons;
+    [SerializeField] private Image orderTimerUI;
+    [SerializeField] private Gradient timerGradient;
+
+    private float maxOrderTime;
+    private float remainingOrderTime;
 
     public void SetRecipe(Recipe recipe) {
         orderRecipe = recipe;
+        maxOrderTime = orderRecipe.recipePrepareTime;
+
+        ShowIngredientsUI();
+        StartCoroutine(OrderTimer());
     }
 
     //Display the ingridients of the ordered recipe.
@@ -31,5 +40,18 @@ public class OrderUI : MonoBehaviour {
                 statusIndicatorIcon.gameObject.SetActive(true);
             }
         }
+    }
+
+    private IEnumerator OrderTimer() {
+        remainingOrderTime = maxOrderTime;
+
+        while (remainingOrderTime > 0) {
+            remainingOrderTime -= Time.deltaTime;
+            orderTimerUI.fillAmount = remainingOrderTime / maxOrderTime;
+            orderTimerUI.color = timerGradient.Evaluate(orderTimerUI.fillAmount);
+            yield return null;
+        }
+
+        OrderManager.Instance.MissOrder();
     }
 }
