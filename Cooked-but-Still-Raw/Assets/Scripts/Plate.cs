@@ -63,6 +63,27 @@ public class Plate : Dish {
         foreach (Recipe recipeToBeDeleted in recipesToBeDeleted) {
             allPossibleRecipes.Remove(recipeToBeDeleted);
         }
+
+        for (int i = 0; i < allPossibleRecipes.Count; i++)
+        {
+            Recipe temp = new Recipe();
+            temp.recipeName = allPossibleRecipes[i].recipeName;
+            temp.recipePrepareTime = allPossibleRecipes[i].recipePrepareTime;
+            temp.isAvailableOnThisLevel = allPossibleRecipes[i].isAvailableOnThisLevel;
+            temp.ingredientInformations = new List<IngredientInformation>(allPossibleRecipes[i].ingredientInformations);
+            for (int j = 0; j < allPossibleRecipes[i].ingredientInformations.Count; j++)
+            {
+                if (allPossibleRecipes[i].ingredientInformations[j].ingredientType == addedIngredient.IngredientType)
+                {
+                    temp.ingredientInformations.Remove(temp.ingredientInformations[j]);
+                    if (temp.ingredientInformations.Count == 0)
+                    {
+                        Debug.Log(temp.recipeName + " is ready to serve.");
+                    }
+                }
+            }
+            allPossibleRecipes[i] = temp;
+        }
     }
 
     //Adds the ingredient to the plate and updates itself accordingly.
