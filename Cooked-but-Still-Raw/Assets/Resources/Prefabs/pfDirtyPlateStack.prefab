@@ -82,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2.2229
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.7387
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.046
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -122,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.346
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 718695759483698409, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -139,9 +139,21 @@ PrefabInstance:
     - target: {fileID: 1306483155194310592, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b205f4b28f59dda49af458b35d8a3ff3, type: 3}
+      objectReference: {fileID: 21300000, guid: 455a1da604b91d8408b2473313a6629e, type: 3}
+    - target: {fileID: 3518725343817509242, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_CellSize.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518725343817509242, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_CellSize.y
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4252278132814573917, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5256262382842884413, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5864270568084136662, guid: 3b81da4957cd5804e8b74c47c07bdf2a, type: 3}

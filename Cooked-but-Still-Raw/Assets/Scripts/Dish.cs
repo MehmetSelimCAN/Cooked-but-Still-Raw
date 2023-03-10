@@ -29,8 +29,8 @@ public class Dish : Item {
         }
 
         Sprite ingredientSprite = SpriteProvider.Instance.GetIngredientSprite(droppedIngredient.IngredientType);
-        Transform ingredientUI_Icon = ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1);
-        ingredientUI_Icon.gameObject.SetActive(true);
+        Transform ingredientUI_Icon = ingredientUI_Icons.transform.GetChild(CurrentIngredientQuantity - 1).GetChild(1);
+        ingredientUI_Icon.parent.gameObject.SetActive(true);
         ingredientUI_Icon.GetComponent<Image>().sprite = ingredientSprite;
     }
 

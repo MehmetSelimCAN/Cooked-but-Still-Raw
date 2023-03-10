@@ -20,7 +20,9 @@ public struct IngredientInformation {
 public class Recipe {
 
     public string recipeName;
+    public Sprite recipeSprite;
     public float recipePrepareTime;
+    public int recipePrize;
     public bool isAvailableOnThisLevel;
     public List<IngredientInformation> ingredientInformations;
 

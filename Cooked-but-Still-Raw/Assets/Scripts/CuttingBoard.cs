@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CuttingBoard : CounterTop {
+public class CuttingBoard : DefaultCounter {
 
     private int currentCuttingProcess = 0;
+    [SerializeField] private Animator cuttingKnifeAnimator;
     [SerializeField] private Transform progressBarUI;
     [SerializeField] private Image progressBarFill;
 
@@ -22,15 +23,14 @@ public class CuttingBoard : CounterTop {
         HideProgressBarUI();
     }
 
-    public override void Interact() {
-        if (itemOnTop == null) return;
-        if (!(itemOnTop is Ingredient)) return;
+    public override bool Interact() {
+        if (itemOnTop == null) return false;
+        if (!(itemOnTop is Ingredient)) return false;
 
         Ingredient ingredientOnTop = itemOnTop as Ingredient;
 
-        if (ingredientOnTop.IngredientStatus != IngredientStatus.Raw) return;
-        if (!(ingredientOnTop is ICuttable)) return;
-
+        if (ingredientOnTop.IngredientStatus != IngredientStatus.Raw) return false;
+        if (!(ingredientOnTop is ICuttable)) return false;
         ICuttable cuttableOnTop = ingredientOnTop as ICuttable;
 
         if (!progressBarUI.gameObject.activeInHierarchy) {
@@ -45,6 +45,13 @@ public class CuttingBoard : CounterTop {
             cuttableOnTop.SlicedUp();
             HideProgressBarUI();
         }
+
+        return true;
+    }
+
+    public override void InteractAnimation(PlayerController player) {
+        player.PlayerAnimator.SetTrigger("Cutting");
+        cuttingKnifeAnimator.SetTrigger("Cutting");
     }
 
     private void ShowProgressBarUI() {

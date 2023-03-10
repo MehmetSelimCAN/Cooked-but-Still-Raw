@@ -11,6 +11,11 @@ public class Pan : Dish {
     [SerializeField] protected Transform timerUI;
     [SerializeField] protected Image timerFillImage;
 
+    [SerializeField] private Transform fireWarning;
+    private float fireWarningTime = 3f;
+
+    private PanStove panStoveUnder;
+
     private void Awake() {
         ingredientCapacity = 1;
     }
@@ -31,14 +36,15 @@ public class Pan : Dish {
     //Adds the ingridient to the pan and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
         HandleDroppedIngredientPosition(droppedIngredient);
+
         CurrentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
 
         AddIngredientUI(droppedIngredient);
 
-        BurgerStove burgerStoveUnder = transform.GetComponentInParent<BurgerStove>();
+        panStoveUnder = transform.GetComponentInParent<PanStove>();
         //If the pan is on top of the burger stove when we add an ingredient.
-        if (burgerStoveUnder != null) {
+        if (panStoveUnder != null) {
             StartCoroutine(FryingTimer());
         }
     }
@@ -61,6 +67,12 @@ public class Pan : Dish {
     public override void ClearIngredientUI() {
         base.ClearIngredientUI();
         timerUI.gameObject.SetActive(false);
+        fireWarning.gameObject.SetActive(false);
+
+        panStoveUnder = transform.GetComponentInParent<PanStove>();
+        if (panStoveUnder != null) {
+            panStoveUnder.TurnOff();
+        }
     }
 
     public Ingredient GetIngredientOnTop() {
@@ -76,6 +88,8 @@ public class Pan : Dish {
 
     public IEnumerator FryingTimer() {
         timerUI.gameObject.SetActive(true);
+        panStoveUnder = transform.GetComponentInParent<PanStove>();
+        panStoveUnder.TurnOn();
 
         IFryable fryableOnTop = GetFryableOnTop();
         float ingredientFryingTimer = fryableOnTop.FryingTime;
@@ -91,17 +105,28 @@ public class Pan : Dish {
     }
 
     public IEnumerator BurningTimer() {
-        IFryable fryableOnTop = GetFryableOnTop();
-        float ingredientBurningTimer = fryableOnTop.BurningTime;
+        panStoveUnder = transform.GetComponentInParent<PanStove>();
 
-        while (currentBurningTime < ingredientBurningTimer) {
+        IFryable fryableOnTop = GetFryableOnTop();
+        float ingredientBurningTime = fryableOnTop.BurningTime;
+
+        while (currentBurningTime < ingredientBurningTime) {
             currentBurningTime += Time.deltaTime;
-            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTimer;
+            timerFillImage.fillAmount = currentBurningTime / ingredientBurningTime;
+
+            if (ingredientBurningTime - currentBurningTime < fireWarningTime) {
+                if (!fireWarning.gameObject.activeInHierarchy) {
+                    fireWarning.gameObject.SetActive(true);
+                }
+            }
+
             yield return null;
         }
 
-        fryableOnTop.BurnedUp();
 
+        fryableOnTop.BurnedUp();
+        fireWarning.gameObject.SetActive(false);
         timerUI.gameObject.SetActive(false);
+        panStoveUnder.TurnOff();
     }
 }

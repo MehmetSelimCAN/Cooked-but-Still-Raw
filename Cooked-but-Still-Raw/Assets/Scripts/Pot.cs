@@ -15,6 +15,11 @@ public class Pot : Dish {
     [SerializeField] protected Transform timerUI;
     [SerializeField] protected Image timerFillImage;
 
+    [SerializeField] private Transform fireWarning;
+    private float fireWarningTime = 3f;
+
+    private PotStove potStoveUnder;
+
     private void Awake() {
         soupSnappingOffSet = 20;
         ingredientCapacity = 3;
@@ -33,15 +38,24 @@ public class Pot : Dish {
 
         if (!(droppedIngredient is ICookable)) return false;
 
+        if (CurrentIngredientQuantity > 0) {
+        Ingredient ingredientOnTop = GetIngredientOnTop();
+            if (ingredientOnTop.IngredientStatus == IngredientStatus.Burned) {
+                return false;
+            }
+        }
+
         return true;
     }
 
     //Adds the ingridient to the pot and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
+        HandleDroppedIngredientPosition(droppedIngredient);
+
         CurrentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
+
         AddIngredientUI(droppedIngredient);
-        HandleDroppedIngredientPosition(droppedIngredient);
 
         ICookable cookableIngredient = droppedIngredient as ICookable;
         cookableIngredient.Liquize();
@@ -49,12 +63,14 @@ public class Pot : Dish {
         currentIngredientsTotalCookingTime += cookableIngredient.CookingTime;
         timerFillImage.fillAmount = currentCookingTime / currentIngredientsTotalCookingTime;
         currentBurningTime = 0;
+        fireWarning.gameObject.SetActive(false);
 
         StopAllCoroutines();
-        PotStove potStoveUnder = transform.GetComponentInParent<PotStove>();
+        potStoveUnder = transform.GetComponentInParent<PotStove>();
         //If the pot is on top of the stove when we add an ingredient.
         if (potStoveUnder != null) {
             StartCoroutine(CookingTimer());
+            potStoveUnder.TurnOn();
         }
     }
 
@@ -77,12 +93,19 @@ public class Pot : Dish {
     public override void ClearTimers() {
         currentCookingTime = 0;
         currentBurningTime = 0;
+        currentIngredientsTotalCookingTime = 0;
         StopAllCoroutines();
     }
 
     public override void ClearIngredientUI() {
         base.ClearIngredientUI();
         timerUI.gameObject.SetActive(false);
+        fireWarning.gameObject.SetActive(false);
+
+        potStoveUnder = transform.GetComponentInParent<PotStove>();
+        if (potStoveUnder != null) {
+            potStoveUnder.TurnOff();
+        }
     }
 
     public Ingredient GetIngredientOnTop() {
@@ -91,6 +114,10 @@ public class Pot : Dish {
 
     public IEnumerator CookingTimer() {
         timerUI.gameObject.SetActive(true);
+        fireWarning.gameObject.SetActive(false);
+
+        potStoveUnder = transform.GetComponentInParent<PotStove>();
+        potStoveUnder.TurnOn();
 
         while (currentCookingTime < currentIngredientsTotalCookingTime) {
             currentCookingTime += Time.deltaTime;
@@ -107,6 +134,8 @@ public class Pot : Dish {
     }
 
     public IEnumerator BurningTimer() {
+        potStoveUnder = transform.GetComponentInParent<PotStove>();
+
         Ingredient ingredientOnTop = GetIngredientOnTop();
         ICookable cookableOnTop = ingredientOnTop as ICookable;
         float ingredientBurningTime = cookableOnTop.BurningTime;
@@ -114,11 +143,19 @@ public class Pot : Dish {
         while (currentBurningTime < ingredientBurningTime) {
             currentBurningTime += Time.deltaTime;
             timerFillImage.fillAmount = currentBurningTime / ingredientBurningTime;
+
+            if (ingredientBurningTime - currentBurningTime < fireWarningTime) {
+                if (!fireWarning.gameObject.activeInHierarchy) {
+                    fireWarning.gameObject.SetActive(true);
+                }
+            }
+
             yield return null;
         }
 
         cookableOnTop.BurnedUp();
-
+        fireWarning.gameObject.SetActive(false);
         timerUI.gameObject.SetActive(false);
+        potStoveUnder.TurnOff();
     }
 }

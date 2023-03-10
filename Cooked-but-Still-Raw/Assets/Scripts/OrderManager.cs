@@ -9,7 +9,7 @@ public class OrderManager : MonoBehaviour {
     private List<Recipe> availableRecipesInLevel;
     [SerializeField] protected Transform OrdersUI;
 
-    private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
+    [SerializeField] private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
 
     private void Awake() {
         Instance = this;
@@ -49,9 +49,10 @@ public class OrderManager : MonoBehaviour {
         }
 
         bool ingredientsMatches = false;
+        Recipe deliveredRecipe = new Recipe();
         foreach (Recipe recipeInCurrentOrders in currentOrdersRecipeList) {
             if (deliveredPlate.CurrentIngredientQuantity != recipeInCurrentOrders.ingredientInformations.Count) continue;
-
+            deliveredRecipe = recipeInCurrentOrders;
             ingredientsMatches = true;
             foreach (IngredientInformation ingredientInformation in ingredientInformationList) {
                 if (!recipeInCurrentOrders.ingredientInformations.Contains(ingredientInformation)) {
@@ -62,14 +63,23 @@ public class OrderManager : MonoBehaviour {
         }
 
         if (ingredientsMatches) {
-            Debug.Log("correct plate");
+            CorrectDelivery(deliveredRecipe);
         }
         else {
-            Debug.Log("wrong plate");
+            WrongDelivery();
         }
     }
 
-    public void MissOrder() {
-        Debug.Log("Order kaçtý");
+    private void CorrectDelivery(Recipe deliveredRecipe) {
+        Debug.Log(deliveredRecipe.recipePrize);
+    }
+
+    private void WrongDelivery() {
+
+    }
+
+
+    public void MissOrder(Recipe missedRecipe) {
+
     }
 }

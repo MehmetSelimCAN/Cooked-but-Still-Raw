@@ -23,7 +23,6 @@ public class Plate : Dish {
     //Returns a boolean showing that whether an ingredient can be added into the plate or not.
     public override bool CanAddIngredient(Item droppedItem) {
         if (!(droppedItem is Ingredient)) return false;
-
         Ingredient droppedIngredient = droppedItem as Ingredient;
 
         bool isThereRecipeWithCurrentIngredients = false;
@@ -66,7 +65,7 @@ public class Plate : Dish {
         }
     }
 
-    //Adds the ingridient to the plate and updates itself accordingly.
+    //Adds the ingredient to the plate and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
         HandleDroppedIngredientPosition(droppedIngredient);
 

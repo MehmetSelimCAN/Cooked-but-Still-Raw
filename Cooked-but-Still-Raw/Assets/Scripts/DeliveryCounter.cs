@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class DeliveryCounter : Furniture {
 
-    private float plateComebackTimerMax = 5f;
-    private float plateComebackTimer = 5f;
-
     private List<Plate> dirtyPlates = new List<Plate>();
     [SerializeField] private DirtyPlateCounter dirtyPlateCounter;
+
+    private float plateComebackTimerMax = 5f;
+    private float plateComebackTimer = 5f;
 
     public override bool CanSetItemOnTop(Item droppedItem) {
         //Only a plate can be placed on top.
         if (droppedItem is Plate) {
             Plate droppedPlate = droppedItem as Plate;
             //And the plate has to be non-empty.
-            if (droppedPlate.CurrentIngredientQuantity > 0) {
+            if (droppedPlate.HasAnyIngredientOnTop) {
                 return true;
             }
         }

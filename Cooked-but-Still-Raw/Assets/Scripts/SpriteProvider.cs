@@ -12,8 +12,14 @@ public class SpriteProvider : MonoBehaviour {
     public Sprite onionSprite;
     public Sprite tomatoSprite;
     public Sprite cheeseSprite;
+
     public Sprite panSprite;
     public Sprite potSprite;
+
+    public Sprite megaBurgerSprite;
+    public Sprite cheeseBurgerSprite;
+    public Sprite burgerSprite;
+    public Sprite soupSprite;
 
     private void Awake() {
         Instance = this;

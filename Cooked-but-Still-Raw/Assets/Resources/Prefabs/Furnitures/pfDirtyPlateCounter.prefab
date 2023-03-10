@@ -114,7 +114,7 @@ Transform:
   m_LocalScale: {x: 4.4, y: 4.4, z: 4.4}
   m_Children: []
   m_Father: {fileID: 6638488125383382683}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2834995464916688662
 MeshFilter:
@@ -210,7 +210,7 @@ Transform:
   - {fileID: 117926283189421477}
   - {fileID: 7817588573503468922}
   m_Father: {fileID: 6638488125383382683}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &1529163570091294951
 MeshFilter:
@@ -290,7 +290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6638488125383382683}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5429492743786954184
 GameObject:
@@ -321,9 +321,9 @@ Transform:
   m_LocalPosition: {x: -49.44999, y: 2.25, z: -39.450005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8485359892942820317}
   - {fileID: 5169154750201628049}
   - {fileID: 2492590381985533762}
-  - {fileID: 8485359892942820317}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b94094a16457b4d96ce1e9e945b605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropParticleEffect: {fileID: 0}
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 8485359892942820317}
   dirtyPlateStackPrefab: {fileID: 6029145913618623499, guid: 8b2efe6c2f3e6f2429d4781a65a7f7fa, type: 3}

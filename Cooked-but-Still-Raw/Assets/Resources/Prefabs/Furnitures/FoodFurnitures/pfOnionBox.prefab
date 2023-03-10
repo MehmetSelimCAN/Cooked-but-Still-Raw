@@ -28,10 +28,9 @@ Transform:
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 2.15, y: -2.25, z: 2.25}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children:
-  - {fileID: 7560081652397654242}
+  m_Children: []
   m_Father: {fileID: 8105336663908431268}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4135425054166262744
 MeshFilter:
@@ -93,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6456289237898768610}
   m_Layer: 0
-  m_Name: itemSlotPosition
+  m_Name: itemSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8105336663908431268}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6494277977836068707
 GameObject:
@@ -139,12 +138,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6494277977836068707}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: -0.001}
-  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 2.2700005, y: -2.25, z: 2.2519999}
+  m_LocalScale: {x: 2.1, y: 2.1, z: 2.1}
   m_Children: []
-  m_Father: {fileID: 1066263188084599933}
-  m_RootOrder: 0
+  m_Father: {fileID: 8105336663908431268}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7827003330012574840
 MeshFilter:
@@ -238,8 +237,9 @@ Transform:
   m_LocalPosition: {x: -36.55, y: 2.25, z: -17.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1066263188084599933}
   - {fileID: 6456289237898768610}
+  - {fileID: 7560081652397654242}
+  - {fileID: 1066263188084599933}
   - {fileID: 899934049414112852}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2457d9196afb28d4083dce6102a6b9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropParticleEffect: {fileID: 0}
   itemOnTop: {fileID: 6585445446852020340, guid: 9da2a49ed09bc434b9cf0b23242c078d, type: 3}
   itemSlot: {fileID: 6456289237898768610}
 --- !u!1 &8069957190642824176
@@ -300,7 +301,7 @@ Transform:
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 8105336663908431268}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3748271796125669119
 SpriteRenderer:

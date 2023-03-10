@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Furniture : MonoBehaviour {
 
+    [SerializeField] protected ParticleSystem dropParticleEffect;
     [SerializeField] protected Item itemOnTop;
     [SerializeField] protected Transform itemSlot;
     public bool HasItemOnTop { get { return itemOnTop == null ? false : true; } }
@@ -25,8 +26,11 @@ public abstract class Furniture : MonoBehaviour {
     public virtual void HandleDroppedItemPosition(Item droppedItem) {
         droppedItem.transform.SetParent(itemSlot);
         droppedItem.transform.localPosition = Vector3.zero;
+        dropParticleEffect.Play();
     }
 
     //Responsible for handling interactions with the furniture.
-    public virtual void Interact() { }
+    public virtual bool Interact() { return false; }
+
+    public virtual void InteractAnimation(PlayerController player) { }
 }

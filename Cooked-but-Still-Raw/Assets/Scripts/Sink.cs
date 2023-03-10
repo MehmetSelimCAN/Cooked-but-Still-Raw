@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Sink : Furniture {
 
+    [SerializeField] private ParticleSystem washingParticleEffect;
+
     private int currentWashingProcess = 0;
     [SerializeField] private Transform cleanPlateSlot;
     [SerializeField] private Transform progressBarUI;
@@ -34,9 +36,9 @@ public class Sink : Furniture {
     }
 
     //Responsible for handling interactions with the furniture.
-    public override void Interact() {
+    public override bool Interact() {
         //If there are no dirty plates, don't interact.
-        if (itemSlot.childCount == 0) return;
+        if (itemSlot.childCount == 0) return false;
 
         //If there is any dirty plates in the sink, get the reference of the plate.
         DirtyPlateStack stackedDirtyPlates = itemSlot.GetComponentInChildren<DirtyPlateStack>();
@@ -68,6 +70,13 @@ public class Sink : Furniture {
                 Destroy(stackedDirtyPlates.gameObject);
             }
         }
+
+        return true;
+    }
+
+    public override void InteractAnimation(PlayerController player) {
+        player.PlayerAnimator.SetTrigger("Washing");
+        washingParticleEffect.Play();
     }
 
     //Deactivate cleaning progress bar.

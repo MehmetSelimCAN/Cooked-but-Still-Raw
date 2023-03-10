@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PotStove : Furniture {
 
+    [SerializeField] private Transform fireParticleEffect;
+
     public override void ClearItemOnTop() {
         //Pause the timer when we lift up the pot from the stove.
         Pot potOnTop = itemOnTop as Pot;
         potOnTop.StopAllCoroutines();
-
+        TurnOff();
         base.ClearItemOnTop();
     }
 
@@ -54,5 +56,13 @@ public class PotStove : Furniture {
             Ingredient droppedIngredient = droppedItem as Ingredient;
             potOnTop.AddIngredient(droppedIngredient);
         }
+    }
+
+    public void TurnOn() {
+        fireParticleEffect.gameObject.SetActive(true);
+    }
+
+    public void TurnOff() {
+        fireParticleEffect.gameObject.SetActive(false);
     }
 }

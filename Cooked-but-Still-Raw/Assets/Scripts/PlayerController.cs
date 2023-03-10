@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private Item itemInHand;
 
     private Animator playerAnimator;
+    public Animator PlayerAnimator { get { return playerAnimator; } }
 
     private void Awake() {
         playerAnimator = GetComponent<Animator>();
@@ -56,7 +57,10 @@ public class PlayerController : MonoBehaviour {
         var closestFurniture = interactableController.ClosestInteractableFurniture;
         if (closestFurniture == null) return;
 
-        closestFurniture.Interact();
+        bool interactAccomplished = closestFurniture.Interact();
+        if (interactAccomplished) {
+            closestFurniture.InteractAnimation(this);
+        }
     }
 
     private void GameInputController_OnDashAction(object sender, System.EventArgs e) {
