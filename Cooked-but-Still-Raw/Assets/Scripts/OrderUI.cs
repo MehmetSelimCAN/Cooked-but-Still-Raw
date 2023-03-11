@@ -8,8 +8,11 @@ public class OrderUI : MonoBehaviour {
     private Recipe orderRecipe;
     [SerializeField] private Image orderImage;
     [SerializeField] private Transform ingredientUI_Icons;
+    [SerializeField] private List<Transform> statusIndicatorUI_Icons;
     [SerializeField] private Image orderTimerUI;
     [SerializeField] private Gradient timerGradient;
+    [SerializeField] private Animator orderAnimator;
+
 
     private float maxOrderTime;
     private float remainingOrderTime;
@@ -38,7 +41,7 @@ public class OrderUI : MonoBehaviour {
             Sprite statusIndicatorSprite = SpriteProvider.Instance.GetDishSpriteForOrderUI(ingredientStatus);
             //If the desired status of an ingredient is reachable via a cooking process
             if (statusIndicatorSprite != null) {
-                Transform statusIndicatorIcon = ingredientUI_Icon.GetChild(1);
+                Transform statusIndicatorIcon = statusIndicatorUI_Icons[i];
                 statusIndicatorIcon.GetChild(1).GetComponent<Image>().sprite = statusIndicatorSprite;
                 statusIndicatorIcon.gameObject.SetActive(true);
             }
@@ -55,6 +58,29 @@ public class OrderUI : MonoBehaviour {
             yield return null;
         }
 
-        OrderManager.Instance.MissOrder(orderRecipe);
+        ResetUI();
+        FadeOut();
+        float fadeOutAnimationTime = orderAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(fadeOutAnimationTime);
+        gameObject.SetActive(false);
+        OrderManager.Instance.MissOrder(orderRecipe, transform);
+    }
+
+    public void FadeIn() {
+        orderAnimator.Play("OrderFadeIn");
+    }
+
+    public void FadeOut() {
+        orderAnimator.Play("OrderFadeOut");
+    }
+
+    private void ResetUI() {
+        foreach (Transform ingredientUI_Icon in ingredientUI_Icons) {
+            ingredientUI_Icon.gameObject.SetActive(false);
+        }
+
+        foreach (Transform statusIndicatorUI_Icon in statusIndicatorUI_Icons) {
+            statusIndicatorUI_Icon.gameObject.SetActive(false);
+        }
     }
 }

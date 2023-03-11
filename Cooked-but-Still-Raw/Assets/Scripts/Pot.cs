@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Pot : Dish {
 
-    private float soupSnappingOffSet;
+    private float soupSnappingOffSet = 0.3f;
 
     private float currentCookingTime = 0;
     private float currentBurningTime = 0;
@@ -21,7 +21,6 @@ public class Pot : Dish {
     private PotStove potStoveUnder;
 
     private void Awake() {
-        soupSnappingOffSet = 20;
         ingredientCapacity = 3;
     }
 
@@ -77,7 +76,7 @@ public class Pot : Dish {
     //Place the added ingredient into the pot.
     public override void HandleDroppedIngredientPosition(Ingredient droppedIngredient) {
         droppedIngredient.transform.SetParent(ingredientSlot);
-        droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (CurrentIngredientQuantity - 1);
+        droppedIngredient.transform.localPosition = Vector3.up * soupSnappingOffSet * (CurrentIngredientQuantity);
         droppedIngredient.transform.localScale = Vector3.one;
     }
 

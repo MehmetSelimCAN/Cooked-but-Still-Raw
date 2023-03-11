@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Plate : Dish {
 
     [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
+    private Recipe copyRecipe = new Recipe();
     [SerializeField] private bool isDirty = false;
     public bool IsDirty { get { return isDirty; } }
 
@@ -64,25 +65,22 @@ public class Plate : Dish {
             allPossibleRecipes.Remove(recipeToBeDeleted);
         }
 
-        for (int i = 0; i < allPossibleRecipes.Count; i++)
-        {
-            Recipe temp = new Recipe();
-            temp.recipeName = allPossibleRecipes[i].recipeName;
-            temp.recipePrepareTime = allPossibleRecipes[i].recipePrepareTime;
-            temp.isAvailableOnThisLevel = allPossibleRecipes[i].isAvailableOnThisLevel;
-            temp.ingredientInformations = new List<IngredientInformation>(allPossibleRecipes[i].ingredientInformations);
-            for (int j = 0; j < allPossibleRecipes[i].ingredientInformations.Count; j++)
-            {
-                if (allPossibleRecipes[i].ingredientInformations[j].ingredientType == addedIngredient.IngredientType)
-                {
-                    temp.ingredientInformations.Remove(temp.ingredientInformations[j]);
-                    if (temp.ingredientInformations.Count == 0)
-                    {
-                        Debug.Log(temp.recipeName + " is ready to serve.");
+        for (int i = 0; i < allPossibleRecipes.Count; i++) {
+            copyRecipe.recipeName = allPossibleRecipes[i].recipeName;
+            copyRecipe.recipePrepareTime = allPossibleRecipes[i].recipePrepareTime;
+            copyRecipe.isAvailableOnThisLevel = allPossibleRecipes[i].isAvailableOnThisLevel;
+            copyRecipe.ingredientInformations = new List<IngredientInformation>(allPossibleRecipes[i].ingredientInformations);
+            for (int j = 0; j < allPossibleRecipes[i].ingredientInformations.Count; j++) {
+                if (allPossibleRecipes[i].ingredientInformations[j].ingredientType == addedIngredient.IngredientType &&
+                    allPossibleRecipes[i].ingredientInformations[j].ingredientStatus == addedIngredient.IngredientStatus) {
+                    copyRecipe.ingredientInformations.Remove(copyRecipe.ingredientInformations[j]);
+                    if (copyRecipe.ingredientInformations.Count == 0) {
+                        Debug.Log(copyRecipe.recipeName + " is ready to serve.");
                     }
+                    break;
                 }
             }
-            allPossibleRecipes[i] = temp;
+            allPossibleRecipes[i] = copyRecipe;
         }
     }
 

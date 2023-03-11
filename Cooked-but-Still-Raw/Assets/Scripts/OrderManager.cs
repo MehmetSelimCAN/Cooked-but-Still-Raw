@@ -7,9 +7,13 @@ public class OrderManager : MonoBehaviour {
     public static OrderManager Instance { get; private set; }
 
     private List<Recipe> availableRecipesInLevel;
-    [SerializeField] protected Transform OrdersUI;
+    [SerializeField] private Transform OrdersUI;
+    [SerializeField] private List<Transform> availableOrderUIs = new List<Transform>();
 
     [SerializeField] private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
+
+    private float minimumOrderSpawnDelay = 3f;
+    private float maximumOrderSpawnDelay = 7f;
 
     private void Awake() {
         Instance = this;
@@ -33,11 +37,14 @@ public class OrderManager : MonoBehaviour {
 
         currentOrdersRecipeList.Add(randomRecipe);
 
-        Transform orderUI_Transform = OrdersUI.GetChild(currentOrdersRecipeList.Count - 1).transform;
+        Transform orderUI_Transform = availableOrderUIs[0];
+        orderUI_Transform.SetAsLastSibling();
         orderUI_Transform.gameObject.SetActive(true);
+        availableOrderUIs.Remove(availableOrderUIs[0]);
 
         OrderUI orderUI = orderUI_Transform.GetComponent<OrderUI>();
         orderUI.SetRecipe(randomRecipe);
+        orderUI.FadeIn();
     }
 
     //Decides on whether the delivered plate matches with any order or not.
@@ -79,7 +86,15 @@ public class OrderManager : MonoBehaviour {
     }
 
 
-    public void MissOrder(Recipe missedRecipe) {
+    public void MissOrder(Recipe missedRecipe, Transform AvailableOrderUI_Transform) {
+        currentOrdersRecipeList.Remove(missedRecipe);
+        availableOrderUIs.Add(AvailableOrderUI_Transform);
+        StartCoroutine(SpawnOrderRandomly());
+    }
 
+    private IEnumerator SpawnOrderRandomly() {
+        float delay = Random.Range(minimumOrderSpawnDelay, maximumOrderSpawnDelay);
+        yield return new WaitForSeconds(delay);
+        SpawnOrder();
     }
 }

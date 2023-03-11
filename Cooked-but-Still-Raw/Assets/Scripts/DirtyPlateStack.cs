@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DirtyPlateStack : Item {
 
+    [HideInInspector] public int dirtyPlateCount;
+
     private void Awake() {
         ShowUI();
     }

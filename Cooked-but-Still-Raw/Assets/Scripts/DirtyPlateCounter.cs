@@ -3,7 +3,10 @@ using UnityEngine;
 public class DirtyPlateCounter : Furniture {
 
     [SerializeField] private Transform dirtyPlateStackPrefab;
-    private Transform dirtyPlateStack;
+    private Transform dirtyPlateStackTransform;
+    private DirtyPlateStack dirtyPlateStack;
+
+    private Vector3 plateStackOffset = new Vector3(0, 0.3f, 0);
 
     //Access the item currently on the furniture.
     public override Item GetItemOnTop() {
@@ -26,23 +29,24 @@ public class DirtyPlateCounter : Furniture {
         Plate droppedDirtyPlate = droppedItem as Plate;
         //Instantiate the Dirty Plate Stack on top of the DirtyPlateCounter if no stack exists.
         if (itemSlot.childCount == 0) {
-            dirtyPlateStack = Instantiate(dirtyPlateStackPrefab, itemSlot);
+            dirtyPlateStackTransform = Instantiate(dirtyPlateStackPrefab, itemSlot);
+            itemOnTop = dirtyPlateStackTransform.GetComponent<DirtyPlateStack>();
             HandleDroppedItemPosition(droppedDirtyPlate);
-
-            itemOnTop = dirtyPlateStack.GetComponent<DirtyPlateStack>();
         }
         //If a stack already exists, adds the Dropped Plate to the top of the stack.
         else {
-            dirtyPlateStack = itemSlot.GetComponentInChildren<DirtyPlateStack>().transform;
+            dirtyPlateStackTransform = itemSlot.GetComponentInChildren<DirtyPlateStack>().transform;
             HandleDroppedItemPosition(droppedDirtyPlate);
         }
-
         return;
     }
 
     //Responsible for handling the position of a newly dropped item.
     public override void HandleDroppedItemPosition(Item droppedItem) {
-        droppedItem.transform.SetParent(dirtyPlateStack);
-        droppedItem.transform.localPosition = Vector3.zero;
+        dirtyPlateStack = itemOnTop as DirtyPlateStack;
+        dirtyPlateStack.dirtyPlateCount++;
+
+        droppedItem.transform.SetParent(dirtyPlateStackTransform);
+        droppedItem.transform.localPosition = Vector3.zero + plateStackOffset * (dirtyPlateStack.dirtyPlateCount - 1);
     }
 }

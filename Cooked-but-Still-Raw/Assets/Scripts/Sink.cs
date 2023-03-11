@@ -12,6 +12,8 @@ public class Sink : Furniture {
     [SerializeField] private Transform progressBarUI;
     [SerializeField] private Image progressBarFill;
 
+    private Vector3 plateStackOffset = new Vector3(0, 0.3f, 0);
+
     //Access the item currently on the furniture.
     public override Item GetItemOnTop() {
         //Return the plate on top of the clean plate stack.
@@ -59,7 +61,8 @@ public class Sink : Furniture {
 
             //Replace the plate on the counter.
             dirtyPlate.transform.SetParent(cleanPlateSlot);
-            dirtyPlate.transform.localPosition = Vector3.zero;
+            dirtyPlate.transform.SetAsFirstSibling();
+            dirtyPlate.transform.localPosition = Vector3.zero + plateStackOffset * (cleanPlateSlot.childCount - 1);
 
             //Prepare sink for next cleaning process.
             currentWashingProcess = 0;
