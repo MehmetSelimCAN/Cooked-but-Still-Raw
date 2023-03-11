@@ -22,6 +22,11 @@ public class Cheese : Ingredient, ICuttable {
         currentModel.SetActive(false);
 
         switch (newStatus) {
+            case IngredientStatus.Raw:
+                HideUI();
+                defaultModel.SetActive(true);
+                currentModel = defaultModel;
+                break;
             case IngredientStatus.Processed:
                 ShowUI();
                 processedModel.SetActive(true);

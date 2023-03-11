@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientUI_Icons: {fileID: 390063828702026053}
   ingredientStatus: 1
+  defaultModel: {fileID: 1765831051703938876}
   currentModel: {fileID: 1765831051703938876}
 --- !u!1 &1765831051703938876
 GameObject:
