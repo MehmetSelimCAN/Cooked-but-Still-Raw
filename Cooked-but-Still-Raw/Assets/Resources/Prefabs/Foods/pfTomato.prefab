@@ -209,7 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientUI_Icons: {fileID: 2344970836614959476}
+  ingredientType: 1
   ingredientStatus: 0
+  defaultModel: {fileID: 254803770284193313}
   currentModel: {fileID: 254803770284193313}
   processedModel: {fileID: 1924082740544828385}
   liquidModel: {fileID: 2033213443976589235}

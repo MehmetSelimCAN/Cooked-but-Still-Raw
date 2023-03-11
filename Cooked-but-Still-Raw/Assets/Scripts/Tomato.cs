@@ -46,6 +46,11 @@ public class Tomato : Ingredient, ICuttable, ICookable {
         currentModel.SetActive(false);
 
         switch (newStatus) {
+            case IngredientStatus.Raw:
+                HideUI();
+                defaultModel.SetActive(true);
+                currentModel = defaultModel;
+                break;
             case IngredientStatus.Processed:
                 processedModel.SetActive(true);
                 currentModel = processedModel;

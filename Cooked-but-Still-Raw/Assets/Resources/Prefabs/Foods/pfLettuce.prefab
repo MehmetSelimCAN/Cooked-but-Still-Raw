@@ -272,7 +272,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientUI_Icons: {fileID: 7691646932878549017}
+  ingredientType: 5
   ingredientStatus: 0
+  defaultModel: {fileID: 8241077597524139917}
   currentModel: {fileID: 8241077597524139917}
   processedModel: {fileID: 1180647904065071825}
   cuttingProcessCount: 3
