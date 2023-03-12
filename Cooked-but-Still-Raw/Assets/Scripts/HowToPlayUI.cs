@@ -54,8 +54,6 @@ public class HowToPlayUI : MonoBehaviour {
 
             pages[currentPageIndex].gameObject.SetActive(true);
         });
-
-        previousPageButton.gameObject.SetActive(false);
     }
 
     private void CloseAllPages() {
