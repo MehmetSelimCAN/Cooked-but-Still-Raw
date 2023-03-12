@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager> {
 
-    [SerializeField] private AudioSource musicAudioSource;
-    [SerializeField] private AudioSource effectAudioSource;
+    [SerializeField] public AudioSource musicAudioSource;
+    [SerializeField] public AudioSource effectAudioSource;
 
     [SerializeField] private AudioClip droppingItemClipAudio;
     [SerializeField] protected AudioClip pickingItemClipAudio;
@@ -14,8 +14,18 @@ public class AudioManager : Singleton<AudioManager> {
     [SerializeField] protected AudioClip soupPourClipAudio;
     [SerializeField] protected AudioClip meatAddingClipAudio;
 
+    public override void Awake() {
+        base.Awake();
+        musicAudioSource.volume = PlayerPrefs.GetFloat("MusicVolume");
+        effectAudioSource.volume = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
     public void PlayBackgroundMusic() {
         musicAudioSource.Play();
+    }
+
+    public void StopBackgroundMusic() {
+        musicAudioSource.Stop();
     }
 
     public void PlayDroppingItemAudio() {

@@ -15,25 +15,21 @@ public class UIManager : Singleton<UIManager> {
     [SerializeField] private TextMeshProUGUI currentCoinText;
     [SerializeField] private TextMeshProUGUI incomingCoinText;
 
-    [SerializeField] private Button mainMenuButton;
-    [SerializeField] private Button restartButton;
     [SerializeField] private TextMeshProUGUI correctOrderText;
     [SerializeField] private TextMeshProUGUI wrongOrderText;
     [SerializeField] private TextMeshProUGUI missOrderText;
     [SerializeField] private TextMeshProUGUI scoreText;
 
+    [SerializeField] private Transform pauseGameScreen;
+    [SerializeField] private Transform pausedUI;
+    [SerializeField] private Transform settingsUI;
+
     public override void Awake() {
         base.Awake();
+
+        Time.timeScale = 1;
         UIManagerAnimator = GetComponent<Animator>();
         UIManagerAnimator.Play("StartGameCountdown");
-
-        mainMenuButton.onClick.AddListener(() => {
-            BackToMainMenu();
-        });
-
-        restartButton.onClick.AddListener(() => {
-            Restart();
-        });
     }
 
     private void Start() {
@@ -85,5 +81,27 @@ public class UIManager : Singleton<UIManager> {
 
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void PauseGame() {
+        pauseGameScreen.gameObject.SetActive(true);
+        AudioManager.Instance.StopBackgroundMusic();
+        Time.timeScale = 0;
+    }
+
+    public void ContinueGame() {
+        pauseGameScreen.gameObject.SetActive(false);
+        AudioManager.Instance.PlayBackgroundMusic();
+        Time.timeScale = 1;
+    }
+
+    public void OpenSettingsUI() {
+        settingsUI.gameObject.SetActive(true);
+        pausedUI.gameObject.SetActive(false);
+    }
+
+    public void CloseSettingsUI() {
+        pausedUI.gameObject.SetActive(true);
+        settingsUI.gameObject.SetActive(false);
     }
 }
