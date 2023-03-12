@@ -9,17 +9,14 @@ public class GameInputController : MonoBehaviour {
     //Input System Properties
     private PlayerInput playerInput;
     private InputAction moveAction;
-    private InputAction dashAction;
     private InputAction pickDropAction;
     private InputAction interactAction;
 
     public event EventHandler OnPickDropAction;
     public event EventHandler OnInteractAction;
-    public event EventHandler OnDashAction;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
-        dashAction = playerInput.currentActionMap["Dash"];
         moveAction = playerInput.currentActionMap["Movement"];
         pickDropAction = playerInput.currentActionMap["PickDrop"];
         interactAction = playerInput.currentActionMap["Interact"];
@@ -30,17 +27,11 @@ public class GameInputController : MonoBehaviour {
     private void SubscribeControllerEvents() {
         pickDropAction.performed += PickDropAction_performed;
         interactAction.performed += InteractAction_performed;
-        dashAction.performed += DashAction_performed;
     }
 
     private void UnsubscribeControllerEvents() {
         pickDropAction.performed -= PickDropAction_performed;
         interactAction.performed -= InteractAction_performed;
-        dashAction.performed -= DashAction_performed;
-    }
-
-    private void DashAction_performed(InputAction.CallbackContext context) {
-        OnDashAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractAction_performed(InputAction.CallbackContext context) {

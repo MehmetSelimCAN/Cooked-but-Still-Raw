@@ -1889,8 +1889,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a86fb8ef207aa7a40a275a8a26dde758, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 26399478b24b7924ba249bb391b54727, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.048
   m_Pitch: 1
   Loop: 1
@@ -6420,7 +6420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b739b865c675f4f834c27fca9f6751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 65
+  levelTime: 15
 --- !u!1001 &605522048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13079,7 +13079,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -16656,10 +16656,6 @@ MonoBehaviour:
     m_ActionName: Player/PickDrop[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: b9522608-3efe-4379-b7db-e9b8a106ef76
-    m_ActionName: Player/Dash[/Keyboard/ctrl]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: a408fda0-6317-4acf-a5aa-ace33dfe8d64
     m_ActionName: Player/Interact[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -16680,7 +16676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: {fileID: 127200093}
-  pickingItemClipAudio: {fileID: 0}
 --- !u!54 &1604128057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18896,6 +18891,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicAudioSource: {fileID: 67799583}
   effectAudioSource: {fileID: 1206396273}
+  droppingItemClipAudio: {fileID: 8300000, guid: f3c84c1ff2e19d644b2647cf7fe71e42, type: 3}
+  pickingItemClipAudio: {fileID: 8300000, guid: f3c84c1ff2e19d644b2647cf7fe71e42, type: 3}
+  cuttingClipAudio: {fileID: 8300000, guid: 2922026294abb4e4c9ed08632887809a, type: 3}
+  washingClipAudio: {fileID: 8300000, guid: 2546b9a941175ac4aac6550c1d383f59, type: 3}
+  soupPourClipAudio: {fileID: 8300000, guid: d54f98a47dbb3d9499da6e7e459fe8d0, type: 3}
+  meatAddingClipAudio: {fileID: 8300000, guid: e156f0219003b364c94135d46e9f39e4, type: 3}
 --- !u!1 &1978756237
 GameObject:
   m_ObjectHideFlags: 0

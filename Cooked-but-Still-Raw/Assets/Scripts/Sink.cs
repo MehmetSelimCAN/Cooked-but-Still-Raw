@@ -52,6 +52,7 @@ public class Sink : Furniture {
 
         //Update the cleaning process of the dirty plate and show it on UI.
         currentWashingProcess++;
+        AudioManager.Instance.PlayWashingAudio();
         progressBarFill.fillAmount = (float)currentWashingProcess / dirtyPlate.WashingProcessCount;
 
         //If dirty plate scrubbed enough to get cleaned.

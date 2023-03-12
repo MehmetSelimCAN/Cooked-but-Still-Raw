@@ -39,6 +39,7 @@ public class CuttingBoard : DefaultCounter {
 
         //Process each cut and show the progress on the UI.
         currentCuttingProcess++;
+        AudioManager.Instance.PlayCuttingAudio();
         progressBarFill.fillAmount = currentCuttingProcess / cuttableOnTop.CuttingProcessCount;
 
         if (currentCuttingProcess >= cuttableOnTop.CuttingProcessCount) {

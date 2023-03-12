@@ -29,6 +29,7 @@ public class GameController : Singleton<GameController> {
 
         StartCoroutine(StartTimer());
         OrderManager.Instance.StartGame();
+        AudioManager.Instance.PlayBackgroundMusic();
     }
 
     public void StopGame() {

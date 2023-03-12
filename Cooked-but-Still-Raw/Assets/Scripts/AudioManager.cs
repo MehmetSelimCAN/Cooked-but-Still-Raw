@@ -7,8 +7,44 @@ public class AudioManager : Singleton<AudioManager> {
     [SerializeField] private AudioSource musicAudioSource;
     [SerializeField] private AudioSource effectAudioSource;
 
-    public void PlayEffectAudio(AudioClip clip) {
-        effectAudioSource.clip = clip;
+    [SerializeField] private AudioClip droppingItemClipAudio;
+    [SerializeField] protected AudioClip pickingItemClipAudio;
+    [SerializeField] protected AudioClip cuttingClipAudio;
+    [SerializeField] protected AudioClip washingClipAudio;
+    [SerializeField] protected AudioClip soupPourClipAudio;
+    [SerializeField] protected AudioClip meatAddingClipAudio;
+
+    public void PlayBackgroundMusic() {
+        musicAudioSource.Play();
+    }
+
+    public void PlayDroppingItemAudio() {
+        effectAudioSource.clip = droppingItemClipAudio;
+        effectAudioSource.Play();
+    }
+
+    public void PlayPickingItemAudio() {
+        effectAudioSource.clip = pickingItemClipAudio;
+        effectAudioSource.Play();
+    }
+
+    public void PlayCuttingAudio() {
+        effectAudioSource.clip = cuttingClipAudio;
+        effectAudioSource.Play();
+    }
+
+    public void PlayWashingAudio() {
+        effectAudioSource.clip = washingClipAudio;
+        effectAudioSource.Play();
+    }
+
+    public void PlaySoupPourAudio() {
+        effectAudioSource.clip = soupPourClipAudio;
+        effectAudioSource.Play();
+    }
+
+    public void PlayMeatAddingAudio() {
+        effectAudioSource.clip = meatAddingClipAudio;
         effectAudioSource.Play();
     }
 }

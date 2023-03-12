@@ -4,17 +4,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Movement Properties
-    private float movementSpeed = 15f;
+    private float movementSpeed = 20f;
     private float rotationSpeed = 15f;
     private Vector3 movementDirection;
     private Vector3 inputDirection;
     private Rigidbody playerRigidbody;
-
-    //Dash Properties
-    private float dashForce = 900f;
-    private float dashDuration = 0.17f;
-    private WaitForSeconds dashCooldown = new WaitForSeconds(0.25f);
-    private bool isDashingPossible = true;
 
     //Controllers
     private GameInputController gameInputController;
@@ -26,8 +20,6 @@ public class PlayerController : MonoBehaviour {
     private Animator playerAnimator;
     public Animator PlayerAnimator { get { return playerAnimator; } }
 
-    [SerializeField] protected AudioClip pickingItemClipAudio;
-
     private void Awake() {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -38,7 +30,6 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         gameInputController.OnPickDropAction += GameInputController_OnPickDropAction;
         gameInputController.OnInteractAction += GameInputController_OnInteractAction;
-        gameInputController.OnDashAction += GameInputController_OnDashAction;
     }
 
     private void GameInputController_OnPickDropAction(object sender, System.EventArgs e) {
@@ -63,11 +54,6 @@ public class PlayerController : MonoBehaviour {
         if (interactAccomplished) {
             closestFurniture.InteractAnimation(this);
         }
-    }
-
-    private void GameInputController_OnDashAction(object sender, System.EventArgs e) {
-        if (!isDashingPossible) return;
-        StartCoroutine(Dash());
     }
 
     private void Update() {
@@ -126,6 +112,8 @@ public class PlayerController : MonoBehaviour {
                 if (dishInHand.CanAddIngredient(pickableIngredient)) {
                     dishInHand.AddIngredient(pickableIngredient);
                     closestFurniture.ClearItemOnTop();
+
+                    AudioManager.Instance.PlayPickingItemAudio();
                 }
                 //If the ingredient on top of the furniture cannot be added to Dish...
                 else {
@@ -166,6 +154,7 @@ public class PlayerController : MonoBehaviour {
         //Handle the position of the picked up item.
         HandlePickedItemPosition(pickedItem);
         playerAnimator.SetBool("PickedUp", true);
+        AudioManager.Instance.PlayPickingItemAudio();
     }
 
     private void HandlePickedItemPosition(Item pickedItem) {
@@ -173,8 +162,6 @@ public class PlayerController : MonoBehaviour {
         pickedItem.transform.localPosition = Vector3.zero;
         pickedItem.transform.localRotation = Quaternion.identity;
         itemInHand = pickedItem;
-
-        AudioManager.Instance.PlayEffectAudio(pickingItemClipAudio);
     }
 
     private void DropItem() {
@@ -183,6 +170,8 @@ public class PlayerController : MonoBehaviour {
 
         //Check if the closest furniture object can accept the currently held item.
         if (closestFurniture.CanSetItemOnTop(itemInHand)) {
+            AudioManager.Instance.PlayDroppingItemAudio();
+
             //Place the item on top of the furniture.
             closestFurniture.SetItemOnTop(itemInHand);
 
@@ -195,18 +184,5 @@ public class PlayerController : MonoBehaviour {
             itemInHand = null;
             playerAnimator.SetBool("PickedUp", false);
         }
-    }
-
-    private IEnumerator Dash() {
-        float startTime = Time.time;
-        isDashingPossible = false;
-
-        while (Time.time < startTime + dashDuration) {
-            playerRigidbody.AddRelativeForce(dashForce * Vector3.forward);
-            yield return null;
-        }
-
-        yield return dashCooldown;
-        isDashingPossible = true;
     }
 }

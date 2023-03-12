@@ -53,6 +53,7 @@ public class Pot : Dish {
 
         CurrentIngredientQuantity++;
         currentIngredients.Add(droppedIngredient);
+        AudioManager.Instance.PlaySoupPourAudio();
 
         AddIngredientUI(droppedIngredient);
 

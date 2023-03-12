@@ -35,6 +35,8 @@ public class Pan : Dish {
 
     //Adds the ingridient to the pan and updates itself accordingly.
     public override void AddIngredient(Ingredient droppedIngredient) {
+        AudioManager.Instance.PlayMeatAddingAudio();
+
         HandleDroppedIngredientPosition(droppedIngredient);
 
         CurrentIngredientQuantity++;

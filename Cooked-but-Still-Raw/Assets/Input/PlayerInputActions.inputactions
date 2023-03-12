@@ -22,14 +22,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "b9522608-3efe-4379-b7db-e9b8a106ef76",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "a408fda0-6317-4acf-a5aa-ace33dfe8d64",
@@ -102,17 +94,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "PickDrop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c93a1cd4-e135-45c1-91f3-8eaa52388c33",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
