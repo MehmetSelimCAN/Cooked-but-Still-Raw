@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour {
     private Animator playerAnimator;
     public Animator PlayerAnimator { get { return playerAnimator; } }
 
+    [SerializeField] protected AudioClip pickingItemClipAudio;
+
     private void Awake() {
         playerAnimator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -128,7 +130,7 @@ public class PlayerController : MonoBehaviour {
                     //...Furniture Ingredient Box has already created the ingredient...
                     //...so we need to delete it.
                     if (closestFurniture is IngredientBox) {
-                        Destroy(pickableItem.gameObject);
+                        pickableItem.ThrowInTheGarbage();
                     }
                 }
             }
@@ -169,6 +171,8 @@ public class PlayerController : MonoBehaviour {
         pickedItem.transform.localPosition = Vector3.zero;
         pickedItem.transform.localRotation = Quaternion.identity;
         itemInHand = pickedItem;
+
+        AudioManager.Instance.PlayEffectAudio(pickingItemClipAudio);
     }
 
     private void DropItem() {

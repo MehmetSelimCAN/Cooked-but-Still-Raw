@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebec9f6ab9f1bd41b768ec43221894c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droppingAudioClip: {fileID: 8300000, guid: f3c84c1ff2e19d644b2647cf7fe71e42, type: 3}
   dropParticleEffect: {fileID: 8729891680328899022}
   itemOnTop: {fileID: 0}
   itemSlot: {fileID: 2998142004187201591}

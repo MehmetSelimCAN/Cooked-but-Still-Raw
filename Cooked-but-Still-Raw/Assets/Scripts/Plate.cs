@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class Plate : Dish {
 
     [SerializeField] private List<Recipe> allPossibleRecipes = new List<Recipe>();
-    private Recipe copyRecipe = new Recipe();
-    [SerializeField] private bool isDirty = false;
+    private bool isDirty = false;
     public bool IsDirty { get { return isDirty; } }
 
     private int washingProcessCount = 5;
@@ -66,6 +65,7 @@ public class Plate : Dish {
         }
 
         for (int i = 0; i < allPossibleRecipes.Count; i++) {
+            Recipe copyRecipe = new Recipe();
             copyRecipe.recipeName = allPossibleRecipes[i].recipeName;
             copyRecipe.recipePrepareTime = allPossibleRecipes[i].recipePrepareTime;
             copyRecipe.isAvailableOnThisLevel = allPossibleRecipes[i].isAvailableOnThisLevel;
@@ -82,6 +82,7 @@ public class Plate : Dish {
             }
             allPossibleRecipes[i] = copyRecipe;
         }
+
     }
 
     //Adds the ingredient to the plate and updates itself accordingly.
@@ -104,12 +105,10 @@ public class Plate : Dish {
     }
 
     public void SetDirty() {
-        //Mesh deðiþtir.
         isDirty = true;
     }
 
     public void SetClean() {
-        //Mesh deðiþtir.
         isDirty = false;
     }
 }

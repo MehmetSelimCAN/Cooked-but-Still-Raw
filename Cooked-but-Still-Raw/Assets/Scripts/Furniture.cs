@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Furniture : MonoBehaviour {
 
+    [SerializeField] protected AudioClip droppingAudioClip;
     [SerializeField] protected ParticleSystem dropParticleEffect;
     [SerializeField] protected Item itemOnTop;
     [SerializeField] protected Transform itemSlot;
@@ -27,6 +28,7 @@ public abstract class Furniture : MonoBehaviour {
         droppedItem.transform.SetParent(itemSlot);
         droppedItem.transform.localPosition = Vector3.zero;
         dropParticleEffect.Play();
+        AudioManager.Instance.PlayEffectAudio(droppingAudioClip);
     }
 
     //Responsible for handling interactions with the furniture.

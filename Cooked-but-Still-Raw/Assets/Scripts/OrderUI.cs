@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class OrderUI : MonoBehaviour {
 
     private Recipe orderRecipe;
+    public Recipe OrderRecipe { get { return orderRecipe; } }
     [SerializeField] private Image orderImage;
     [SerializeField] private Transform ingredientUI_Icons;
     [SerializeField] private List<Transform> statusIndicatorUI_Icons;
     [SerializeField] private Image orderTimerUI;
     [SerializeField] private Gradient timerGradient;
     [SerializeField] private Animator orderAnimator;
-
 
     private float maxOrderTime;
     private float remainingOrderTime;
@@ -58,12 +58,8 @@ public class OrderUI : MonoBehaviour {
             yield return null;
         }
 
-        ResetUI();
         FadeOut();
-        float fadeOutAnimationTime = orderAnimator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(fadeOutAnimationTime);
-        gameObject.SetActive(false);
-        OrderManager.Instance.MissOrder(orderRecipe, transform);
+        OrderManager.Instance.MissOrder(this, transform);
     }
 
     public void FadeIn() {
@@ -82,5 +78,7 @@ public class OrderUI : MonoBehaviour {
         foreach (Transform statusIndicatorUI_Icon in statusIndicatorUI_Icons) {
             statusIndicatorUI_Icon.gameObject.SetActive(false);
         }
+
+        transform.parent.gameObject.SetActive(false);
     }
 }

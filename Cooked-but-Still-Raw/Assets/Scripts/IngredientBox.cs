@@ -2,9 +2,6 @@ public class IngredientBox : Furniture {
 
     //Provide the ingredient instance on request.
     public override Item GetItemOnTop() {
-        /*
-        var ingredient = Instantiate(itemOnTop, itemSlot);
-        */
         var ingredient = PoolingManager.Instance.ActivateFromPool(itemOnTop);
         return ingredient;
     }

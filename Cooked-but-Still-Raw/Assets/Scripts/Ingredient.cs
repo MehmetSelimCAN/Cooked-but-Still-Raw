@@ -15,8 +15,7 @@ public abstract class Ingredient : Item {
 
     [SerializeField] protected GameObject currentModel;
 
-    private void Awake()
-    {
+    private void Awake() {
         defaultIngredientStatus = ingredientStatus;
     }
 

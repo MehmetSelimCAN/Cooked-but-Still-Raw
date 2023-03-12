@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrderManager : MonoBehaviour {
-
-    public static OrderManager Instance { get; private set; }
+public class OrderManager : Singleton<OrderManager> {
 
     private List<Recipe> availableRecipesInLevel;
-    [SerializeField] private Transform OrdersUI;
     [SerializeField] private List<Transform> availableOrderUIs = new List<Transform>();
 
-    [SerializeField] private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
+    //[SerializeField] private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
+    [SerializeField] private List<OrderUI> currentOrderUIsList = new List<OrderUI>();
 
     private float minimumOrderSpawnDelay = 3f;
     private float maximumOrderSpawnDelay = 7f;
 
-    private void Awake() {
-        Instance = this;
-    }
+    private int correctDeliveredOrderCount = 0;
+    private int wrongDeliveredOrderCount = 0;
+    private int missDeliveredOrderCount = 0;
+    public Vector3 OrderStatistics { get {
+            return new Vector3(correctDeliveredOrderCount,
+                                wrongDeliveredOrderCount,
+                                missDeliveredOrderCount);
+        } }
 
     private void Start() {
         availableRecipesInLevel = RecipeManager.Instance.Recipes.FindAll(x => x.isAvailableOnThisLevel);
@@ -35,16 +38,16 @@ public class OrderManager : MonoBehaviour {
         int randomNumber = Random.Range(0, availableRecipesInLevel.Count);
         Recipe randomRecipe = availableRecipesInLevel[randomNumber];
 
-        currentOrdersRecipeList.Add(randomRecipe);
-
         Transform orderUI_Transform = availableOrderUIs[0];
         orderUI_Transform.SetAsLastSibling();
-        orderUI_Transform.gameObject.SetActive(true);
+        orderUI_Transform.parent.gameObject.SetActive(true);
         availableOrderUIs.Remove(availableOrderUIs[0]);
 
         OrderUI orderUI = orderUI_Transform.GetComponent<OrderUI>();
         orderUI.SetRecipe(randomRecipe);
         orderUI.FadeIn();
+
+        currentOrderUIsList.Add(orderUI);
     }
 
     //Decides on whether the delivered plate matches with any order or not.
@@ -56,10 +59,11 @@ public class OrderManager : MonoBehaviour {
         }
 
         bool ingredientsMatches = false;
-        Recipe deliveredRecipe = new Recipe();
-        foreach (Recipe recipeInCurrentOrders in currentOrdersRecipeList) {
+        OrderUI deliveredOrderUI = null;
+        foreach (OrderUI currentOrderUI in currentOrderUIsList) {
+            Recipe recipeInCurrentOrders = currentOrderUI.OrderRecipe;
             if (deliveredPlate.CurrentIngredientQuantity != recipeInCurrentOrders.ingredientInformations.Count) continue;
-            deliveredRecipe = recipeInCurrentOrders;
+            deliveredOrderUI = currentOrderUI;
             ingredientsMatches = true;
             foreach (IngredientInformation ingredientInformation in ingredientInformationList) {
                 if (!recipeInCurrentOrders.ingredientInformations.Contains(ingredientInformation)) {
@@ -70,26 +74,33 @@ public class OrderManager : MonoBehaviour {
         }
 
         if (ingredientsMatches) {
-            CorrectDelivery(deliveredRecipe);
+            CorrectDelivery(deliveredOrderUI);
         }
         else {
-            WrongDelivery();
+            wrongDeliveredOrderCount++;
+            GameController.Instance.DeliveryPenalty();
         }
     }
 
-    private void CorrectDelivery(Recipe deliveredRecipe) {
-        Debug.Log(deliveredRecipe.recipePrize);
+    public void CorrectDelivery(OrderUI deliveredOrderUI) {
+        correctDeliveredOrderCount++;
+
+        currentOrderUIsList.Remove(deliveredOrderUI);
+        deliveredOrderUI.FadeOut();
+        availableOrderUIs.Add(deliveredOrderUI.transform);
+        GameController.Instance.CorrectDelivery(deliveredOrderUI);
+        StartCoroutine(SpawnOrderRandomly());
     }
 
-    private void WrongDelivery() {
 
-    }
+    public void MissOrder(OrderUI missOrderUI, Transform AvailableOrderUI_Transform) {
+        missDeliveredOrderCount++;
 
-
-    public void MissOrder(Recipe missedRecipe, Transform AvailableOrderUI_Transform) {
-        currentOrdersRecipeList.Remove(missedRecipe);
+        currentOrderUIsList.Remove(missOrderUI);
         availableOrderUIs.Add(AvailableOrderUI_Transform);
         StartCoroutine(SpawnOrderRandomly());
+
+        GameController.Instance.DeliveryPenalty();
     }
 
     private IEnumerator SpawnOrderRandomly() {

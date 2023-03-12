@@ -86,8 +86,9 @@ public class Dish : Item {
     }
 
     public override void ThrowInTheGarbage() {
-        foreach (Transform ingredient in ingredientSlot) {
-            Destroy(ingredient.gameObject);
+        foreach (Transform ingredientTransform in ingredientSlot) {
+            Ingredient ingredient = ingredientTransform.GetComponent<Ingredient>();
+            ingredient.ThrowInTheGarbage();
         }
 
         ClearCurrentIngredients();

@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractController : MonoBehaviour {
-
-    public static InteractController Instance { get; private set; }
+public class InteractController : Singleton<InteractController> {
 
     private HashSet<Furniture> interactableFurnitures = new HashSet<Furniture>();
     private Furniture closestReachableInteractableFurniture;
@@ -15,10 +13,6 @@ public class InteractController : MonoBehaviour {
     public event EventHandler<OnClosestFurnitureChangedEventArgs> OnClosestFurnitureChanged;
     public class OnClosestFurnitureChangedEventArgs : EventArgs {
         public Furniture closestFurniture;
-    }
-
-    private void Awake() {
-        Instance = this;
     }
 
     private void FixedUpdate() {

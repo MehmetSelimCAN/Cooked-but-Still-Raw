@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteProvider : MonoBehaviour {
-
-    public static SpriteProvider Instance { get; private set; }
+public class SpriteProvider : Singleton<SpriteProvider> {
 
     public Sprite meatSprite;
     public Sprite cabbageSprite;
@@ -20,10 +18,6 @@ public class SpriteProvider : MonoBehaviour {
     public Sprite cheeseBurgerSprite;
     public Sprite burgerSprite;
     public Sprite soupSprite;
-
-    private void Awake() {
-        Instance = this;
-    }
 
     public Sprite GetIngredientSprite(IngredientType ingredientType) {
         Sprite returnSprite = null;

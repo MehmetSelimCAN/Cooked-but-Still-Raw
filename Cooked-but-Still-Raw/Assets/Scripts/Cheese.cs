@@ -9,10 +9,6 @@ public class Cheese : Ingredient, ICuttable {
     [SerializeField] private float cuttingProcessCount;
     public float CuttingProcessCount { get { return cuttingProcessCount; } }
 
-    public void Awake() {
-        ingredientType = IngredientType.Cheese;
-    }
-
     public void SlicedUp() {
         ChangeStatus(IngredientStatus.Processed);
         ChangeMesh(IngredientStatus.Processed);

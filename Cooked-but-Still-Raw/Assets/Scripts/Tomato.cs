@@ -18,10 +18,6 @@ public class Tomato : Ingredient, ICuttable, ICookable {
     [SerializeField] private float burningTime;
     public float BurningTime { get { return burningTime; } }
 
-    public void Awake() {
-        ingredientType = IngredientType.Tomato;
-    }
-
     public void SlicedUp() {
         ChangeStatus(IngredientStatus.Processed);
         ChangeMesh(IngredientStatus.Processed);

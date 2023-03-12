@@ -18,10 +18,6 @@ public class Onion : Ingredient, ICuttable, ICookable {
     [SerializeField] private float burningTime;
     public float BurningTime { get { return burningTime; } }
 
-    public void Awake() {
-        ingredientType = IngredientType.Onion;
-    }
-
     public void SlicedUp() {
         ChangeStatus(IngredientStatus.Processed);
         ChangeMesh(IngredientStatus.Processed);

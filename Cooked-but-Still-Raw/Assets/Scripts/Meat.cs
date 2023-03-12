@@ -17,10 +17,6 @@ public class Meat : Ingredient, ICuttable, IFryable {
     [SerializeField] private float burningTime;
     public float BurningTime { get { return burningTime; } }
 
-    public void Awake() {
-        ingredientType = IngredientType.Meat;
-    }
-
     public void SlicedUp() {
         ChangeStatus(IngredientStatus.Processed);
         ChangeMesh(IngredientStatus.Processed);
