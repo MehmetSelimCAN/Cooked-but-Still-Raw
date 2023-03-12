@@ -86,8 +86,13 @@ public class Dish : Item {
     }
 
     public override void ThrowInTheGarbage() {
+        List<Ingredient> allIngredients = new List<Ingredient>();
         foreach (Transform ingredientTransform in ingredientSlot) {
             Ingredient ingredient = ingredientTransform.GetComponent<Ingredient>();
+            allIngredients.Add(ingredient);
+        }
+
+        foreach (Ingredient ingredient in allIngredients) {
             ingredient.ThrowInTheGarbage();
         }
 

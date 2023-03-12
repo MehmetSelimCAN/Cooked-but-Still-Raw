@@ -219,7 +219,7 @@ MonoBehaviour:
   burnedModel: {fileID: 6305759332578811484}
   cuttingProcessCount: 3
   cookingTime: 5
-  burningTime: 5
+  burningTime: 10
 --- !u!1 &1924082740544828385
 GameObject:
   m_ObjectHideFlags: 0

@@ -2341,6 +2341,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87418777}
   m_CullTransparentMesh: 1
+--- !u!4 &90170077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2998142004187201591, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
+  m_PrefabInstance: {fileID: 1916272428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &90571157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 34096259385361777, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
@@ -6667,7 +6672,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.696
+  m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -6873,7 +6878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b739b865c675f4f834c27fca9f6751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 5
+  levelTime: 180
 --- !u!1001 &605522048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14005,6 +14010,87 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200213010}
   m_CullTransparentMesh: 1
+--- !u!1001 &1202602796
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 90170077}
+    m_Modifications:
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513573509269617318, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047838099751418383, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_Name
+      value: pfPlate_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058539867691751508, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef08a48316c50114d931b16cd338271f, type: 3}
 --- !u!1 &1205803511
 GameObject:
   m_ObjectHideFlags: 0
@@ -15143,6 +15229,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1f70fc006a50e24bb7d25f7db19f716, type: 3}
   m_PrefabInstance: {fileID: 173150653}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319219480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6546852467331361192, guid: ef08a48316c50114d931b16cd338271f, type: 3}
+  m_PrefabInstance: {fileID: 1202602796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb073f81471285468c5f99a3567c9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1329399911
 GameObject:
   m_ObjectHideFlags: 0
@@ -19134,23 +19231,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
-  - recipeName: OnionSoup
-    recipeSprite: {fileID: 21300000, guid: 2bfe22f710740114884b377af1c29c05, type: 3}
-    recipePrepareTime: 5
-    recipePrize: 0
-    isAvailableOnThisLevel: 1
-    ingredientInformations:
-    - ingredientType: 2
-      ingredientStatus: 2
-    - ingredientType: 2
-      ingredientStatus: 2
-    - ingredientType: 2
-      ingredientStatus: 2
   - recipeName: MegaBurger
     recipeSprite: {fileID: 21300000, guid: 0a29013e3903f2f459dbd79faf1f19ab, type: 3}
-    recipePrepareTime: 5
-    recipePrize: 0
-    isAvailableOnThisLevel: 0
+    recipePrepareTime: 75
+    recipePrize: 150
+    isAvailableOnThisLevel: 1
     ingredientInformations:
     - ingredientType: 4
       ingredientStatus: 3
@@ -19164,9 +19249,9 @@ MonoBehaviour:
       ingredientStatus: 1
   - recipeName: TomatoSoup
     recipeSprite: {fileID: 21300000, guid: 2bfe22f710740114884b377af1c29c05, type: 3}
-    recipePrepareTime: 5
-    recipePrize: 0
-    isAvailableOnThisLevel: 0
+    recipePrepareTime: 75
+    recipePrize: 75
+    isAvailableOnThisLevel: 1
     ingredientInformations:
     - ingredientType: 1
       ingredientStatus: 2
@@ -19176,9 +19261,9 @@ MonoBehaviour:
       ingredientStatus: 2
   - recipeName: CheeseBurger
     recipeSprite: {fileID: 21300000, guid: 26f69577708bd9c4a8929d24d5174e49, type: 3}
-    recipePrepareTime: 5
-    recipePrize: 0
-    isAvailableOnThisLevel: 0
+    recipePrepareTime: 55
+    recipePrize: 35
+    isAvailableOnThisLevel: 1
     ingredientInformations:
     - ingredientType: 4
       ingredientStatus: 3
@@ -19186,13 +19271,29 @@ MonoBehaviour:
       ingredientStatus: 1
     - ingredientType: 3
       ingredientStatus: 1
-  - recipeName: 1234
-    recipeSprite: {fileID: 21300000, guid: 26f69577708bd9c4a8929d24d5174e49, type: 3}
-    recipePrepareTime: 5
-    recipePrize: 25
+  - recipeName: OnionSoup
+    recipeSprite: {fileID: 21300000, guid: 2bfe22f710740114884b377af1c29c05, type: 3}
+    recipePrepareTime: 75
+    recipePrize: 75
     isAvailableOnThisLevel: 1
     ingredientInformations:
+    - ingredientType: 2
+      ingredientStatus: 2
+    - ingredientType: 2
+      ingredientStatus: 2
+    - ingredientType: 2
+      ingredientStatus: 2
+  - recipeName: Burger
+    recipeSprite: {fileID: 21300000, guid: 7ba51409131765a4ca05a64d50fe3cf5, type: 3}
+    recipePrepareTime: 65
+    recipePrize: 50
+    isAvailableOnThisLevel: 1
+    ingredientInformations:
+    - ingredientType: 4
+      ingredientStatus: 3
     - ingredientType: 0
+      ingredientStatus: 1
+    - ingredientType: 1
       ingredientStatus: 1
 --- !u!4 &1758340866
 Transform:
@@ -20946,6 +21047,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045061151887867704, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
+      propertyPath: itemOnTop
+      value: 
+      objectReference: {fileID: 1319219480}
     - target: {fileID: 1657581377967549986, guid: e6cbad025a6324e42a5704ae400235e1, type: 3}
       propertyPath: m_Name
       value: CounterTop

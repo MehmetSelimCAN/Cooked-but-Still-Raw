@@ -6928,10 +6928,10 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 0.9058824, g: 1, b: 0, a: 1}
-    topRight: {r: 0.9058824, g: 1, b: 0, a: 1}
-    bottomLeft: {r: 1, g: 0, b: 0, a: 1}
-    bottomRight: {r: 1, g: 0, b: 0, a: 1}
+    topLeft: {r: 0.4522934, g: 0, b: 1, a: 1}
+    topRight: {r: 0.45098042, g: 0, b: 1, a: 1}
+    bottomLeft: {r: 0.2244196, g: 0, b: 1, a: 1}
+    bottomRight: {r: 0.22352943, g: 0, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -11021,8 +11021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29, y: -32}
-  m_SizeDelta: {x: 515, y: 80}
+  m_AnchoredPosition: {x: -7.8, y: -66.3}
+  m_SizeDelta: {x: 447.1897, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999228375
 MonoBehaviour:

@@ -494,7 +494,7 @@ MonoBehaviour:
   cookedModel: {fileID: 5572644869217309016}
   burnedModel: {fileID: 818663785158028131}
   cuttingProcessCount: 3
-  cookingTime: 8
+  cookingTime: 5
   burningTime: 5
 --- !u!1 &6402430433349126572
 GameObject:

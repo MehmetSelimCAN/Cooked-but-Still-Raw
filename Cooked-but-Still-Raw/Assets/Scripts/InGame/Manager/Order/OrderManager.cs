@@ -9,8 +9,8 @@ public class OrderManager : Singleton<OrderManager> {
 
     [SerializeField] private List<OrderUI> currentOrderUIsList = new List<OrderUI>();
 
-    private float minimumOrderSpawnDelay = 3f;
-    private float maximumOrderSpawnDelay = 7f;
+    private float minimumOrderSpawnDelay = 15f;
+    private float maximumOrderSpawnDelay = 20f;
 
     private int correctDeliveredOrderCount = 0;
     public int CorrectDeliveredOrderCount { get { return correctDeliveredOrderCount; } }
@@ -29,11 +29,11 @@ public class OrderManager : Singleton<OrderManager> {
 
     private IEnumerator SpawnFirstOrders() {
         SpawnOrder();
-        yield return new WaitForSeconds(Random.Range(1, 3));
+        yield return new WaitForSeconds(Random.Range(minimumOrderSpawnDelay, maximumOrderSpawnDelay));
         SpawnOrder();
-        yield return new WaitForSeconds(Random.Range(1, 3));
+        yield return new WaitForSeconds(Random.Range(minimumOrderSpawnDelay, maximumOrderSpawnDelay));
         SpawnOrder();
-        yield return new WaitForSeconds(Random.Range(1, 3));
+        yield return new WaitForSeconds(Random.Range(minimumOrderSpawnDelay, maximumOrderSpawnDelay));
         SpawnOrder();
     }
 
@@ -59,24 +59,15 @@ public class OrderManager : Singleton<OrderManager> {
 
     //Decides on whether the delivered plate matches with any order or not.
     public void CheckOrder(Plate deliveredPlate) {
-        List<IngredientInformation> ingredientInformationList = new List<IngredientInformation>();
-        foreach (Ingredient ingredient in deliveredPlate.CurrentIngredients) {
-            IngredientInformation ingredientInformation = new IngredientInformation(ingredient);
-            ingredientInformationList.Add(ingredientInformation);
-        }
-
         bool ingredientsMatches = false;
         OrderUI deliveredOrderUI = null;
+
         foreach (OrderUI currentOrderUI in currentOrderUIsList) {
             Recipe recipeInCurrentOrders = currentOrderUI.OrderRecipe;
-            if (deliveredPlate.CurrentIngredientQuantity != recipeInCurrentOrders.ingredientInformations.Count) continue;
-            deliveredOrderUI = currentOrderUI;
-            ingredientsMatches = true;
-            foreach (IngredientInformation ingredientInformation in ingredientInformationList) {
-                if (!recipeInCurrentOrders.ingredientInformations.Contains(ingredientInformation)) {
-                    ingredientsMatches = false;
-                    break;
-                }
+            if (recipeInCurrentOrders.recipeName == deliveredPlate.readyToServeRecipe.recipeName) {
+                ingredientsMatches = true;
+                deliveredOrderUI = currentOrderUI;
+                break;
             }
         }
 

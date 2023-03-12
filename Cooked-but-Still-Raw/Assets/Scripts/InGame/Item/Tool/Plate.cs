@@ -12,6 +12,8 @@ public class Plate : Dish {
     private int washingProcessCount = 5;
     public int WashingProcessCount { get { return washingProcessCount; } }
 
+    public Recipe readyToServeRecipe;
+
     private void Awake() {
         ingredientCapacity = 10;
     }
@@ -75,14 +77,13 @@ public class Plate : Dish {
                     allPossibleRecipes[i].ingredientInformations[j].ingredientStatus == addedIngredient.IngredientStatus) {
                     copyRecipe.ingredientInformations.Remove(copyRecipe.ingredientInformations[j]);
                     if (copyRecipe.ingredientInformations.Count == 0) {
-                        Debug.Log(copyRecipe.recipeName + " is ready to serve.");
+                        readyToServeRecipe = copyRecipe;
                     }
                     break;
                 }
             }
             allPossibleRecipes[i] = copyRecipe;
         }
-
     }
 
     //Adds the ingredient to the plate and updates itself accordingly.

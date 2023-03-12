@@ -30,8 +30,7 @@ public abstract class Ingredient : Item {
         PoolingManager.Instance.DeActivateToPool(gameObject);
     }
 
-    public virtual void ResetIngredient()
-    {
+    public virtual void ResetIngredient() {
         ChangeStatus(defaultIngredientStatus);
         ChangeMesh(defaultIngredientStatus);
     }
