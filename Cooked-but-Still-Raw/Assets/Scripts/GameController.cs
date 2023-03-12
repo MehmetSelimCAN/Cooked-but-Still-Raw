@@ -15,14 +15,20 @@ public class GameController : Singleton<GameController> {
     public int CurrentCoinCount { get { return currentCoinCount; } }
     private int orderPenalty = -50;
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.G)) {
-            StartCoroutine(StartTimer());
-        }
+    private bool isGamePlaying = false;
+    public bool IsGamePlaying { get { return isGamePlaying; } }
+
+    public override void Awake() {
+        base.Awake();
+        StartCoroutine(StartGame());
     }
 
-    public void StartGame() {
+    public IEnumerator StartGame() {
+        yield return new WaitForSeconds(3f);
+        isGamePlaying = true;
 
+        StartCoroutine(StartTimer());
+        OrderManager.Instance.StartGame();
     }
 
     public void StopGame() {
@@ -30,6 +36,7 @@ public class GameController : Singleton<GameController> {
     }
 
     public void FinishGame() {
+        isGamePlaying = false;
         UIManager.Instance.EnableEndGameScreen();
     }
 

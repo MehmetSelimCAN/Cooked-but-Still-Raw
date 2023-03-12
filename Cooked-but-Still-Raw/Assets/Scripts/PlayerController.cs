@@ -75,9 +75,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        MoveThePlayer();
-        TurnThePlayer();
-        AnimateThePlayer();
+        if (GameController.Instance.IsGamePlaying) {
+            MoveThePlayer();
+            TurnThePlayer();
+            AnimateThePlayer();
+        }
     }
 
     private  void CalculateMovementDirection() {

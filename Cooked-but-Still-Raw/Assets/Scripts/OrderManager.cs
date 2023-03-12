@@ -7,47 +7,54 @@ public class OrderManager : Singleton<OrderManager> {
     private List<Recipe> availableRecipesInLevel;
     [SerializeField] private List<Transform> availableOrderUIs = new List<Transform>();
 
-    //[SerializeField] private List<Recipe> currentOrdersRecipeList = new List<Recipe>();
     [SerializeField] private List<OrderUI> currentOrderUIsList = new List<OrderUI>();
 
     private float minimumOrderSpawnDelay = 3f;
     private float maximumOrderSpawnDelay = 7f;
 
     private int correctDeliveredOrderCount = 0;
+    public int CorrectDeliveredOrderCount { get { return correctDeliveredOrderCount; } }
     private int wrongDeliveredOrderCount = 0;
+    public int WrongDeliveredOrderCount { get { return wrongDeliveredOrderCount; } }
     private int missDeliveredOrderCount = 0;
-    public Vector3 OrderStatistics { get {
-            return new Vector3(correctDeliveredOrderCount,
-                                wrongDeliveredOrderCount,
-                                missDeliveredOrderCount);
-        } }
+    public int MissDeliveredOrderCount { get { return missDeliveredOrderCount; } }
 
     private void Start() {
         availableRecipesInLevel = RecipeManager.Instance.Recipes.FindAll(x => x.isAvailableOnThisLevel);
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            SpawnOrder();
-        }
+    public void StartGame() {
+        StartCoroutine(SpawnFirstOrders());
+    }
+
+    private IEnumerator SpawnFirstOrders() {
+        SpawnOrder();
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        SpawnOrder();
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        SpawnOrder();
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        SpawnOrder();
     }
 
     //Places an order and displays it on UI.
     private void SpawnOrder() {
-        //Pick a recipe along the available recipes at the current level.
-        int randomNumber = Random.Range(0, availableRecipesInLevel.Count);
-        Recipe randomRecipe = availableRecipesInLevel[randomNumber];
+        if (GameController.Instance.IsGamePlaying) {
+            //Pick a recipe along the available recipes at the current level.
+            int randomNumber = Random.Range(0, availableRecipesInLevel.Count);
+            Recipe randomRecipe = availableRecipesInLevel[randomNumber];
 
-        Transform orderUI_Transform = availableOrderUIs[0];
-        orderUI_Transform.SetAsLastSibling();
-        orderUI_Transform.parent.gameObject.SetActive(true);
-        availableOrderUIs.Remove(availableOrderUIs[0]);
+            Transform orderUI_Transform = availableOrderUIs[0];
+            orderUI_Transform.SetAsLastSibling();
+            orderUI_Transform.parent.gameObject.SetActive(true);
+            availableOrderUIs.Remove(availableOrderUIs[0]);
 
-        OrderUI orderUI = orderUI_Transform.GetComponent<OrderUI>();
-        orderUI.SetRecipe(randomRecipe);
-        orderUI.FadeIn();
+            OrderUI orderUI = orderUI_Transform.GetComponent<OrderUI>();
+            orderUI.SetRecipe(randomRecipe);
+            orderUI.FadeIn();
 
-        currentOrderUIsList.Add(orderUI);
+            currentOrderUIsList.Add(orderUI);
+        }
     }
 
     //Decides on whether the delivered plate matches with any order or not.

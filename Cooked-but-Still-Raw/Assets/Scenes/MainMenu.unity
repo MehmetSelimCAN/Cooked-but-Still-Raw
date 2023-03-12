@@ -1425,10 +1425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIsRelations:
-  - parentName: Main Menu
-    transforms:
-    - {fileID: 1599214898}
-    - {fileID: 764867696}
+  - parentTransform: {fileID: 0}
+    childTransforms: []
   mainMenuUI: {fileID: 0}
   settingsUI: {fileID: 0}
   howToPlayUI: {fileID: 764867696}
@@ -5371,9 +5369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b6977c0f9ddb34597a125c01e7de47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
-  settingsButton: {fileID: 0}
-  howToPlayButton: {fileID: 0}
+  playButton: {fileID: 949839067}
+  settingsButton: {fileID: 1012027849}
+  howToPlayButton: {fileID: 48456235}
 --- !u!1 &1758254711
 GameObject:
   m_ObjectHideFlags: 0
