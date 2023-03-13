@@ -1,9 +1,13 @@
 # Cooked but Still Raw
-Cooked but Still Raw is a clone project of Overcooked that we developed as 2 college friends who are interested in game programming.
+Cooked but Still Raw is a clone project of "Overcooked" that we developed as 2 college friends who are interested in game programming.
 
 The aim of this project is to develop ourselves, and get familiar with common design patterns and object-oriented programming, especially in game development.
 
 In this project, we also aimed to achieve to provide a guideline for those who are interested in game development about how we used the common structures in computer science in Unity Game Engine.
+
+[Gameplay video on youtube](https://www.youtube.com/watch?v=jpWdf1HOItw)
+
+[To play the game on itch.io](https://nikelajj.itch.io/cooked-but-still-raw)
 
 <a name="table-of-contents"></a>
 ## Table of Contents
@@ -74,12 +78,8 @@ In order to serve the desired food we have to interact with the furnitures aroun
 
 <a name="video"></a>
 ## 4. In Game Video
-
-![alt text](.repoRelated/Gameplay.gif)
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
-" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
-
+For the youtube video of full gameplay click on the gif below.
+[![name](.repoRelated/Gameplay.gif)](http://www.youtube.com/watch?feature=player_embedded&v=jpWdf1HOItw)
 
 <a name="scripts"></a>
 ## 5. Scripts & Definitions
