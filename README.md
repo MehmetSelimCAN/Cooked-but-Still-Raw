@@ -1,6 +1,5 @@
-# "Cooked but Still Raw" is in progress...
-
-Cooked but still Raw is a clone project of overcooked that we developed as 2 college friends who are interested in game programming.
+# Cooked but Still Raw
+Cooked but Still Raw is a clone project of Overcooked that we developed as 2 college friends who are interested in game programming.
 
 The aim of this project is to develop ourselves, and get familiar with common design patterns and object-oriented programming, especially in game development.
 
@@ -11,10 +10,10 @@ In this project, we also aimed to achieve to provide a guideline for those who a
 
 > 1. [About the Project](#intro)
 > 2. [Gameplay & Mechanics](#gameplay)
-> 3. [Scripts & Definitions](#scripts)
-> 4. [Hierarchy Diagrams](#diagrams)
-> 5. [In Game Pictures](#pictures)  
-> 6. [In Game Video](#video)  
+> 3. [In Game Pictures](#pictures)  
+> 4. [In Game Video](#video) 
+> 5. [Scripts & Definitions](#scripts)
+> 6. [Hierarchy Diagrams](#diagrams)
 > 7. [Credits](#credits)
 > 8. [Installation Guide](#installation)
 > 9. [Reach Us](#reach)
@@ -48,17 +47,42 @@ In addition to the general software engineering patterns we also used various de
 </ul>
 We studied the Patterns from Bob Nystrom's "<a href="http://gameprogrammingpatterns.com/contents.html">Game Programming Patterns</a>" and implemented them in a way that we see fit.
 
+
 <a name="gameplay"></a>
 ## 2. Gameplay & Mechanics
-In the game, there is a character that we posses. And several furniture that we are able to interract. Goal of the game is correctly serving as much orders as we can before the time runs out.
+In the game, there is a character that we posses. And several furniture that we are able to interact. Goal of the game is correctly serving as much orders as we can before the time runs out.
 In order to serve the desired food we have to interact with the furnitures around us.
 
 * Use W-A-S-D to move around the kitchen.
 * Use E to pick up or drop items from/to furniture.
 * Use the spacebar to interact with the furniture.
 
+
+<a name="pictures"></a>
+## 3. In Game Pictures
+
+![alt text](.repoRelated/MenuScreenshot.png "MenuScreenshot")
+
+![alt text](.repoRelated/SettingsScreenshot.png "SettingsScreenshot")
+
+![alt text](.repoRelated/TutorialScreenshot.png "TutorialScreenshot")
+
+![alt text](.repoRelated/WashingScreenshot.png "WashingScreenshot")
+
+![alt text](.repoRelated/ServingScreenshot.png "ServingScreenshot")
+
+
+<a name="video"></a>
+## 4. In Game Video
+
+![alt text](.repoRelated/Gameplay.gif)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+
 <a name="scripts"></a>
-## 3. Scripts & Definitions
+## 5. Scripts & Definitions
 * Audio Manager
     > Controls audio within the game.
 * Bread
@@ -156,8 +180,9 @@ In order to serve the desired food we have to interact with the furnitures aroun
 * UI Manager
     > Manages UI elements within the game.
 
+
 <a name="diagrams"></a>
-## 4. Hierarchy Diagrams
+## 6. Hierarchy Diagrams
 
 ![alt text](.repoRelated/SingletonClassDiagram.png "SingletonClassDiagram")
 
@@ -165,27 +190,6 @@ In order to serve the desired food we have to interact with the furnitures aroun
 
 ![alt text](.repoRelated/FurnitureClassDiagram.png "FurnitureClassDiagram")
 
-
-<a name="pictures"></a>
-## 5. In Game Pictures
-
-![alt text](.repoRelated/MenuScreenshot.png "MenuScreenshot")
-
-![alt text](.repoRelated/SettingsScreenshot.png "SettingsScreenshot")
-
-![alt text](.repoRelated/TutorialScreenshot.png "TutorialScreenshot")
-
-![alt text](.repoRelated/WashingScreenshot.png "WashingScreenshot")
-
-![alt text](.repoRelated/ServingScreenshot.png "ServingScreenshot")
-
-<a name="video"></a>
-## 6. In Game Video
-
-![alt text](.repoRelated/Gameplay.gif)
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
-" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 <a name="credits"></a>
 ## 7. Credits
@@ -197,18 +201,17 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 ## 8. Installation Guide
 * We encourage you to get the same version of Unity that we used, to prevent any version conversion conflicts, which is version <a href="https://unity.com/releases/editor/whats-new/2020.3.17">2020.3.17</a>.
 
+
 <a name="reach"></a>
 ## 9. Reach Us
 * Feel free to reach us for any kind of questions, recommendations or criticism.
 
-> Mehmet Selim Can
-</br>
-Linkedin: <a href="https://www.linkedin.com/in/mehmet-selim-can/">Mehmet Selim Can</a>
-</br>
+> Mehmet Selim Can</br>
+Linkedin: <a href="https://www.linkedin.com/in/mehmet-selim-can/">Mehmet Selim Can</a></br>
 Mail: <a href="mailto:mehmetselimcn@hotmail.com">mehmetselimcn@hotmail.com</a>
 
-> Mehmet Safa Katırcıoğlu
 </br>
-Linkedin: <a href="https://www.linkedin.com/in/mehmet-safa-katircioglu/">Mehmet Safa Katırcıoğlu</a>
-</br>
+
+> Mehmet Safa Katırcıoğlu</br>
+Linkedin: <a href="https://www.linkedin.com/in/mehmet-safa-katircioglu/">Mehmet Safa Katırcıoğlu</a></br>
 Mail: <a href="mailto:safaktrcgl@gmail.com">safaktrcgl@gmail.com</a>
