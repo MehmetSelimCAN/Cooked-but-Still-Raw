@@ -3388,8 +3388,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 220.66801, y: 1}
-  m_SizeDelta: {x: 313.6329, y: 86.8301}
+  m_AnchoredPosition: {x: 237.88538, y: 1}
+  m_SizeDelta: {x: 348.0676, y: 86.8301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624747998
 MonoBehaviour:
@@ -3411,7 +3411,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is pot stove.\nYou can cook \u0131ngred\u0131ent."
+  m_text: 'This is a pot stove.
+
+    Use it to cook ingredients.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -3612,8 +3614,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "there are orders with recipe. you must comb\u0131ne all \u0131ngred\u0131ents
-    on the plate and deliver to customer."
+  m_text: Follow the recipes by combining the correct ingredients to serve the right
+    meal according to the order!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -3747,7 +3749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can carry and drop items.
+  m_text: You can pick and drop items.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -4051,7 +4053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You must del\u0131ver the correct order."
+  m_text: You should serve the correct recipe.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -4309,9 +4311,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is sink.
+  m_text: 'This is a sink.
 
-    You can wash your plates.'
+    Use it to wash plates.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -4631,7 +4633,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is pan stove.\nYou can fry \u0131ngred\u0131ent."
+  m_text: 'This is a pan stove.
+
+    Use it to fry ingredients.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -4823,8 +4827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 235.0897, y: 1}
-  m_SizeDelta: {x: 342.4763, y: 86.8301}
+  m_AnchoredPosition: {x: 247.46494, y: 1}
+  m_SizeDelta: {x: 367.2268, y: 86.8301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822854987
 MonoBehaviour:
@@ -4846,7 +4850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This is trash can.\nYou can destroy \u0131ngredient."
+  m_text: "This is a trash can.\nUse it to destroy \u0131ngredients."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -5921,8 +5925,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "There are some ingredient that you can't use d\u0131rectly. you must process
-    them."
+  m_text: There are some ingredients that you can't use without processing them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -6757,7 +6760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: 3}
+  m_AnchoredPosition: {x: 222, y: 0}
   m_SizeDelta: {x: 390.7926, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1223545035
@@ -6780,7 +6783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: That means you should cook the ingredient in pot.
+  m_text: indicates that you should cook the ingredient in a pot.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -6807,8 +6810,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7108,9 +7111,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is cutting board.
+  m_text: 'This is a cutting board.
 
-    You can cut ingredient.'
+    Use it to cut ingredients.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -7358,7 +7361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: 3}
+  m_AnchoredPosition: {x: 222, y: 0}
   m_SizeDelta: {x: 390.7926, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286088885
@@ -7381,7 +7384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: That means you should fry the ingredient in pan.
+  m_text: indicates that you should fry the ingredient in a pan.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
@@ -7408,8 +7411,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9213,9 +9216,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is food box.
+  m_text: 'This is a food box.
 
-    You can take ingredient.'
+    Use it to take ingredients.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
   m_sharedMaterial: {fileID: -2895867945962281800, guid: 8d8bfe2b1adeec74a9d0ee74c22c3751, type: 2}
