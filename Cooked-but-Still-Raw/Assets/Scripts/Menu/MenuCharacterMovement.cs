@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuPlayerMovement : MonoBehaviour {
+public class MenuCharacterMovement : MonoBehaviour {
 
     [SerializeField] private Transform initial;
     [SerializeField] private Transform target;

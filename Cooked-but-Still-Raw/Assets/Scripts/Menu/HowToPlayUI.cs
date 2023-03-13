@@ -20,7 +20,7 @@ public class HowToPlayUI : MonoBehaviour {
             nextPageButton.gameObject.SetActive(true);
             previousPageButton.gameObject.SetActive(false);
 
-            MainMenuManager.Instance.EnableMainMenuUI();
+            MenuManager.Instance.EnableMainMenuUI();
         });
 
         nextPageButton.onClick.AddListener(() => {

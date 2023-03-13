@@ -79,6 +79,10 @@ public class Plate : Dish {
                     if (copyRecipe.ingredientInformations.Count == 0) {
                         readyToServeRecipe = copyRecipe;
                     }
+                    else {
+                        readyToServeRecipe = null;
+                    }
+
                     break;
                 }
             }

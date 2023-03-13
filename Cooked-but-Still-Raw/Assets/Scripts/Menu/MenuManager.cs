@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 
-public class MainMenuManager : Singleton<MainMenuManager> {
+public class MenuManager : Singleton<MenuManager> {
 
     [SerializeField] private Transform mainMenuUI;
     [SerializeField] private Transform settingsUI;

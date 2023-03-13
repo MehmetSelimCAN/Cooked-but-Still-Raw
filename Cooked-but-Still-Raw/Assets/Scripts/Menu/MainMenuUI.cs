@@ -12,15 +12,15 @@ public class MainMenuUI : MonoBehaviour {
 
     private void Awake() {
         playButton.onClick.AddListener(() => {
-            MainMenuManager.Instance.PlayGame();
+            MenuManager.Instance.PlayGame();
         });
 
         settingsButton.onClick.AddListener(() => {
-            MainMenuManager.Instance.EnableSettingsUI();
+            MenuManager.Instance.EnableSettingsUI();
         });
 
         howToPlayButton.onClick.AddListener(() => {
-            MainMenuManager.Instance.EnableHowToPlayUI();
+            MenuManager.Instance.EnableHowToPlayUI();
         });
     }
 }
