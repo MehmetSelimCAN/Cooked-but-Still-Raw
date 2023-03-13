@@ -58,7 +58,7 @@ In order to serve the desired food we have to interact with the furnitures aroun
 * Use the spacebar to interact with the furniture.
 
 <a name="scripts"></a>
-## 3. Classes & Definitions
+## 3. Scripts & Definitions
 * Audio Manager
     > Controls audio within the game.
 * Bread
@@ -159,30 +159,30 @@ In order to serve the desired food we have to interact with the furnitures aroun
 <a name="diagrams"></a>
 ## 4. Hierarchy Diagrams
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/SingletonClassDiagram.png "Screenshot 0")
+![alt text](.repoRelated/SingletonClassDiagram.png "SingletonClassDiagram")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/ItemClassDiagram.png "Screenshot 0")
+![alt text](.repoRelated/ItemClassDiagram.png "ItemClassDiagram")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/FurnitureClassDiagram.png "Screenshot 0")
+![alt text](.repoRelated/FurnitureClassDiagram.png "FurnitureClassDiagram")
 
 
 <a name="pictures"></a>
 ## 5. In Game Pictures
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/MenuScreenshot.png "Screenshot 0")
+![alt text](.repoRelated/MenuScreenshot.png "MenuScreenshot")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/SettingsScreenshot.png "Screenshot 1")
+![alt text](.repoRelated/SettingsScreenshot.png "SettingsScreenshot")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/TutorialScreenshot.png "Screenshot 2")
+![alt text](.repoRelated/TutorialScreenshot.png "TutorialScreenshot")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/WashingScreenshot.png "Screenshot 3")
+![alt text](.repoRelated/WashingScreenshot.png "WashingScreenshot")
 
-![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/ServingScreenshot.png "Screenshot 4")
+![alt text](.repoRelated/ServingScreenshot.png "ServingScreenshot")
 
 <a name="video"></a>
 ## 6. In Game Video
 
+![alt text](.repoRelated/Gameplay.gif)
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
 " target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
