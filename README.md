@@ -1,1 +1,214 @@
 # "Cooked but Still Raw" is in progress...
+
+Cooked but still Raw is a clone project of overcooked that we developed as 2 college friends who are interested in game programming.
+
+The aim of this project is to develop ourselves, and get familiar with common design patterns and object-oriented programming, especially in game development.
+
+In this project, we also aimed to achieve to provide a guideline for those who are interested in game development about how we used the common structures in computer science in Unity Game Engine.
+
+<a name="table-of-contents"></a>
+## Table of Contents
+
+> 1. [About the Project](#intro)
+> 2. [Gameplay & Mechanics](#gameplay)
+> 3. [Scripts & Definitions](#scripts)
+> 4. [Hierarchy Diagrams](#diagrams)
+> 5. [In Game Pictures](#pictures)  
+> 6. [In Game Video](#video)  
+> 7. [Credits](#credits)
+> 8. [Installation Guide](#installation)
+> 9. [Reach Us](#reach)
+
+<a name="intro"></a>
+## 1. About the Project
+This project is a replica project of overcooked we developed as 2 college friends in order to get familliar with the usages of common design patterns and object-oriented programming.
+</br>
+We implemented the project by sticking to 4 pillars of object-oriented programming that are;
+<ul>
+
+    Abstraction
+    Encapsulation
+    Inheritance
+    Polymorphism
+
+</ul>
+In addition to the general software engineering patterns we also used various design patterns that are especially useful for game programming such as;
+</br>
+<ul>
+
+    Singleton Design Pattern
+    State Pattern
+    Flyweight Pattern
+    Object Pooling Pattern
+    Command Pattern
+    Type-Object Pattern
+    Subclass Sandbox Pattern
+    Composite Design Pattern
+
+</ul>
+We studied the Patterns from Bob Nystrom's "<a href="http://gameprogrammingpatterns.com/contents.html">Game Programming Patterns</a>" and implemented them in a way that we see fit.
+
+<a name="gameplay"></a>
+## 2. Gameplay & Mechanics
+In the game, there is a character that we posses. And several furniture that we are able to interract. Goal of the game is correctly serving as much orders as we can before the time runs out.
+In order to serve the desired food we have to interact with the furnitures around us.
+
+* Use W-A-S-D to move around the kitchen.
+* Use E to pick up or drop items from/to furniture.
+* Use the spacebar to interact with the furniture.
+
+<a name="scripts"></a>
+## 3. Classes & Definitions
+* Audio Manager
+    > Controls audio within the game.
+* Bread
+    > Ingredient to prepare recipes.
+* Cheese
+    > Ingredient to prepare recipes.
+* Cutting Board
+    > Furniture to slice ingredients.
+* Default Counter
+    > Furniture with no interactive action.
+* Delivery Counter
+    > Furniture to serve meals.
+* Dirty Plate Counter
+    > Furniture to return plates from orders.
+* Dirty Plate Stack
+    > Stack to overlap dirty plates.
+* Dish
+    > Item to contain ingredients inside.
+* Furniture
+    > Objects we can interact with.
+* Game Controller
+    > Controls the state of the game.
+* Game Input Controller
+    > Binds inputs to the actions.
+* Highlight
+    > Shows visual feedback on the closest furniture.
+* How To Play UI
+    > Responsible for actions in tutorial UI.
+* ICookable
+    > Interface for cookable ingredients.
+* ICuttable
+    > Interface for cuttable ingredients.
+* IFryable
+    > Interface for fryable ingredients.
+* Ingredient
+    > Items to prepare meals.
+* Ingredient Box
+    > Furniture to retrieve ingredients.
+* Ingredient Status
+    > Enum to store status of the ingredient.
+* Ingredient Type
+    > Enum to store the type of ingredient.
+* Interact Controller
+    > Controls which furniture to interact.
+* Item
+    > Objects that we can pick up and drop off.
+* Lettuce
+    > Ingredient to prepare recipes.
+* Look At Camera
+    > Responsible for UI elements rotation.
+* Main Menu UI
+    > Responsible for actions in Main Menu UI.
+* Meat
+    > Ingredient to prepare recipes.
+* Menu Character Movement
+    > Moves character on Main Menu screen.
+* Menu Manager
+    > Manages the actions in Menu.
+* Onion
+    > Ingredient to prepare recipes.
+* Order Manager
+    > Responsible for managing orders.
+* Order UI
+    > Displays the order information on UI.
+* Pan
+    > Dish to contain fryable ingredients.
+* Pan Stove
+    > Furniture to fry ingredients.
+* Plate
+    > Dish to serve meals.
+* Player Controller
+    > Responsible for player actions.
+* Pooling Manager
+    > Manages object pooling within the game.
+* Pot
+    > Dish to contain cookable ingredients.
+* Pot Stove
+    > Furniture to fry ingredients.
+* Recipe
+    > Container to store ingredient combinations.
+* Recipe Manager
+    > Responsible for available recipes.
+* Settings UI
+    > Responsible for actions in settings UI.
+* Singleton
+    > Responsible for static references.
+* Sink
+    > Furniture to cleanse dirty plates.
+* Sprite Provider
+    > Responsible for UI sprites.
+* Tomato
+    > Ingredient to prepare recipes.
+* Trash Can
+    > Furniture for undesired ingredients.
+* UI Manager
+    > Manages UI elements within the game.
+
+<a name="diagrams"></a>
+## 4. Hierarchy Diagrams
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/SingletonClassDiagram.png "Screenshot 0")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/ItemClassDiagram.png "Screenshot 0")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/FurnitureClassDiagram.png "Screenshot 0")
+
+
+<a name="pictures"></a>
+## 5. In Game Pictures
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/MenuScreenshot.png "Screenshot 0")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/SettingsScreenshot.png "Screenshot 1")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/TutorialScreenshot.png "Screenshot 2")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/WashingScreenshot.png "Screenshot 3")
+
+![alt text](https://github.com/MehmetSelimCAN/Cooked-but-Still-Raw/tree/main/.repoRelated/ServingScreenshot.png "Screenshot 4")
+
+<a name="video"></a>
+## 6. In Game Video
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
+" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+<a name="credits"></a>
+## 7. Credits
+* Assets from <a href="https://www.kenney.nl/">Kenney</a>
+* Musics from <a href="https://tallbeard.itch.io/music-loop-bundle">Tallbeard Studios</a>
+
+
+<a name="installation"></a>
+## 8. Installation Guide
+* We encourage you to get the same version of Unity that we used, to prevent any version conversion conflicts, which is version <a href="https://unity.com/releases/editor/whats-new/2020.3.17">2020.3.17</a>.
+
+<a name="reach"></a>
+## 9. Reach Us
+* Feel free to reach us for any kind of questions, recommendations or criticism.
+
+> Mehmet Selim Can
+</br>
+Linkedin: <a href="https://www.linkedin.com/in/mehmet-selim-can/">Mehmet Selim Can</a>
+</br>
+Mail: <a href="mailto:mehmetselimcn@hotmail.com">mehmetselimcn@hotmail.com</a>
+
+> Mehmet Safa Katırcıoğlu
+</br>
+Linkedin: <a href="https://www.linkedin.com/in/mehmet-safa-katircioglu/">Mehmet Safa Katırcıoğlu</a>
+</br>
+Mail: <a href="mailto:safaktrcgl@gmail.com">safaktrcgl@gmail.com</a>
