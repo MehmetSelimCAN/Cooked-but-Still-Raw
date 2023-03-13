@@ -83,16 +83,16 @@ public class UIManager : Singleton<UIManager> {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void PauseGame() {
+    public void PauseGame()
+    {
         pauseGameScreen.gameObject.SetActive(true);
-        AudioManager.Instance.StopBackgroundMusic();
-        Time.timeScale = 0;
+        GameController.Instance.PauseGame();
     }
 
-    public void ContinueGame() {
+    public void ContinueGame()
+    {
         pauseGameScreen.gameObject.SetActive(false);
-        AudioManager.Instance.PlayBackgroundMusic();
-        Time.timeScale = 1;
+        GameController.Instance.UnpauseGame();
     }
 
     public void OpenSettingsUI() {

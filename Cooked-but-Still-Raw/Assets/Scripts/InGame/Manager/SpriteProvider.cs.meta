@@ -5,13 +5,17 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - meatSprite: {fileID: 21300000, guid: a00cafd8389a99c4486860047bc5ff5f, type: 3}
-  - cabbageSprite: {fileID: 21300000, guid: 471ce350675327944886d9bea37bd3d5, type: 3}
+  - lettuceSprite: {fileID: 21300000, guid: 471ce350675327944886d9bea37bd3d5, type: 3}
   - breadSprite: {fileID: 21300000, guid: 89102654d1fc28b4cbf4daa3ddc64ae9, type: 3}
   - onionSprite: {fileID: 21300000, guid: 193c0a1cd2eb7b34ea59d3ae2f743cb6, type: 3}
   - tomatoSprite: {fileID: 21300000, guid: 40a975308c5f21d4487fe61414ac91be, type: 3}
   - cheeseSprite: {fileID: 21300000, guid: df05ff8e5dbb4ab41a4d021a992c3c68, type: 3}
   - panSprite: {fileID: 21300000, guid: d7ab88eb9eec5444593594f693422fab, type: 3}
   - potSprite: {fileID: 21300000, guid: fadc36b995fb9fd4a81fb7dbf007fcd9, type: 3}
+  - megaBurgerSprite: {fileID: 21300000, guid: 0a29013e3903f2f459dbd79faf1f19ab, type: 3}
+  - cheeseBurgerSprite: {fileID: 21300000, guid: 26f69577708bd9c4a8929d24d5174e49, type: 3}
+  - burgerSprite: {fileID: 21300000, guid: 7ba51409131765a4ca05a64d50fe3cf5, type: 3}
+  - soupSprite: {fileID: 21300000, guid: 2bfe22f710740114884b377af1c29c05, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

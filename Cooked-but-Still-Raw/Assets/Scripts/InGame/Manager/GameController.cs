@@ -32,8 +32,16 @@ public class GameController : Singleton<GameController> {
         AudioManager.Instance.PlayBackgroundMusic();
     }
 
-    public void StopGame() {
+    public void PauseGame()
+    {
+        AudioManager.Instance.StopBackgroundMusic();
+        Time.timeScale = 0;
+    }
 
+    public void UnpauseGame()
+    {
+        AudioManager.Instance.PlayBackgroundMusic();
+        Time.timeScale = 1;
     }
 
     public void FinishGame() {

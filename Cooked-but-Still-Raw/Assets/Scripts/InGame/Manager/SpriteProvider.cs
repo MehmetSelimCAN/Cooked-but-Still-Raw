@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpriteProvider : Singleton<SpriteProvider> {
 
     public Sprite meatSprite;
-    public Sprite cabbageSprite;
+    public Sprite lettuceSprite;
     public Sprite breadSprite;
     public Sprite onionSprite;
     public Sprite tomatoSprite;
@@ -26,7 +26,7 @@ public class SpriteProvider : Singleton<SpriteProvider> {
                 returnSprite = cheeseSprite;
                 break;
             case IngredientType.Lettuce:
-                returnSprite = cabbageSprite;
+                returnSprite = lettuceSprite;
                 break;
             case IngredientType.Onion:
                 returnSprite = onionSprite;
