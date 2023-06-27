@@ -40,10 +40,7 @@ In addition to the general software engineering patterns we also used various de
 <ul>
 
     Singleton Design Pattern
-    State Pattern
-    Flyweight Pattern
     Object Pooling Pattern
-    Command Pattern
     Type-Object Pattern
     Subclass Sandbox Pattern
     Composite Design Pattern
